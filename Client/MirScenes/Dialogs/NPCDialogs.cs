@@ -537,53 +537,49 @@ namespace Client.MirScenes.Dialogs
             if (SelectedItem.Info.StackSize > 1)
             {
                 uint tempCount = SelectedItem.Count;
-                uint maxQuantity = SelectedItem.Info.StackSize;
+                //uint maxQuantity = SelectedItem.Info.StackSize;
 
-                SelectedItem.Count = maxQuantity;
+                //SelectedItem.Count = maxQuantity;
 
                 if (usePearls)//pearl currency
                 {
                     if (SelectedItem.Price() > GameScene.User.PearlCount)
                     {
-                        maxQuantity = GameScene.Gold / (SelectedItem.Price() / SelectedItem.Count);
-                        if (maxQuantity == 0)
-                        {
+                        //maxQuantity = GameScene.Gold / (SelectedItem.Price() / SelectedItem.Count);
+                        //if (maxQuantity == 0)
+                        //{
                             GameScene.Scene.ChatDialog.ReceiveChat("You do not have enough Pearls.", ChatType.System);
                             return;
-                        }
+                        //}
                     }
                 }
-
                 else if (SelectedItem.Price() > GameScene.Gold)
                 {
-                    maxQuantity = GameScene.Gold / (SelectedItem.Price() / SelectedItem.Count);
-                    if (maxQuantity == 0)
-                    {
+                    //maxQuantity = GameScene.Gold / (SelectedItem.Price() / SelectedItem.Count);
+                    //if (maxQuantity == 0)
+                    //{
                         GameScene.Scene.ChatDialog.ReceiveChat("You do no have enough Gold.", ChatType.System);
                         return;
-                    }
+                    //}
                 }
 
                 MapObject.User.GetMaxGain(SelectedItem);
 
-                if (SelectedItem.Count > tempCount)
-                {
-                    SelectedItem.Count = tempCount;
-                }
+                Network.Enqueue(new C.BuyItem { ItemIndex = SelectedItem.UniqueID, Count = SelectedItem.Count, Type = PanelType.Buy });
 
-                if (SelectedItem.Count == 0) return;
+                //if (SelectedItem.Count == 0) return;
 
-                MirAmountBox amountBox = new MirAmountBox("Purchase Amount:", SelectedItem.Image, maxQuantity, 0, SelectedItem.Count);
+                //MirAmountBox amountBox = new MirAmountBox("Purchase Amount:", SelectedItem.Image, maxQuantity, 0, SelectedItem.Count);
 
-                amountBox.OKButton.Click += (o, e) =>
-                {
-                    if (amountBox.Amount > 0)
-                    {
-                        Network.Enqueue(new C.BuyItem { ItemIndex = SelectedItem.UniqueID, Count = amountBox.Amount, Type = PanelType.Buy });
-                    }
-                };
+                //amountBox.OKButton.Click += (o, e) =>
+                //{
+                //    if (amountBox.Amount > 0)
+                //    {
+                //        Network.Enqueue(new C.BuyItem { ItemIndex = SelectedItem.UniqueID, Count = amountBox.Amount, Type = PanelType.Buy });
+                //    }
+                //};
 
-                amountBox.Show();
+                //amountBox.Show();
             }
             else
             {

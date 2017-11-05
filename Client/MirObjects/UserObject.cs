@@ -869,7 +869,7 @@ namespace Client.MirObjects
 
         public void GetMaxGain(UserItem item)
         {
-            if (CurrentBagWeight + item.Weight <= MaxBagWeight && FreeSpace(Inventory) > 0) return;
+            //if (CurrentBagWeight + item.Weight <= MaxBagWeight && FreeSpace(Inventory) > 0) return;
 
             uint min = 0;
             uint max = item.Count;
@@ -879,49 +879,49 @@ namespace Client.MirObjects
 
             }
 
-            if (item.Info.Type == ItemType.Amulet)
-            {
-                for (int i = 0; i < Inventory.Length; i++)
-                {
-                    UserItem bagItem = Inventory[i];
+            //if (item.Info.Type == ItemType.Amulet)
+            //{
+            //    for (int i = 0; i < Inventory.Length; i++)
+            //    {
+            //        UserItem bagItem = Inventory[i];
 
-                    if (bagItem == null || bagItem.Info != item.Info) continue;
+            //        if (bagItem == null || bagItem.Info != item.Info) continue;
 
-                    if (bagItem.Count + item.Count <= bagItem.Info.StackSize)
-                    {
-                        item.Count = max;
-                        return;
-                    }
-                    item.Count = bagItem.Info.StackSize - bagItem.Count;
-                    min += item.Count;
-                    if (min >= max)
-                    {
-                        item.Count = max;
-                        return;
-                    }
-                }
+            //        if (bagItem.Count + item.Count <= bagItem.Info.StackSize)
+            //        {
+            //            item.Count = max;
+            //            return;
+            //        }
+            //        item.Count = bagItem.Info.StackSize - bagItem.Count;
+            //        min += item.Count;
+            //        if (min >= max)
+            //        {
+            //            item.Count = max;
+            //            return;
+            //        }
+            //    }
 
-                if (min == 0)
-                {
-                    GameScene.Scene.ChatDialog.ReceiveChat(FreeSpace(Inventory) == 0 ? "You do not have enough space." : "You do not have enough weight.", ChatType.System);
+            //    if (min == 0)
+            //    {
+            //        GameScene.Scene.ChatDialog.ReceiveChat(FreeSpace(Inventory) == 0 ? "You do not have enough space." : "You do not have enough weight.", ChatType.System);
 
-                    item.Count = 0;
-                    return;
-                }
+            //        item.Count = 0;
+            //        return;
+            //    }
 
-                item.Count = min;
-                return;
-            }
+            //    item.Count = min;
+            //    return;
+            //}
 
             if (CurrentBagWeight + item.Weight > MaxBagWeight)
             {
-                item.Count = (uint)(Math.Max((MaxBagWeight - CurrentBagWeight), uint.MinValue) / item.Info.Weight);
-                max = item.Count;
-                if (item.Count == 0)
-                {
+                //item.Count = (uint)(Math.Max((MaxBagWeight - CurrentBagWeight), uint.MinValue) / item.Info.Weight);
+                //max = item.Count;
+                //if (item.Count == 0)
+                //{
                     GameScene.Scene.ChatDialog.ReceiveChat("You do not have enough weight.", ChatType.System);
                     return;
-                }
+                //}
             }
 
             if (item.Info.StackSize > 1)
@@ -933,19 +933,19 @@ namespace Client.MirObjects
                     if (bagItem == null) return;
                     if (bagItem.Info != item.Info) continue;
 
-                    if (bagItem.Count + item.Count <= bagItem.Info.StackSize)
-                    {
-                        item.Count = max;
-                        return;
-                    }
+                    //if (bagItem.Count + item.Count <= bagItem.Info.StackSize)
+                    //{
+                    //    item.Count = max;
+                    //    return;
+                    //}
 
-                    item.Count = bagItem.Info.StackSize - bagItem.Count;
+                    //item.Count = bagItem.Info.StackSize - bagItem.Count;
                     min += item.Count;
-                    if (min >= max)
-                    {
-                        item.Count = max;
-                        return;
-                    }
+                    //if (min >= max)
+                    //{
+                    //    item.Count = max;
+                    //    return;
+                    //}
                 }
 
                 if (min == 0)
@@ -957,7 +957,7 @@ namespace Client.MirObjects
             else
             {
                 GameScene.Scene.ChatDialog.ReceiveChat("You do not have enough space.", ChatType.System);
-                item.Count = 0;
+                //item.Count = 0;
             }
 
         }
