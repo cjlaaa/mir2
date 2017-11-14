@@ -89,7 +89,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 1905,
                 Sound = SoundList.ButtonA,
-                Hint = "Inventory (" + CMain.InputKeys.GetKey(KeybindOptions.Inventory) + ")"
+                Hint = "背包 (" + CMain.InputKeys.GetKey(KeybindOptions.Inventory) + ")"
             };
             InventoryButton.Click += (o, e) =>
             {
@@ -108,7 +108,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 1902,
                 Sound = SoundList.ButtonA,
-                Hint = "Character (" + CMain.InputKeys.GetKey(KeybindOptions.Equipment) + ")"
+                Hint = "角色 (" + CMain.InputKeys.GetKey(KeybindOptions.Equipment) + ")"
             };
             CharacterButton.Click += (o, e) =>
             {
@@ -130,7 +130,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 1908,
                 Sound = SoundList.ButtonA,
-                Hint = "Skills (" + CMain.InputKeys.GetKey(KeybindOptions.Skills) + ")"
+                Hint = "技能 (" + CMain.InputKeys.GetKey(KeybindOptions.Skills) + ")"
             };
             SkillButton.Click += (o, e) =>
             {
@@ -152,7 +152,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 1911,
                 Sound = SoundList.ButtonA,
-                Hint = "Quests (" + CMain.InputKeys.GetKey(KeybindOptions.Quests) + ")"
+                Hint = "任务 (" + CMain.InputKeys.GetKey(KeybindOptions.Quests) + ")"
             };
             QuestButton.Click += (o, e) =>
             {
@@ -170,7 +170,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 1914,
                 Sound = SoundList.ButtonA,
-                Hint = "Options (" + CMain.InputKeys.GetKey(KeybindOptions.Options) + ")"
+                Hint = "选项 (" + CMain.InputKeys.GetKey(KeybindOptions.Options) + ")"
             };
             OptionButton.Click += (o, e) =>
             {
@@ -188,7 +188,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 1962,
                 Sound = SoundList.ButtonC,
-                Hint = "Menu"
+                Hint = "菜单"
             };
             MenuButton.Click += (o, e) =>
             {
@@ -205,7 +205,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 828,
                 Sound = SoundList.ButtonC,
-                Hint = "Game Shop (" + CMain.InputKeys.GetKey(KeybindOptions.GameShop) + ")"
+                Hint = "游戏商城 (" + CMain.InputKeys.GetKey(KeybindOptions.GameShop) + ")"
             };
             GameShopButton.Click += (o, e) =>
             {
@@ -376,44 +376,44 @@ namespace Client.MirScenes.Dialogs
             switch (GameScene.Scene.AMode)
             {
                 case AttackMode.Peace:
-                    AModeLabel.Text = "[Mode: Peaceful]";
+                    AModeLabel.Text = "[攻击模式: 和平]";
                     break;
                 case AttackMode.Group:
-                    AModeLabel.Text = "[Mode: Group]";
+                    AModeLabel.Text = "[攻击模式: 编组]";
                     break;
                 case AttackMode.Guild:
-                    AModeLabel.Text = "[Mode: Guild]";
+                    AModeLabel.Text = "[攻击模式: 行会]";
                     break;
                 case AttackMode.EnemyGuild:
-                    AModeLabel.Text = "[Mode: Enemy Guild]";
+                    AModeLabel.Text = "[攻击模式: 敌对行会]";
                     break;
                 case AttackMode.RedBrown:
-                    AModeLabel.Text = "[Mode: Red/Brown]";
+                    AModeLabel.Text = "[攻击模式: 善恶]";
                     break;
                 case AttackMode.All:
-                    AModeLabel.Text = "[Mode: Attack All]";
+                    AModeLabel.Text = "[攻击模式: 全体]";
                     break;
             }
 
             switch (GameScene.Scene.PMode)
             {
                 case PetMode.Both:
-                    PModeLabel.Text = "[Pet: Attack and Move]";
+                    PModeLabel.Text = "[召唤物: 自由攻击及移动]";
                     break;
                 case PetMode.MoveOnly:
-                    PModeLabel.Text = "[Pet: Do Not Attack]";
+                    PModeLabel.Text = "[召唤物: 仅移动不攻击]";
                     break;
                 case PetMode.AttackOnly:
-                    PModeLabel.Text = "[Pet: Do Not Move]";
+                    PModeLabel.Text = "[召唤物: 仅攻击不移动]";
                     break;
                 case PetMode.None:
-                    PModeLabel.Text = "[Pet: Do Not Attack or Move]";
+                    PModeLabel.Text = "[召唤物: 禁止攻击及移动]";
                     break;
             }
 
             if ((GameScene.Scene.PingTime) > 100)
             {
-                PingLabel.Text = string.Format("Ping: {0}", GameScene.Scene.PingTime);
+                PingLabel.Text = string.Format("网速: {0}", GameScene.Scene.PingTime);
                 PingLabel.Visible = true;
             }
             else
@@ -424,10 +424,10 @@ namespace Client.MirScenes.Dialogs
             switch (Settings.SkillMode)
             {
                 case true:
-                    SModeLabel.Text = "[Skill Mode: ~]";
+                    SModeLabel.Text = "[技能模式: ~]";
                     break;
                 case false:
-                    SModeLabel.Text = "[Skill Mode: Ctrl]";
+                    SModeLabel.Text = "[技能模式: Ctrl]";
                     break;
             }
 
@@ -1145,7 +1145,7 @@ namespace Client.MirScenes.Dialogs
                 Location = new Point(Settings.Resolution != 800 ? 574 : 350, 1),
                 Visible = true,
                 Sound = SoundList.ButtonA,
-                Hint = "Size"
+                Hint = "窗口尺寸"
             };
             SizeButton.Click += (o, e) =>
             {
@@ -1164,7 +1164,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(Settings.Resolution != 800 ? 596 : 372, 1),
                 Sound = SoundList.ButtonA,
-                Hint = "Chat Settings"
+                Hint = "聊天设定"
             };
             SettingsButton.Click += (o, e) =>
             {
@@ -1186,7 +1186,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(12, 1),
                 Sound = SoundList.ButtonA,
-                Hint = "All"
+                Hint = "普通聊天"
             };
             NormalButton.Click += (o, e) =>
             {
@@ -1202,7 +1202,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(34, 1),
                 Sound = SoundList.ButtonA,
-                Hint = "Shout"
+                Hint = "大喊"
             };
             ShoutButton.Click += (o, e) =>
             {
@@ -1218,7 +1218,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(56, 1),
                 Sound = SoundList.ButtonA,
-                Hint = "Whisper"
+                Hint = "密语"
             };
             WhisperButton.Click += (o, e) =>
             {
@@ -1234,7 +1234,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(78, 1),
                 Sound = SoundList.ButtonA,
-                Hint = "Lover"
+                Hint = "情侣"
             };
             LoverButton.Click += (o, e) =>
             {
@@ -1250,7 +1250,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(100, 1),
                 Sound = SoundList.ButtonA,
-                Hint = "Mentor"
+                Hint = "师徒"
             };
             MentorButton.Click += (o, e) =>
             {
@@ -1266,7 +1266,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(122, 1),
                 Sound = SoundList.ButtonA,
-                Hint = "Group"
+                Hint = "编组"
             };
             GroupButton.Click += (o, e) =>
             {
@@ -1282,7 +1282,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(144, 1),
                 Sound = SoundList.ButtonA,
-                Hint = "Guild"
+                Hint = "行会"
             };
             GuildButton.Click += (o, e) =>
             {
@@ -1456,8 +1456,8 @@ namespace Client.MirScenes.Dialogs
             {
                 int openLevel = (GameScene.User.Inventory.Length - 46) / 4;
                 int openGold = (1000000 + openLevel * 1000000);
-                MirMessageBox messageBox = new MirMessageBox(string.Format("Are you sure you would like to unlock 4 extra slots for {0:###,###} gold ?\n" +
-                                                    "This will take your inventory space up to {1} slots in total.", openGold, GameScene.User.Inventory.Length + 4), MirMessageBoxButtons.OKCancel);
+                MirMessageBox messageBox = new MirMessageBox(string.Format("你确定要花费{0:###,###}金币扩充额外4格背包空间吗?\n" +
+                                                    "这个操作会将你的背包空间扩充至{1}格.", openGold, GameScene.User.Inventory.Length + 4), MirMessageBoxButtons.OKCancel);
 
                 messageBox.OKButton.Click += (o, a) =>
                 {
@@ -1559,8 +1559,8 @@ namespace Client.MirScenes.Dialogs
         {
             if (GameScene.User.Inventory.Length == 46 && sender == ItemButton2)
             {
-                MirMessageBox messageBox = new MirMessageBox("Are you sure you would like to buy 8 extra slots for 1,000,000 gold?\n" +
-                    "Next purchase you can unlock 4 extra slots up to a maximum of 40 slots.", MirMessageBoxButtons.OKCancel);
+                MirMessageBox messageBox = new MirMessageBox("你确定要花费1,000,000金币扩充额外8格背包空间吗?\n" +
+                    "下次购买可解锁额外4格背包空间，最大可解锁至40格。", MirMessageBoxButtons.OKCancel);
 
                 messageBox.OKButton.Click += (o, a) =>
                 {
@@ -1788,7 +1788,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 1928,
                 Sound = SoundList.ButtonA,
-                Hint = "Rotate"
+                Hint = "旋转"
             };
             RotateButton.Click += (o, e) => Flip();
 
@@ -1801,7 +1801,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 1925,
                 Sound = SoundList.ButtonA,
-                Hint = "Close (" + CMain.InputKeys.GetKey(KeybindOptions.Belt) + ")"
+                Hint = "关闭 (" + CMain.InputKeys.GetKey(KeybindOptions.Belt) + ")"
             };
             CloseButton.Click += (o, e) => Hide();
 
@@ -2078,7 +2078,7 @@ namespace Client.MirScenes.Dialogs
                     //string key = m.Key > 8 ? string.Format("CTRL F{0}", i) : string.Format("F{0}", m.Key);
 
                     Cells[i - 1].Index = magic.Icon*2;
-                    Cells[i - 1].Hint = string.Format("{0}\nMP: {1}\nCooldown: {2}\nKey: {3}", magic.Spell,
+                    Cells[i - 1].Hint = string.Format("{0}\n魔法消耗: {1}\n冷却时间: {2}\n按键: {3}", magic.Spell,
                         (magic.BaseCost + (magic.LevelCost * magic.Level)), Functions.PrintTimeSpanFromMilliSeconds(magic.Delay), key);
 
                     KeyNameLabels[i - 1].Text = "";
@@ -2916,7 +2916,7 @@ namespace Client.MirScenes.Dialogs
                 Location = new Point(4, 131),
                 Library = Libraries.Prguse,
                 Sound = SoundList.ButtonA,
-                Hint = "Mail"
+                Hint = "邮件"
             };
             MailButton.Click += (o, e) => GameScene.Scene.MailListDialog.Toggle();
 
@@ -2939,7 +2939,7 @@ namespace Client.MirScenes.Dialogs
                 Location = new Point(25, 131),
                 Library = Libraries.Prguse,
                 Sound = SoundList.ButtonA,
-                Hint = "BigMap (" + CMain.InputKeys.GetKey(KeybindOptions.Bigmap) +")"
+                Hint = "大地图 (" + CMain.InputKeys.GetKey(KeybindOptions.Bigmap) +")"
             };
             BigMapButton.Click += (o, e) => GameScene.Scene.BigMapDialog.Toggle();
 
@@ -2952,7 +2952,7 @@ namespace Client.MirScenes.Dialogs
                 Location = new Point(109, 3),
                 Library = Libraries.Prguse,
                 Sound = SoundList.ButtonA,
-                Hint = "MiniMap (" + CMain.InputKeys.GetKey(KeybindOptions.Minimap) + ")"
+                Hint = "小地图 (" + CMain.InputKeys.GetKey(KeybindOptions.Minimap) + ")"
             };
             ToggleButton.Click += (o, e) => Toggle();
 
@@ -3359,13 +3359,13 @@ namespace Client.MirScenes.Dialogs
 
                 if (GroupDialog.GroupList.Count >= Globals.MaxGroup)
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("Your group already has the maximum number of members.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你的队伍人数已满。", ChatType.System);
                     return;
                 }
                 if (GroupDialog.GroupList.Count > 0 && GroupDialog.GroupList[0] != MapObject.User.Name)
                 {
 
-                    GameScene.Scene.ChatDialog.ReceiveChat("You are not the leader of your group.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你不是队长。", ChatType.System);
                 }
 
                 Network.Enqueue(new C.AddMember { Name = Name });
@@ -3672,7 +3672,7 @@ namespace Client.MirScenes.Dialogs
             SkillModeOn.Click += (o, e) =>
             {
                 Settings.SkillMode = true;
-                GameScene.Scene.ChatDialog.ReceiveChat("<SkillMode 2>", ChatType.Hint);
+                GameScene.Scene.ChatDialog.ReceiveChat("<技能模式 2>", ChatType.Hint);
                 ToggleSkillButtons(false);
             };
 
@@ -3689,7 +3689,7 @@ namespace Client.MirScenes.Dialogs
             SkillModeOff.Click += (o, e) =>
             {
                 Settings.SkillMode = false;
-                GameScene.Scene.ChatDialog.ReceiveChat("<SkillMode 1>", ChatType.Hint);
+                GameScene.Scene.ChatDialog.ReceiveChat("<技能模式 1>", ChatType.Hint);
                 ToggleSkillButtons(true);
             };
 
@@ -3793,7 +3793,7 @@ namespace Client.MirScenes.Dialogs
             HPViewOn.Click += (o, e) =>
             {
                 Settings.HPView = true;
-                GameScene.Scene.ChatDialog.ReceiveChat("<HP/MP Mode 1>", ChatType.Hint);
+                GameScene.Scene.ChatDialog.ReceiveChat("<HP/MP 模式 1>", ChatType.Hint);
             };
 
             HPViewOff = new MirButton
@@ -3808,7 +3808,7 @@ namespace Client.MirScenes.Dialogs
             HPViewOff.Click += (o, e) =>
             {
                 Settings.HPView = false;
-                GameScene.Scene.ChatDialog.ReceiveChat("<HP/MP Mode 2>", ChatType.Hint);
+                GameScene.Scene.ChatDialog.ReceiveChat("<HP/MP 模式 2>", ChatType.Hint);
             };
 
             SoundBar = new MirImageControl
@@ -4078,7 +4078,7 @@ namespace Client.MirScenes.Dialogs
                 Library = Libraries.Title,
                 Location = new Point(3, 12),
                 PressedIndex = 635,
-                Hint = "Exit (" + CMain.InputKeys.GetKey(KeybindOptions.Exit) + ")"
+                Hint = "退出 (" + CMain.InputKeys.GetKey(KeybindOptions.Exit) + ")"
             };
             ExitButton.Click += (o, e) => GameScene.Scene.QuitGame();
 
@@ -4090,7 +4090,7 @@ namespace Client.MirScenes.Dialogs
                 Library = Libraries.Title,
                 Location = new Point(3, 31),
                 PressedIndex = 638,
-                Hint = "Log Out (" + CMain.InputKeys.GetKey(KeybindOptions.Logout) + ")"
+                Hint = "小退 (" + CMain.InputKeys.GetKey(KeybindOptions.Logout) + ")"
             };
             LogOutButton.Click += (o, e) => GameScene.Scene.LogOut();
 
@@ -4103,7 +4103,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Library = Libraries.Prguse,
                 Location = new Point(3, 50),
-                Hint = "Help (" + CMain.InputKeys.GetKey(KeybindOptions.Help) + ")"
+                Hint = "帮助 (" + CMain.InputKeys.GetKey(KeybindOptions.Help) + ")"
             };
             HelpButton.Click += (o, e) =>
             {
@@ -4121,7 +4121,7 @@ namespace Client.MirScenes.Dialogs
                 Library = Libraries.Prguse,
                 Location = new Point(3, 69),
                 Visible = false,
-                Hint = "Keybinds"
+                Hint = "按键绑定"
             };
             KeyboardLayoutButton.Click += (o, e) =>
             {
@@ -4138,7 +4138,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Library = Libraries.Prguse,
                 Location = new Point(3, 88),
-                Hint = "Ranking (" + CMain.InputKeys.GetKey(KeybindOptions.Ranking) + ")"
+                Hint = "排行榜 (" + CMain.InputKeys.GetKey(KeybindOptions.Ranking) + ")"
                 //Visible = false
             };
             RankingButton.Click += (o, e) =>
@@ -4171,7 +4171,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Library = Libraries.Prguse2,
                 Location = new Point(3, 126),
-                Hint = "Creatures (" + CMain.InputKeys.GetKey(KeybindOptions.Creature) + ")"
+                Hint = "召唤物 (" + CMain.InputKeys.GetKey(KeybindOptions.Creature) + ")"
             };
             IntelligentCreatureButton.Click += (o, e) =>
             {
@@ -4187,7 +4187,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Library = Libraries.Prguse,
                 Location = new Point(3, 145),
-                Hint = "Mount (" + CMain.InputKeys.GetKey(KeybindOptions.MountWindow) + ")"
+                Hint = "坐骑 (" + CMain.InputKeys.GetKey(KeybindOptions.MountWindow) + ")"
             };
             RideButton.Click += (o, e) =>
             {
@@ -4204,7 +4204,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Library = Libraries.Prguse,
                 Location = new Point(3, 164),
-                Hint = "Fishing (" + CMain.InputKeys.GetKey(KeybindOptions.Fishing) + ")"
+                Hint = "钓鱼 (" + CMain.InputKeys.GetKey(KeybindOptions.Fishing) + ")"
             };
             FishingButton.Click += (o, e) =>
             {
@@ -4222,7 +4222,7 @@ namespace Client.MirScenes.Dialogs
                 Library = Libraries.Prguse,
                 Location = new Point(3, 183),
                 Visible = true,
-                Hint = "Friends (" + CMain.InputKeys.GetKey(KeybindOptions.Friends) + ")"
+                Hint = "朋友 (" + CMain.InputKeys.GetKey(KeybindOptions.Friends) + ")"
             };
             FriendButton.Click += (o, e) =>
             {
@@ -4240,7 +4240,7 @@ namespace Client.MirScenes.Dialogs
                 Library = Libraries.Prguse,
                 Location = new Point(3, 202),
                 Visible = true,
-                Hint = "Mentor (" + CMain.InputKeys.GetKey(KeybindOptions.Mentor) + ")"
+                Hint = "师徒 (" + CMain.InputKeys.GetKey(KeybindOptions.Mentor) + ")"
             };
             MentorButton.Click += (o, e) =>
             {
@@ -4259,7 +4259,7 @@ namespace Client.MirScenes.Dialogs
                 Library = Libraries.Prguse,
                 Location = new Point(3, 221),
                 Visible = true,
-                Hint = "Relationship (" + CMain.InputKeys.GetKey(KeybindOptions.Relationship) + ")"
+                Hint = "关系 (" + CMain.InputKeys.GetKey(KeybindOptions.Relationship) + ")"
             };
             RelationshipButton.Click += (o, e) =>
             {
@@ -4276,7 +4276,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Library = Libraries.Prguse,
                 Location = new Point(3, 240),
-                Hint = "Groups (" + CMain.InputKeys.GetKey(KeybindOptions.Group) + ")"
+                Hint = "编组 (" + CMain.InputKeys.GetKey(KeybindOptions.Group) + ")"
             };
             GroupButton.Click += (o, e) =>
             {
@@ -4293,7 +4293,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Library = Libraries.Prguse,
                 Location = new Point(3, 259),
-                Hint = "Guild (" + CMain.InputKeys.GetKey(KeybindOptions.Guilds) + ")"
+                Hint = "行会 (" + CMain.InputKeys.GetKey(KeybindOptions.Guilds) + ")"
             };
             GuildButton.Click += (o, e) =>
             {
@@ -4513,7 +4513,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Size = new Size(230, 32),
                 DrawFormat = TextFormatFlags.HorizontalCenter | TextFormatFlags.WordBreak,
-                Text = string.Format("Select the Key for: {0}", magic.Spell)
+                Text = string.Format("请选择按键: {0}", magic.Spell)
             };
 
             NoneButton = new MirButton
