@@ -364,7 +364,7 @@ namespace Server
         private void SMain_Load(object sender, EventArgs e)
         {
             EditEnvir.LoadDB();
-            //Envir.Start();
+            Envir.Start();
             AutoResize();
         }
 
