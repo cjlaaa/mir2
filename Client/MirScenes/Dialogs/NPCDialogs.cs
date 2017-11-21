@@ -1547,45 +1547,61 @@ namespace Client.MirScenes.Dialogs
     public sealed class CraftDialog : MirImageControl
     {
         public static UserItem RecipeItem;
-        public static UserItem[] IngredientSlots = new UserItem[6];
+        public static UserItem[] IngredientSlots = new UserItem[16];
 
         public List<KeyValuePair<MirItemCell, ulong>> Selected = new List<KeyValuePair<MirItemCell, ulong>>();
 
         public MirItemCell[] Grid;
-        public static UserItem[] ShadowItems = new UserItem[6];
+        public static UserItem[] ShadowItems = new UserItem[16];
 
-        public MirButton CraftButton;
+        public MirButton CraftButton,CloseButton;
 
         public CraftDialog()
         {
-            Index = 661;
+            Index = 1002;
             Library = Libraries.Prguse;
             Location = new Point(0, 0);
             Sort = true;
             BeforeDraw += CraftDialog_BeforeDraw;
 
-            Grid = new MirItemCell[6];
-            for (int x = 0; x < 6; x++)
+            Grid = new MirItemCell[4*4];
+            for (int x = 0; x < 4; x++)
             {
-                Grid[x] = new MirItemCell
+                for (int y = 0; y < 4; y++)
                 {
-                    ItemSlot = x,
-                    GridType = MirGridType.Craft,
-                    Library = Libraries.Items,
-                    Parent = this,
-                    Size = new Size(34, 32),
-                    Location = new Point((x * 35) + 52, 55),
-                    Border = true,
-                    BorderColour = Color.Lime
-                };
-                Grid[x].Click += Grid_Click;
+                    int idx = 4 * y + x;
+                    Grid[idx] = new MirItemCell
+                    {
+                        ItemSlot = idx,
+                        GridType = MirGridType.Craft,
+                        Library = Libraries.Items,
+                        Parent = this,
+                        Size = new Size(34, 32),
+                        Location = new Point(x * 34 + 12 + x, y * 32 + 37 + y),
+                        Border = true,
+                        BorderColour = Color.Lime
+                    };
+                    Grid[idx].Click += Grid_Click;
+                }
             }
+
+            CloseButton = new MirButton
+            {
+                HoverIndex = 361,
+                Index = 360,
+                Location = new Point(139, 3),
+                Library = Libraries.Prguse2,
+                Parent = this,
+                PressedIndex = 362,
+                Sound = SoundList.ButtonA,
+            };
+            CloseButton.Click += (o, e) => Hide();
 
             CraftButton = new MirButton
             {
                 HoverIndex = 337,
                 Index = 336,
-                Location = new Point(115, 114),
+                Location = new Point(41, 177),
                 Library = Libraries.Title,
                 Parent = this,
                 PressedIndex = 338,
