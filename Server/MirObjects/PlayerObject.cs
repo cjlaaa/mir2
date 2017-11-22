@@ -2543,9 +2543,9 @@ namespace Server.MirObjects
             if (HP > MaxHP) SetHP(MaxHP);
             if (MP > MaxMP) SetMP(MaxMP);
 
-            AttackSpeed = 1400 - ((ASpeed * 40) + Math.Min(370, (Level * 14)));
+            AttackSpeed = 1400 - ((ASpeed * 48) + Math.Min(370, (Level * 14)));
 
-            if (AttackSpeed < 330) AttackSpeed = 330;
+            if (AttackSpeed < 220) AttackSpeed = 220;
         }
 
         private void RefreshLevelStats()
@@ -5770,7 +5770,7 @@ namespace Server.MirObjects
             Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = targetID, Target = location, Spell = spell });
 
             AttackTime = Envir.Time + AttackSpeed;
-            ActionTime = Envir.Time + 330;
+            ActionTime = Envir.Time + 220;
             RegenTime = Envir.Time + RegenDelay;
 
             return;
@@ -5899,7 +5899,7 @@ namespace Server.MirObjects
             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Spell = spell, Level = level });
 
             AttackTime = Envir.Time + AttackSpeed;
-            ActionTime = Envir.Time + 330;
+            ActionTime = Envir.Time + 220;
             RegenTime = Envir.Time + RegenDelay;
 
             Point target = Functions.PointMove(CurrentLocation, dir, 1);
