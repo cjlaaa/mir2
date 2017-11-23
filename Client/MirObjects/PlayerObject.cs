@@ -1555,6 +1555,10 @@ namespace Client.MirObjects
                             SpellLevel = (byte)action.Params[1];
                         }
 
+                        //Console.WriteLine(User.AttackSpeed+" "+ User.Level);
+                        FrameInterval = FrameInterval * User.AttackSpeed / (1440 - Math.Min(370, (User.Level * 14)));
+                        EffectFrameInterval = EffectFrameInterval * User.AttackSpeed / (1440 - Math.Min(370, (User.Level * 14)));
+
                         switch (Spell)
                         {
                             case Spell.Slaying:
@@ -1596,6 +1600,8 @@ namespace Client.MirObjects
                         }
                         break;
                     case MirAction.Attack4:
+                        FrameInterval = FrameInterval * User.AttackSpeed / (1440 - Math.Min(370, (User.Level * 14))); ;
+                        EffectFrameInterval = EffectFrameInterval * User.AttackSpeed / (1440 - Math.Min(370, (User.Level * 14))); ;
                         Spell = (Spell)action.Params[0];
                         switch (Spell)
                         {

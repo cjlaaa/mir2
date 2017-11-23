@@ -167,8 +167,8 @@ namespace Client.MirObjects
             SetEffects();
             
             if (this == User && Light < 3) Light = 3;
-            AttackSpeed = 1400 - ((ASpeed * 60) + Math.Min(370, (Level * 14)));
-            if (AttackSpeed < 550) AttackSpeed = 550;
+            AttackSpeed = 1400 - ((ASpeed * 30) + Math.Min(370, (Level * 14)));
+            if (AttackSpeed < 490) AttackSpeed = 490;
 
             PercentHealth = (byte)(HP / (float)MaxHP * 100);
 
