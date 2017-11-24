@@ -4772,12 +4772,31 @@ namespace Client.MirScenes.Dialogs
     {
         public BigMapDialog()
         {
-            NotControl = true;
+            MouseDown += OnMouseClick;
+            // NotControl = true;
             Location = new Point(130, 100);
             //Border = true;
             //BorderColour = Color.Lime;
             BeforeDraw += (o, e) => OnBeforeDraw();
             Sort = true;
+        }
+
+        private void OnMouseClick(object sender, MouseEventArgs e)
+        {
+            int X = (int)Math.Floor(((e.X - Location.X) / scaleX) + startPointX);
+            int Y = (int)Math.Floor(((e.Y - Location.Y) / scaleY) + startPointY);
+
+            var path = GameScene.Scene.MapControl.PathFinder.FindPath(MapObject.User.CurrentLocation, new Point(X, Y));
+
+            if (path == null || path.Count == 0)
+            {
+                GameScene.Scene.ChatDialog.ReceiveChat("Could not find suitable path.", ChatType.System);
+            }
+            else
+            {
+                GameScene.Scene.MapControl.CurrentPath = path;
+                GameScene.Scene.MapControl.AutoPath = true;
+            }
         }
 
         private void OnBeforeDraw()
@@ -4857,6 +4876,19 @@ namespace Client.MirScenes.Dialogs
                     colour = Color.FromArgb(255, 0, 0);
 
                 DXManager.Sprite.Draw2D(DXManager.RadarTexture, Point.Empty, 0, new PointF((int)(x - 0.5F), (int)(y - 0.5F)), colour);
+            }
+
+            if (GameScene.Scene.MapControl.AutoPath)
+            {
+                foreach (var node in GameScene.Scene.MapControl.CurrentPath)
+                {
+                    Color colour = Color.White;
+
+                    float x = ((node.Location.X - startPointX) * scaleX) + Location.X;
+                    float y = ((node.Location.Y - startPointY) * scaleY) + Location.Y;
+
+                    DXManager.Sprite.Draw2D(DXManager.RadarTexture, Point.Empty, 0, new PointF((int)(x - 0.5F), (int)(y - 0.5F)), colour);
+                }
             }
         }
 
