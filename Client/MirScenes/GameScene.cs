@@ -8302,7 +8302,7 @@ namespace Client.MirScenes
                     CurrentPath = null;
 
                 if (GameScene.Scene != null)
-                    GameScene.Scene.ChatDialog.ReceiveChat(value ? "[AutoPath: On]" : "[AutoPath: Off]", ChatType.Hint);
+                    GameScene.Scene.ChatDialog.ReceiveChat(value ? "[自动寻路: 开启]" : "[自动寻路: 关闭]", ChatType.Hint);
             }
         }
         public PathFinder PathFinder = null;
@@ -8383,6 +8383,7 @@ namespace Client.MirScenes
 
             MouseDown += OnMouseDown;
             MouseMove += (o, e) => MouseLocation = e.Location;
+
             Click += OnMouseClick;
         }
 
@@ -8422,6 +8423,8 @@ namespace Client.MirScenes
 
             SetMusic = Music;
             SoundList.Music = Music;
+
+            PathFinder = new PathFinder(this);
         }
 
         public void Process()
@@ -9543,9 +9546,7 @@ namespace Client.MirScenes
                 }
             }
 
-            if (MapObject.TargetObject == null || MapObject.TargetObject.Dead) return;
-
-            if (AutoPath)
+                        if (AutoPath)
             {
                 if (CurrentPath == null || CurrentPath.Count == 0)
                 {
@@ -9591,6 +9592,7 @@ namespace Client.MirScenes
                 }
             }
 
+            if (MapObject.TargetObject == null || MapObject.TargetObject.Dead) return;
             if (((!MapObject.TargetObject.Name.EndsWith(")") && !(MapObject.TargetObject is PlayerObject)) || !CMain.Shift) &&
                 (MapObject.TargetObject.Name.EndsWith(")") || !(MapObject.TargetObject is MonsterObject))) return;
             if (Functions.InRange(MapObject.TargetObject.CurrentLocation, User.CurrentLocation, 1)) return;
@@ -9867,7 +9869,7 @@ namespace Client.MirScenes
             return Math.Sqrt(x * x + y * y);
         }
 
-        private bool EmptyCell(Point p)
+        public bool EmptyCell(Point p)
         {
             if ((M2CellInfo[p.X, p.Y].BackImage & 0x20000000) != 0 || (M2CellInfo[p.X, p.Y].FrontImage & 0x8000) != 0) // + (M2CellInfo[P.X, P.Y].FrontImage & 0x7FFF) != 0)
                 return false;

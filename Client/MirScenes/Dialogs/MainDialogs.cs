@@ -4783,10 +4783,64 @@ namespace Client.MirScenes.Dialogs
 
         private void OnMouseClick(object sender, MouseEventArgs e)
         {
+            MapControl map = GameScene.Scene.MapControl;
+            if (map == null || !Visible) return;
+
+            //int index = map.BigMap <= 0 ? map.MiniMap : map.BigMap;
+            int index = map.BigMap;
+
+            if (index <= 0)
+            {
+                if (Visible)
+                {
+                    Visible = false;
+                }
+                return;
+            }
+
+            //TrySort();
+
+            Rectangle viewRect = new Rectangle(0, 0, 600, 400);
+
+            Size = Libraries.MiniMap.GetSize(index);
+
+            if (Size.Width < 600)
+                viewRect.Width = Size.Width;
+
+            if (Size.Height < 400)
+                viewRect.Height = Size.Height;
+
+            viewRect.X = (Settings.ScreenWidth - viewRect.Width) / 2;
+            viewRect.Y = (Settings.ScreenHeight - 120 - viewRect.Height) / 2;
+
+            Location = viewRect.Location;
+            Size = viewRect.Size;
+
+            float scaleX = Size.Width / (float)map.Width;
+            float scaleY = Size.Height / (float)map.Height;
+
+            viewRect.Location = new Point(
+                (int)(scaleX * MapObject.User.CurrentLocation.X) - viewRect.Width / 2,
+                (int)(scaleY * MapObject.User.CurrentLocation.Y) - viewRect.Height / 2);
+
+            if (viewRect.Right >= Size.Width)
+                viewRect.X = Size.Width - viewRect.Width;
+            if (viewRect.Bottom >= Size.Height)
+                viewRect.Y = Size.Height - viewRect.Height;
+
+            if (viewRect.X < 0) viewRect.X = 0;
+            if (viewRect.Y < 0) viewRect.Y = 0;
+
+            //Libraries.MiniMap.Draw(index, Location, Size, Color.FromArgb(255, 255, 255));
+
+            int startPointX = (int)(viewRect.X / scaleX);
+            int startPointY = (int)(viewRect.Y / scaleY);
+
             int X = (int)Math.Floor(((e.X - Location.X) / scaleX) + startPointX);
             int Y = (int)Math.Floor(((e.Y - Location.Y) / scaleY) + startPointY);
 
-            var path = GameScene.Scene.MapControl.PathFinder.FindPath(MapObject.User.CurrentLocation, new Point(X, Y));
+            var PathFinder = GameScene.Scene.MapControl.PathFinder;
+            var path = PathFinder.FindPath(MapObject.User.CurrentLocation, new Point(X, Y));
 
             if (path == null || path.Count == 0)
             {
