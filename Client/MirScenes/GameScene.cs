@@ -8424,7 +8424,10 @@ namespace Client.MirScenes
             SetMusic = Music;
             SoundList.Music = Music;
 
-            PathFinder = new PathFinder(this);
+            if(PathFinder==null)
+            {
+                PathFinder = new PathFinder(this);
+            }
         }
 
         public void Process()
