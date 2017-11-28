@@ -662,7 +662,7 @@ namespace Server.MirObjects
 
             if (NewMail)
             {
-                ReceiveChat("New mail has arrived.", ChatType.System);
+                ReceiveChat("收到新邮件.", ChatType.System);
 
                 GetMail();
             }
@@ -1249,7 +1249,7 @@ namespace Server.MirObjects
                     item.CurrentDura = (ushort)(item.CurrentDura - 1000);
                     Enqueue(new S.DuraChanged { UniqueID = item.UniqueID, CurrentDura = item.CurrentDura });
                     RefreshStats();
-                    ReceiveChat("You have been given a second chance at life", ChatType.System);
+                    ReceiveChat("你被赋予了新的生命.", ChatType.System);
                     return;
                 }
             }
@@ -1260,20 +1260,20 @@ namespace Server.MirObjects
 
                 if (AtWar(hitter) || WarZone)
                 {
-                    hitter.ReceiveChat(string.Format("You've been protected by the law"), ChatType.System);
+                    hitter.ReceiveChat(string.Format("你的行为被法律所保护."), ChatType.System);
                 }
                 else if (Envir.Time > BrownTime && PKPoints < 200)
                 {
                     UserItem weapon = hitter.Info.Equipment[(byte)EquipmentSlot.Weapon];
 
                     hitter.PKPoints = Math.Min(int.MaxValue, LastHitter.PKPoints + 100);
-                    hitter.ReceiveChat(string.Format("You have murdered {0}", Name), ChatType.System);
-                    ReceiveChat(string.Format("You have been murdered by {0}", LastHitter.Name), ChatType.System);
+                    hitter.ReceiveChat(string.Format("你谋杀了{0}.", Name), ChatType.System);
+                    ReceiveChat(string.Format("你被{0}谋杀了.", LastHitter.Name), ChatType.System);
 
                     if (weapon != null && weapon.Luck > (Settings.MaxLuck * -1) && Envir.Random.Next(4) == 0)
                     {
                         weapon.Luck--;
-                        hitter.ReceiveChat("Your weapon has been cursed.", ChatType.System);
+                        hitter.ReceiveChat("你的武器被诅咒了.", ChatType.System);
                         hitter.Enqueue(new S.RefreshItem { Item = weapon });
                     }
                 }
@@ -1358,7 +1358,7 @@ namespace Server.MirObjects
                         {
                             Info.Equipment[i] = null;
                             Enqueue(new S.DeleteItem { UniqueID = item.UniqueID, Count = item.Count });
-                            ReceiveChat($"Your {item.FriendlyName} shattered upon death.", ChatType.System2);
+                            ReceiveChat($"你的{item.FriendlyName}因死亡而破碎.", ChatType.System2);
                             Report.ItemChanged("Death Drop", item, item.Count, 1);
                         }
                     }
@@ -1402,7 +1402,7 @@ namespace Server.MirObjects
                             Info.Equipment[i] = null;
                             Enqueue(new S.DeleteItem { UniqueID = item.UniqueID, Count = item.Count });
    
-                            ReceiveChat($"You died and {item.Info.FriendlyName} has been returned to it's owner.", ChatType.Hint);
+                            ReceiveChat($"你已死亡,你租赁的{item.Info.FriendlyName}已退还给它的所有者.", ChatType.Hint);
                             Report.ItemMailed("Death Dropped Rental Item", item, 1, 1);
 
                             continue;
@@ -1414,7 +1414,7 @@ namespace Server.MirObjects
                         if (item.Info.GlobalDropNotify)
                             foreach (var player in Envir.Players)
                             {
-                                player.ReceiveChat($"{Name} has dropped {item.FriendlyName}.", ChatType.System2);
+                                player.ReceiveChat($"{Name}的{item.FriendlyName}已掉落.", ChatType.System2);
                             }
 
                         Info.Equipment[i] = null;
@@ -1472,7 +1472,7 @@ namespace Server.MirObjects
                         Info.Inventory[i] = null;
                         Enqueue(new S.DeleteItem { UniqueID = item.UniqueID, Count = item.Count });
 
-                        ReceiveChat($"You died and {item.Info.FriendlyName} has been returned to has been returned to it's owner.", ChatType.Hint);
+                        ReceiveChat($"你已死亡,你租赁的{item.Info.FriendlyName}已退还给它的所有者.", ChatType.Hint);
                         Report.ItemMailed("Death Dropped Rental Item", item, 1, 1);
 
                         continue;
@@ -1484,7 +1484,7 @@ namespace Server.MirObjects
                     if (item.Info.GlobalDropNotify)
                         foreach (var player in Envir.Players)
                         {
-                            player.ReceiveChat($"{Name} has dropped {item.FriendlyName}.", ChatType.System2);
+                            player.ReceiveChat($"{Name}的{item.FriendlyName}已掉落.", ChatType.System2);
                         }
 
                     Info.Inventory[i] = null;
@@ -1518,7 +1518,7 @@ namespace Server.MirObjects
                     {
                         Info.Equipment[i] = null;
                         Enqueue(new S.DeleteItem { UniqueID = item.UniqueID, Count = item.Count });
-                        ReceiveChat($"Your {item.FriendlyName} shattered upon death.", ChatType.System2);
+                        ReceiveChat($"你的{item.FriendlyName}因死亡而破碎.", ChatType.System2);
                         Report.ItemChanged("RedDeathDrop", item, item.Count, 1);
                     }
 
@@ -1551,7 +1551,7 @@ namespace Server.MirObjects
                             Info.Equipment[i] = null;
                             Enqueue(new S.DeleteItem { UniqueID = item.UniqueID, Count = item.Count });
 
-                            ReceiveChat($"You died and {item.Info.FriendlyName} has been returned to it's owner.", ChatType.Hint);
+                            ReceiveChat($"你已死亡,你租赁的{item.Info.FriendlyName}已退还给它的所有者.", ChatType.Hint);
                             Report.ItemMailed("Death Dropped Rental Item", item, 1, 1);
 
                             continue;
@@ -1563,7 +1563,7 @@ namespace Server.MirObjects
                         if (item.Info.GlobalDropNotify)
                             foreach (var player in Envir.Players)
                             {
-                                player.ReceiveChat($"{Name} has dropped {item.FriendlyName}.", ChatType.System2);
+                                player.ReceiveChat($"{Name}的{item.FriendlyName}已掉落.", ChatType.System2);
                             }
 
                         Info.Equipment[i] = null;
@@ -1593,7 +1593,7 @@ namespace Server.MirObjects
                     Info.Inventory[i] = null;
                     Enqueue(new S.DeleteItem { UniqueID = item.UniqueID, Count = item.Count });
 
-                    ReceiveChat($"You died and {item.Info.FriendlyName} has been returned to it's owner.", ChatType.Hint);
+                    ReceiveChat($"你已死亡,你租赁的{item.Info.FriendlyName}已退还给它的所有者.", ChatType.Hint);
                     Report.ItemMailed("Death Dropped Rental Item", item, 1, 1);
 
                     continue;
@@ -1605,7 +1605,7 @@ namespace Server.MirObjects
                 if (item.Info.GlobalDropNotify)
                     foreach (var player in Envir.Players)
                     {
-                        player.ReceiveChat($"{Name} has dropped {item.FriendlyName}.", ChatType.System2);
+                        player.ReceiveChat($"{Name}的{item.FriendlyName}已掉落.", ChatType.System2);
                     }
 
                 Info.Inventory[i] = null;
@@ -2033,11 +2033,12 @@ namespace Server.MirObjects
                 Info.Magics[i].CastTime = Envir.Time > TimeSpend ? Envir.Time - TimeSpend : 0;
             }
             Enqueue(new S.StartGame { Result = 4, Resolution = Settings.AllowedResolution });
-            ReceiveChat("Welcome to the Legend of Mir 2 Crystal Server.", ChatType.Hint);
+            ReceiveChat("欢迎来到基于Crystal Mir2项目的韩版中文传奇服务器.", ChatType.Hint);
+            ReceiveChat("本服务器目前处于邀请测试状态,有任何问题请联系游戏管理员.", ChatType.Hint);
 
             if (Settings.TestServer)
             {
-                ReceiveChat("Game is currently in test mode.", ChatType.Hint);
+                ReceiveChat("游戏目前处于测试模式.", ChatType.Hint);
                 Chat("@GAMEMASTER");
             }
 
@@ -2047,7 +2048,7 @@ namespace Server.MirObjects
                 if (MyGuild == null)
                 {
                     Info.GuildIndex = -1;
-                    ReceiveChat("You have been removed from the guild.", ChatType.System);
+                    ReceiveChat("你被移出了行会.", ChatType.System);
                 }
                 else
                 {
@@ -2056,7 +2057,7 @@ namespace Server.MirObjects
                     {
                         MyGuild = null;
                         Info.GuildIndex = -1;
-                        ReceiveChat("You have been removed from the guild.", ChatType.System);
+                        ReceiveChat("你被移出了行会.", ChatType.System);
                     }
                 }
             }
@@ -2177,7 +2178,7 @@ namespace Server.MirObjects
 
             if (Info.Mail.Count > Settings.MailCapacity)
             {
-                ReceiveChat("Your mailbox is overflowing.", ChatType.System);
+                ReceiveChat("你的邮箱已满.", ChatType.System);
             }
 
             Report.Connected(Connection.IPAddress);
@@ -3453,7 +3454,7 @@ namespace Server.MirObjects
             {
                 if (Info.ChatBanExpiryDate > DateTime.Now)
                 {
-                    ReceiveChat("You are currently banned from chatting.", ChatType.System);
+                    ReceiveChat("你被禁言了.", ChatType.System);
                     return;
                 }
 
@@ -3467,7 +3468,7 @@ namespace Server.MirObjects
                     {
                         Info.ChatBanned = true;
                         Info.ChatBanExpiryDate = DateTime.Now.AddMinutes(5);
-                        ReceiveChat("You have been banned from chatting for 5 minutes.", ChatType.System);
+                        ReceiveChat("你被禁言了5分钟.", ChatType.System);
                         return;
                     }
 
@@ -3503,19 +3504,19 @@ namespace Server.MirObjects
                         creature.ReceiveChat(message.Remove(0, parts[0].Length), ChatType.WhisperIn);
                         return;
                     }
-                    ReceiveChat(string.Format("Could not find {0}.", parts[0]), ChatType.System);
+                    ReceiveChat(string.Format("无法找到{0}.", parts[0]), ChatType.System);
                     return;
                 }
 
                 if (player.Info.Friends.Any(e => e.Info == Info && e.Blocked))
                 {
-                    ReceiveChat("Player is not accepting your messages.", ChatType.System);
+                    ReceiveChat("对方不想接收你得信息.", ChatType.System);
                     return;
                 }
 
                 if (Info.Friends.Any(e => e.Info == player.Info && e.Blocked))
                 {
-                    ReceiveChat("Cannot message player whilst they are on your blacklist.", ChatType.System);
+                    ReceiveChat("无法发送消息,因为对方在你的黑名单里.", ChatType.System);
                     return;
                 }
 
@@ -3557,7 +3558,7 @@ namespace Server.MirObjects
 
                 if (player == null)
                 {
-                    ReceiveChat(string.Format("{0} isn't online.", Mentor.Name), ChatType.System);
+                    ReceiveChat(string.Format("{0}不在线.", Mentor.Name), ChatType.System);
                     return;
                 }
 
@@ -3569,12 +3570,12 @@ namespace Server.MirObjects
                 //Shout
                 if (Envir.Time < ShoutTime)
                 {
-                    ReceiveChat(string.Format("You cannot shout for another {0} seconds.", Math.Ceiling((ShoutTime - Envir.Time) / 1000D)), ChatType.System);
+                    ReceiveChat(string.Format("{0}秒内无法再次喊话.", Math.Ceiling((ShoutTime - Envir.Time) / 1000D)), ChatType.System);
                     return;
                 }
                 if (Level < 8 && (!HasMapShout && !HasServerShout))
                 {
-                    ReceiveChat("You need to be level 8 before you can shout.", ChatType.System);
+                    ReceiveChat("低于8级无法喊话.", ChatType.System);
                     return;
                 }
 
@@ -3631,7 +3632,7 @@ namespace Server.MirObjects
             
                 if (player == null)
                 {
-                    ReceiveChat(string.Format("{0} isn't online.", Lover.Name), ChatType.System);
+                    ReceiveChat(string.Format("{0}不在线.", Lover.Name), ChatType.System);
                     return;
                 }
 
@@ -8641,7 +8642,7 @@ namespace Server.MirObjects
                     location = (Point) data[1];
                     if (CurrentMap.Info.NoTeleport)
                     {
-                        ReceiveChat(("You cannot teleport on this map"), ChatType.System);
+                        ReceiveChat(("无法在这里传送."), ChatType.System);
                         return;
                     }
                     if (!CurrentMap.ValidPoint(location) || Envir.Random.Next(4) >= magic.Level + 1 || !Teleport(CurrentMap, location, false)) return;
@@ -8659,7 +8660,7 @@ namespace Server.MirObjects
 
                     if (CurrentMap.Info.NoTeleport)
                     {
-                        ReceiveChat(("You cannot teleport on this map"), ChatType.System);
+                        ReceiveChat(("无法在这里传送."), ChatType.System);
                         return;
                     }
 
@@ -8684,7 +8685,7 @@ namespace Server.MirObjects
                         location = (Point)data[1];
                         if (CurrentMap.Info.NoTeleport)
                         {
-                            ReceiveChat(("You cannot teleport on this map"), ChatType.System);
+                            ReceiveChat(("无法在这里传送."), ChatType.System);
                             return;
                         }
                         if (Functions.InRange(CurrentLocation, location, magic.Info.Range) == false) return;
@@ -10295,7 +10296,7 @@ namespace Server.MirObjects
                 if ((PoisonList[i].PType != PoisonType.Green) && ((PoisonList[i].Duration - PoisonList[i].Time) > p.Duration)) return;//cant cast 1 second poison to make a 1minute poison go away!
                 if ((PoisonList[i].PType == PoisonType.Frozen) || (PoisonList[i].PType == PoisonType.Slow) || (PoisonList[i].PType == PoisonType.Paralysis) || (PoisonList[i].PType == PoisonType.LRParalysis)) return;//prevents mobs from being perma frozen/slowed
                 if (p.PType == PoisonType.DelayedExplosion) return;
-                ReceiveChat("You have been poisoned.", ChatType.System2);
+                ReceiveChat("你中毒了.", ChatType.System2);
                 PoisonList[i] = p;
                 return;
             }
@@ -10308,7 +10309,7 @@ namespace Server.MirObjects
                 ReceiveChat("You are a walking explosive.", ChatType.System);
             }
             else
-                ReceiveChat("You have been poisoned.", ChatType.System2);
+                ReceiveChat("你中毒了.", ChatType.System2);
 
             PoisonList.Add(p);
         }
@@ -11050,11 +11051,11 @@ namespace Server.MirObjects
                         case 2: //MysteryWater
                             if (UnlockCurse)
                             {
-                                ReceiveChat("You can already unequip a cursed item.", ChatType.Hint);
+                                ReceiveChat("你无法取下被诅咒的物品.", ChatType.Hint);
                                 Enqueue(p);
                                 return;
                             }
-                            ReceiveChat("You can now unequip a cursed item.", ChatType.Hint);
+                            ReceiveChat("你现在可以取下被诅咒的物品.", ChatType.Hint);
                             UnlockCurse = true;
                             break;
                         case 3: //Buff
@@ -11140,7 +11141,7 @@ namespace Server.MirObjects
                             temp.CurrentDura = (ushort)Math.Min(temp.MaxDura, temp.CurrentDura + 5000);
                             temp.DuraChanged = false;
 
-                            ReceiveChat("Your weapon has been partially repaired", ChatType.Hint);
+                            ReceiveChat("你的武器被部分修复了.", ChatType.Hint);
                             Enqueue(new S.ItemRepaired { UniqueID = temp.UniqueID, MaxDura = temp.MaxDura, CurrentDura = temp.CurrentDura });
                             break;
                         case 5: //WarGodOil
@@ -11158,7 +11159,7 @@ namespace Server.MirObjects
                             temp.CurrentDura = temp.MaxDura;
                             temp.DuraChanged = false;
 
-                            ReceiveChat("Your weapon has been completely repaired", ChatType.Hint);
+                            ReceiveChat("你的武器被完全修复了.", ChatType.Hint);
                             Enqueue(new S.ItemRepaired { UniqueID = temp.UniqueID, MaxDura = temp.MaxDura, CurrentDura = temp.CurrentDura });
                             break;
                         case 6: //ResurrectionScroll
@@ -11172,16 +11173,16 @@ namespace Server.MirObjects
                             if (item.Info.Price > 0)
                             {
                                 GainCredit(item.Info.Price);
-                                ReceiveChat(String.Format("{0} Credits have been added to your Account", item.Info.Price), ChatType.Hint);
+                                ReceiveChat(String.Format("你的账号增加了{0}点Credits", item.Info.Price), ChatType.Hint);
                             }
                             break;
                         case 8: //MapShoutScroll
                             HasMapShout = true;
-                            ReceiveChat("You have been given one free shout across your current map", ChatType.Hint);
+                            ReceiveChat("你获得了一次全地图喊话的机会.You have been given one free shout across your current map", ChatType.Hint);
                             break;
                         case 9://ServerShoutScroll
                             HasServerShout = true;
-                            ReceiveChat("You have been given one free shout across the server", ChatType.Hint);
+                            ReceiveChat("你获得了一次全服喊话的机会.You have been given one free shout across the server", ChatType.Hint);
                             break;
                         case 10://GuildSkillScroll
                             MyGuild.NewBuff(item.Info.Effect, false);
