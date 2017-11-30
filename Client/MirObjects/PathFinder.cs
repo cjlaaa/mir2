@@ -188,9 +188,9 @@ namespace Client.MirObjects
         {
             Grid = new Node[Map.Width, Map.Height];
 
-            for (int x = 0; x < Map.Height; x++)
+            for (int x = 0; x < Map.Width; x++)
             {
-                for (int y = 0; y < Map.Width; y++)
+                for (int y = 0; y < Map.Height; y++)
                 {
                     Grid[x, y] = new Node(Map, x, y);
                 }
