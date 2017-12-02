@@ -7441,7 +7441,7 @@ namespace Server.MirObjects
             monster = MonsterObject.GetMonster(info);
             monster.PetLevel = magic.Level;
             monster.Master = this;
-            monster.MaxPetLevel = (byte)(1 + magic.Level * 2);
+            monster.MaxPetLevel = 3;//(byte)(1 + magic.Level * 2);
             monster.Direction = Direction;
             monster.ActionTime = Envir.Time + 1000;
 

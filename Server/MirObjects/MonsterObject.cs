@@ -466,6 +466,9 @@ namespace Server.MirObjects
 
             if (Info.Name == Settings.SkeletonName ||Info.Name == Settings.ShinsuName ||Info.Name == Settings.AngelName) 
             {
+                MaxHP = (ushort)Math.Min(ushort.MaxValue, MaxHP * Math.Pow(1.35, PetLevel));//MaxHP + PetLevel * 20);
+                //Console.WriteLine(Info.Name + MaxHP);
+
                 MoveSpeed = (ushort)Math.Min(ushort.MaxValue, (Math.Max(ushort.MinValue, MoveSpeed - MaxPetLevel * 130)));
                 AttackSpeed = (ushort)Math.Min(ushort.MaxValue, (Math.Max(ushort.MinValue, AttackSpeed - MaxPetLevel * 70)));
             }
