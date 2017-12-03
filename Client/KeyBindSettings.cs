@@ -331,13 +331,13 @@ namespace Client
                     if (CMain.InputKeys.Keylist[i].RequireAlt == 1)
                         output = "Alt";
                     if (CMain.InputKeys.Keylist[i].RequireCtrl == 1)
-                        output = output != "" ? output + "\nCtrl" : "Ctrl";
+                        output = output != "" ? output + "Ctrl" : "Ctrl";
                     if (CMain.InputKeys.Keylist[i].RequireShift == 1)
                         output = output != "" ? output + "\nShift" : "Shift";
                     if (CMain.InputKeys.Keylist[i].RequireTilde == 1)
                         output = output != "" ? output + "\n~" : "~";
 
-                    output = output != "" ? output + "\n" + CMain.InputKeys.Keylist[i].Key.ToString() : CMain.InputKeys.Keylist[i].Key.ToString();
+                    output = output != "" ? output + " + " + CMain.InputKeys.Keylist[i].Key.ToString() : CMain.InputKeys.Keylist[i].Key.ToString();
                     return output;
                 }
             }

@@ -437,55 +437,55 @@ namespace Client.MirScenes.Dialogs
             }
             
             if (buffDc > 0)
-                buffText += $"\nIncreased DC: 0-{buffDc}";
+                buffText += $"\n增加攻击: 0-{buffDc}";
 
             if (buffMinMc > 0 || buffMc > 0)
-                buffText += $"\nIncreased MC: {buffMinMc}-{buffMc}";
+                buffText += $"\n增加魔力: {buffMinMc}-{buffMc}";
 
             if (buffSc > 0)
-                buffText += $"\nIncreased SC: 0-{buffSc}";
+                buffText += $"\n增加道术: 0-{buffSc}";
 
             if (buffMinAc > 0 || buffAc > 0)
-                buffText += $"\nIncreased AC: {buffMinAc}-{buffAc}";
+                buffText += $"\n增加防御: {buffMinAc}-{buffAc}";
 
             if (buffMinMac > 0 || buffMac > 0)
-                buffText += $"\nIncreased MAC: {buffMinMac}-{buffMac}";
+                buffText += $"\n增加魔御: {buffMinMac}-{buffMac}";
 
             if (buffAttackSpeed > 0 || buffMovementSpeed > 0 || buffAgility > 0)
                 buffText += "\n";
 
             if (buffAttackSpeed > 0)
-                buffText += $"\nIncreased Attack Speed: {buffAttackSpeed}";
+                buffText += $"\n增加攻击速度: {buffAttackSpeed}";
 
             if (buffMovementSpeed > 0)
-                buffText += $"\nIncreased Movement Speed: {buffMovementSpeed}";
+                buffText += $"\n增加移动速度: {buffMovementSpeed}";
 
             if (buffAgility > 0)
-                buffText += $"\nIncreased Agility: {buffAgility}";
+                buffText += $"\n增加敏捷: {buffAgility}";
 
             if (buffExp > 0 || buffDrop > 0 || buffGold > 0)
                 buffText += "\n";
 
             if (buffExp > 0)
-                buffText += $"\nExperience Increased By: {buffExp}%";
+                buffText += $"\n经验值增加: {buffExp}%";
 
             if (buffDrop > 0)
-                buffText += $"\nDrop Rate Increased By: {buffDrop}%";
+                buffText += $"\n掉率增加: {buffDrop}%";
 
             if (buffGold > 0)
-                buffText += $"\nGold Rate Increased By: {buffGold}%";
+                buffText += $"\n金币掉率增加: {buffGold}%";
 
             if (buffHealth > 0 || buffMana > 0 || buffBagWeight > 0)
                 buffText += "\n";
 
             if (buffHealth > 0)
-                buffText += $"Increased Health: {buffHealth}";
+                buffText += $"生命值增加: {buffHealth}";
 
             if (buffMana > 0)
-                buffText += $"Increased Mana: {buffMana}";
+                buffText += $"魔法值增加: {buffMana}";
 
             if (buffBagWeight > 0)
-                buffText += $"Increased Bag Weight: {buffBagWeight}";
+                buffText += $"负重增加: {buffBagWeight}";
 
             return buffText;
         }

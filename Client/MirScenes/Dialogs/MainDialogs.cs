@@ -2078,7 +2078,7 @@ namespace Client.MirScenes.Dialogs
                     //string key = m.Key > 8 ? string.Format("CTRL F{0}", i) : string.Format("F{0}", m.Key);
 
                     Cells[i - 1].Index = magic.Icon*2;
-                    Cells[i - 1].Hint = string.Format("{0}\n魔法消耗: {1}\n冷却时间: {2}\n按键: {3}", magic.Spell,
+                    Cells[i - 1].Hint = string.Format("{0}\n魔法消耗: {1}\n冷却时间: {2}\n按键: {3}", magic.SpellString[(int)magic.Spell],
                         (magic.BaseCost + (magic.LevelCost * magic.Level)), Functions.PrintTimeSpanFromMilliSeconds(magic.Delay), key);
 
                     KeyNameLabels[i - 1].Text = "";
@@ -4405,7 +4405,7 @@ namespace Client.MirScenes.Dialogs
         {
             Magic = magic;
 
-            NameLabel.Text = Magic.Spell.ToString();
+            NameLabel.Text = magic.SpellString[(int)magic.Spell];//Magic.Spell.ToString();
 
             LevelLabel.Text = Magic.Level.ToString();
             switch (Magic.Level)
@@ -4513,7 +4513,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Size = new Size(230, 32),
                 DrawFormat = TextFormatFlags.HorizontalCenter | TextFormatFlags.WordBreak,
-                Text = string.Format("请选择按键: {0}", magic.Spell)
+                Text = string.Format("请选择按键: {0}", magic.SpellString[(int)magic.Spell])
             };
 
             NoneButton = new MirButton
