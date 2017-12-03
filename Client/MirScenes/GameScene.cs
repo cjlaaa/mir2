@@ -10152,16 +10152,16 @@ namespace Client.MirScenes
                     text = "隐身术\n大多数怪物无法看到你.\n";
                     break;
                 case BuffType.Haste:
-                    text = string.Format("Haste\n攻速增加: {0}.\n", Values[0]);
+                    text = string.Format("体迅风\n攻速增加: {0}.\n", Values[0]);
                     break;
                 case BuffType.SwiftFeet:
-                    text = string.Format("Swift Feet\n移动速度增加: {0}.\n", Values[0]);
+                    text = string.Format("轻身步\n移动速度增加: {0}.\n", Values[0]);
                     break;
                 case BuffType.Fury:
-                    text = string.Format("Fury\n移动速度增加: {0}.\n", Values[0]);
+                    text = string.Format("血龙剑法\n攻击速度增加: {0}.\n", Values[0]);
                     break;
                 case BuffType.LightBody:
-                    text = string.Format("Light Body\n敏捷增加: {0}.\n", Values[0]);
+                    text = string.Format("风身术\n敏捷增加: {0}.\n", Values[0]);
                     break;
                 case BuffType.SoulShield:
                     text = string.Format("幽灵盾\n魔御增加: 0-{0}.\n", Values[0]);
@@ -10170,42 +10170,42 @@ namespace Client.MirScenes
                     text = string.Format("神圣战甲术\n防御增加: 0-{0}.\n", Values[0]);
                     break;
                 case BuffType.ProtectionField:
-                    text = string.Format("Protection Field\n防御增加: 0-{0}.\n", Values[0]);
+                    text = string.Format("护身气幕\n防御增加: 0-{0}.\n", Values[0]);
                     break;
                 case BuffType.Rage:
-                    text = string.Format("Rage\n攻击增加: 0-{0}.\n", Values[0]);
+                    text = string.Format("剑气爆\n攻击增加: 0-{0}.\n", Values[0]);
                     break;
                 case BuffType.ImmortalSkin:
-                    text = string.Format("ImmortalSkin\n防御增加: 0-{0}.\n攻击减少: 0-{1}.\n", Values[0], Values[1]);
+                    text = string.Format("金刚不坏\n防御增加: 0-{0}.\n攻击减少: 0-{1}.\n", Values[0], Values[1]);
                     break;
                 case BuffType.CounterAttack:
-                    text = string.Format("Counter Attack\n防御/魔御增加: {0}-{1}.\n", Values[0], Values[0]);
+                    text = string.Format("反击\n防御/魔御增加: {0}-{1}.\n", Values[0], Values[0]);
                     break;
                 case BuffType.UltimateEnhancer:
                     if (GameScene.User.Class == MirClass.Wizard || GameScene.User.Class == MirClass.Archer)
                     {
-                        text = string.Format("Ultimate Enhancer\n魔力增加: 0-{0}.\n", Values[0]);
+                        text = string.Format("无极真气\n魔力增加: 0-{0}.\n", Values[0]);
                     }
                     else if (GameScene.User.Class == MirClass.Taoist)
                     {
-                        text = string.Format("Ultimate Enhancer\n道术增加: 0-{0}.\n", Values[0]);
+                        text = string.Format("无极真气\n道术增加: 0-{0}.\n", Values[0]);
                     }
                     else
                     {
-                        text = string.Format("Ultimate Enhancer\n攻击增加: 0-{0}.\n", Values[0]);
+                        text = string.Format("无极真气\n攻击增加: 0-{0}.\n", Values[0]);
                     }
                     break;
                 case BuffType.EnergyShield:
-                    text = string.Format("Energy Shield\n攻击时{0}%机会获得{1}生命值\n", Math.Round((1 / (decimal)Values[0]) * 100), Values[1]);
+                    text = string.Format("阴阳盾\n攻击时{0}%机会获得{1}生命值\n", Math.Round((1 / (decimal)Values[0]) * 100), Values[1]);
                     break;
                 case BuffType.Curse:
-                    text = string.Format("Cursed\n攻击/魔力/道术/攻速 降低: {0}%.\n", Values[0]);
+                    text = string.Format("被诅咒\n攻击/魔力/道术/攻速 降低: {0}%.\n", Values[0]);
                     break;
                 case BuffType.MoonLight:
-                    text = "Moon Light\n一定范围内其他玩家或大多数怪物\n无法看见你.\n";
+                    text = "月隐术\n一定范围外其他玩家或大多数怪物\n无法看到你.\n";
                     break;
                 case BuffType.DarkBody:
-                    text = "Dark Body\n大多数怪物无法看到你，且可以移动.\n";
+                    text = "烈火身\n大多数怪物无法看到你，且可以移动.\n";
                     break;
                 case BuffType.VampireShot:
                     text = string.Format("Vampire Shot\nGives you a vampiric ability\nthat can be released with\ncertain skills.\n", Values[0]);
@@ -10231,10 +10231,10 @@ namespace Client.MirScenes
                     }
                     break;
                 case BuffType.MagicBooster:
-                    text = string.Format("Magic Booster\n魔力增加: {0}-{0}.\n消耗增加{1}%.\n", Values[0], Values[1]);
+                    text = string.Format("深延术\n魔力增加: {0}-{0}.\n消耗增加{1}%.\n", Values[0], Values[1]);
                     break;
                 case BuffType.MagicShield:
-                    text = string.Format("Magic Shield\nReduces damage by {0}%.\n", (Values[0] + 2) * 10);
+                    text = string.Format("魔法盾\n吸收伤害 {0}%.\n", (Values[0] + 2) * 10);
                     break;
 
                 //special
@@ -10264,7 +10264,7 @@ namespace Client.MirScenes
                     text = string.Format("爆率\n爆率增加{0}%\n", Values[0]);
                     break;
                 case BuffType.BagWeight:
-                    text = string.Format("Bag Weight\n负重增加: {0}.\n", Values[0]);
+                    text = string.Format("负重\n负重增加: {0}.\n", Values[0]);
                     break;
                 case BuffType.Transform:
                     text = string.Format("Transform\nDisguises your appearance.\n");
@@ -10273,7 +10273,7 @@ namespace Client.MirScenes
                     text = string.Format("空气中漂浮着爱意\n经验值增加: {0}%.\n", Values[0]);
                     break;
                 case BuffType.Mentee:
-                    text = string.Format("In Training\n技能点数增长速度翻倍.\n经验值增加{0}%.\n", Values[0]);
+                    text = string.Format("工匠\n技能点数增长速度翻倍.\n经验值增加{0}%.\n", Values[0]);
                     break;
                 case BuffType.Mentor:
                     text = string.Format("Mentorship Empowerment\n对怪物的伤害增加{0}%.\n", Values[0]);
@@ -10283,36 +10283,36 @@ namespace Client.MirScenes
                     text += GameScene.Scene.GuildDialog.ActiveStats;
                     break;
                 case BuffType.Rested:
-                    text = string.Format("Rested\n经验值增加{0}%\n", Values[0]);
+                    text = string.Format("经验\n经验值增加{0}%\n", Values[0]);
                     break;
 
                 //stats
                 case BuffType.Impact:
-                    text = string.Format("Impact\n攻击增加: 0-{0}.\n", Values[0]);
+                    text = string.Format("攻击\n攻击增加: 0-{0}.\n", Values[0]);
                     break;
                 case BuffType.Magic:
-                    text = string.Format("Magic\n魔力增加: 0-{0}.\n", Values[0]);
+                    text = string.Format("魔力\n魔力增加: 0-{0}.\n", Values[0]);
                     break;
                 case BuffType.Taoist:
-                    text = string.Format("Taoist\n道术增加: 0-{0}.\n", Values[0]);
+                    text = string.Format("道术\n道术增加: 0-{0}.\n", Values[0]);
                     break;
                 case BuffType.Storm:
-                    text = string.Format("Storm\n攻速增加: {0}.\n", Values[0]);
+                    text = string.Format("攻速\n攻速增加: {0}.\n", Values[0]);
                     break;
                 case BuffType.HealthAid:
-                    text = string.Format("Health Aid\n生命值增加: {0}.\n", Values[0]);
+                    text = string.Format("生命值\n生命值增加: {0}.\n", Values[0]);
                     break;
                 case BuffType.ManaAid:
-                    text = string.Format("Mana Aid\n魔法值增加: {0}.\n", Values[0]);
+                    text = string.Format("魔法值\n魔法值增加: {0}.\n", Values[0]);
                     break;
                 case BuffType.Defence:
                     text = string.Format("防御\n防御增加: {0}-{0}.\n", Values[0]);
                     break;
                 case BuffType.MagicDefence:
-                    text = string.Format("Magic Defence\n魔御增加: {0}-{0}.\n", Values[0]);
+                    text = string.Format("魔御\n魔御增加: {0}-{0}.\n", Values[0]);
                     break;
                 case BuffType.WonderDrug:
-                    text = string.Format("Wonder Drug\n");
+                    text = string.Format("奇异圣水\n");
                     switch (Values[0])
                     {
                         case 0:
@@ -10339,7 +10339,7 @@ namespace Client.MirScenes
                     }
                     break;
                 case BuffType.Knapsack:
-                    text = string.Format("Knapsack\n负重增加: {0}.\n", Values[0]);
+                    text = string.Format("负重\n负重增加: {0}.\n", Values[0]);
                     break;
             }
 
