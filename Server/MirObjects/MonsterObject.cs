@@ -1834,7 +1834,7 @@ namespace Server.MirObjects
 
             if (attacker.Info.AI == 6) // Guard
             {
-                if (Info.AI != 1 && Info.AI != 2 && Info.AI != 3 && (Master == null || Master.PKPoints >= 200)) //Not Dear/Hen/Tree/Pets or Red Master 
+                if (Info.AI != 1 && Info.AI != 2 && Info.AI != 3 /*&& (Master == null || Master.PKPoints >= 200)*/) //Not Dear/Hen/Tree/Pets or Red Master 
                     return true;
             }
             else if (attacker.Info.AI == 58) // Tao Guard - attacks Pets
