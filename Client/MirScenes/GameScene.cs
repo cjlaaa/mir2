@@ -8572,6 +8572,15 @@ namespace Client.MirScenes
             int offSet = 0;
             for (int i = 0; i < Objects.Count; i++)
             {
+                MonsterObject ob = Objects[i] as MonsterObject;
+                if (ob == null) continue;
+
+                if (!ob.MouseOver(MouseLocation)) continue;
+                ob.DrawName();
+            }
+            
+            for (int i = 0; i < Objects.Count; i++)
+            {
                 ItemObject ob = Objects[i] as ItemObject;
                 if (ob == null) continue;
 
