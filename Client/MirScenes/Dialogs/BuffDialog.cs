@@ -264,7 +264,7 @@ namespace Client.MirScenes.Dialogs
                 buffMana = 0,
                 buffBagWeight = 0;
 
-            buffText = "Active Buffs";
+            buffText = "已激活Buff";
 
             for (var i = 0; i < _buffList.Count; i++)
             {

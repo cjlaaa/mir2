@@ -126,11 +126,11 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(75, 414),
                 Sound = SoundList.ButtonA,
-                Hint = "Send"
+                Hint = "发送"
             };
             SendButton.Click += (o, e) =>
                 {
-                    MirInputBox inputBox = new MirInputBox("Please enter the name of the person you would like to mail.");
+                    MirInputBox inputBox = new MirInputBox("请输入收件人名字.");
 
                     inputBox.OKButton.Click += (o1, e1) =>
                     {
@@ -152,7 +152,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(102, 414),
                 Sound = SoundList.ButtonA,
-                Hint = "Reply"
+                Hint = "回复"
             };
             ReplyButton.Click += (o, e) =>
             {
@@ -170,7 +170,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(129, 414),
                 Sound = SoundList.ButtonA,
-                Hint = "Read"
+                Hint = "阅读"
             };
             ReadButton.Click += (o, e) =>
             {
@@ -195,7 +195,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(156, 414),
                 Sound = SoundList.ButtonA,
-                Hint = "Delete"
+                Hint = "删除"
             };
             DeleteButton.Click += (o, e) =>
             {
@@ -203,7 +203,7 @@ namespace Client.MirScenes.Dialogs
 
                 if (SelectedMail.Items.Count > 0 || SelectedMail.Gold > 0)
                 {
-                    MirMessageBox messageBox = new MirMessageBox("This parcel contains items or gold. Are you sure you want to delete it?", MirMessageBoxButtons.YesNo);
+                    MirMessageBox messageBox = new MirMessageBox("这个包裹包含物品或金币,你确定要删除吗?", MirMessageBoxButtons.YesNo);
 
                     messageBox.YesButton.Click += (o1, e1) =>
                     {
@@ -229,7 +229,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(183, 414),
                 Sound = SoundList.ButtonA,
-                Hint = "Block List"
+                Hint = "黑名单"
             };
 
             BugReportButton = new MirButton
@@ -241,7 +241,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(210, 414),
                 Sound = SoundList.ButtonA,
-                Hint = "Report Bug"
+                Hint = "BUG反馈"
             };
             #endregion
 
@@ -777,7 +777,7 @@ namespace Client.MirScenes.Dialogs
             {
                 if (GameScene.SelectedCell == null && GameScene.Gold > 0)
                 {
-                    MirAmountBox amountBox = new MirAmountBox("Send Amount:", 116, GameScene.Gold);
+                    MirAmountBox amountBox = new MirAmountBox("发送金额:", 116, GameScene.Gold);
 
                     amountBox.OKButton.Click += (c, a) =>
                     {

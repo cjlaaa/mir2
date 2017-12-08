@@ -79,7 +79,7 @@ namespace Client.MirScenes
                     BorderColour = Color.Black,
                     Location = new Point(5, 580),
                     Parent = _background,
-                    Text = string.Format("Version: {0}", Application.ProductVersion),
+                    Text = string.Format("版本: {0}", Application.ProductVersion),
                 };
 
             TestLabel = new MirImageControl
@@ -115,7 +115,7 @@ namespace Client.MirScenes
             //    Location = new Point(684, 10)
             //};
 
-            _connectBox = new MirMessageBox("Attempting to connect to the server.", MirMessageBoxButtons.Cancel);
+            _connectBox = new MirMessageBox("正在连接到服务器.", MirMessageBoxButtons.Cancel);
             _connectBox.CancelButton.Click += (o, e) => Program.Form.Close();
             Shown += (sender, args) =>
                 {
@@ -127,7 +127,7 @@ namespace Client.MirScenes
         public override void Process()
         {
             if (!Network.Connected && _connectBox.Label != null)
-                _connectBox.Label.Text = string.Format("Attempting to connect to the server.\nAttempt:{0}", Network.ConnectAttempt);
+                _connectBox.Label.Text = string.Format("正在连接到服务器.\n尝试:{0}", Network.ConnectAttempt);
         }
         public override void ProcessPacket(Packet p)
         {
@@ -166,7 +166,7 @@ namespace Client.MirScenes
 
         private  void SendVersion()
         {
-            _connectBox.Label.Text = "Sending Client Version.";
+            _connectBox.Label.Text = "检测客户端版本.";
 
             C.ClientVersion p = new C.ClientVersion();
             try
