@@ -77,7 +77,7 @@ namespace Client.MirScenes.Dialogs
                 if (string.IsNullOrEmpty(SearchTextBox.Text)) return;
                 if (CMain.Time < SearchTime)
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat(string.Format("You can search again after {0} seconds.", Math.Ceiling((SearchTime - CMain.Time) / 1000D)), ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat(string.Format("{0}秒后可再次搜索.", Math.Ceiling((SearchTime - CMain.Time) / 1000D)), ChatType.System);
                     return;
                 }
 
@@ -102,7 +102,7 @@ namespace Client.MirScenes.Dialogs
             {
                 if (CMain.Time < SearchTime)
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat(string.Format("You can search again after {0} seconds.", Math.Ceiling((SearchTime - CMain.Time) / 1000D)), ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat(string.Format("{0}秒后可再次搜索.", Math.Ceiling((SearchTime - CMain.Time) / 1000D)), ChatType.System);
                     return;
                 }
                 SearchTime = CMain.Time + Globals.SearchDelay;
@@ -141,7 +141,7 @@ namespace Client.MirScenes.Dialogs
                 {
                     if (Selected.Listing.Seller == "For Sale")
                     {
-                        MirMessageBox box = new MirMessageBox(string.Format("{0} has not sold, Are you sure you want to get it back?", Selected.Listing.Item.FriendlyName), MirMessageBoxButtons.YesNo);
+                        MirMessageBox box = new MirMessageBox(string.Format("{0}尚未售出，您确定要取回吗？", Selected.Listing.Item.FriendlyName), MirMessageBoxButtons.YesNo);
                         box.YesButton.Click += (o1, e2) =>
                         {
                             MarketTime = CMain.Time + 3000;
@@ -158,7 +158,7 @@ namespace Client.MirScenes.Dialogs
                 }
                 else
                 {
-                    MirMessageBox box = new MirMessageBox(string.Format("Are you sure you want to buy {0} for {1}?", Selected.Listing.Item.FriendlyName, Selected.Listing.Price), MirMessageBoxButtons.YesNo);
+                    MirMessageBox box = new MirMessageBox(string.Format("你想用{1}的价格购买{0}吗?", Selected.Listing.Item.FriendlyName, Selected.Listing.Price), MirMessageBoxButtons.YesNo);
                     box.YesButton.Click += (o1, e2) =>
                     {
                         MarketTime = CMain.Time + 3000;
@@ -261,7 +261,7 @@ namespace Client.MirScenes.Dialogs
                 Location = new Point(250, 245),
                 Parent = this,
                 NotControl = true,
-                Text = "Start Date:"
+                Text = "开始日期:"
             };
 
             ExpireLabel = new MirLabel
@@ -270,7 +270,7 @@ namespace Client.MirScenes.Dialogs
                 Location = new Point(250, 265),
                 Parent = this,
                 NotControl = true,
-                Text = "Expire Date:"
+                Text = "到期日期:"
             };
 
             ItemLabel = new MirLabel
@@ -280,7 +280,7 @@ namespace Client.MirScenes.Dialogs
                 DrawFormat = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter,
                 Parent = this,
                 NotControl = true,
-                Text = "Item",
+                Text = "物品",
             };
 
             PriceLabel = new MirLabel
@@ -290,7 +290,7 @@ namespace Client.MirScenes.Dialogs
                 DrawFormat = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter,
                 Parent = this,
                 NotControl = true,
-                Text = "Price",
+                Text = "价格",
             };
 
             SellerLabel = new MirLabel
@@ -300,7 +300,7 @@ namespace Client.MirScenes.Dialogs
                 DrawFormat = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter,
                 Parent = this,
                 NotControl = true,
-                Text = "Seller",
+                Text = "出售者",
             };
 
             for (int i = 0; i < Rows.Length; i++)
@@ -330,7 +330,7 @@ namespace Client.MirScenes.Dialogs
 
         public void UpdateInterface()
         {
-            SellerLabel.Text = UserMode ? "Status" : "Seller";
+            SellerLabel.Text = UserMode ? "状态" : "出售者";
             BuyButton.Index = UserMode ? 400 : 483;
             BuyButton.HoverIndex = UserMode ? 401 : 484;
             BuyButton.PressedIndex = UserMode ? 402 : 485;
@@ -370,18 +370,18 @@ namespace Client.MirScenes.Dialogs
 
             NameLabel.Text = Selected.Listing.Item.FriendlyName;
 
-            TotalPriceLabel.Text = string.Format("Price: {0:#,##0}", Selected.Listing.Price);
-            SplitPriceLabel.Text = string.Format("Each: {0:#,##0.#}", Selected.Listing.Price / (float)Selected.Listing.Item.Count);
+            TotalPriceLabel.Text = string.Format("价格: {0:#,##0}", Selected.Listing.Price);
+            SplitPriceLabel.Text = string.Format("每个: {0:#,##0.#}", Selected.Listing.Price / (float)Selected.Listing.Item.Count);
 
-            DateLabel.Text = string.Format("Start Date: {0}", Selected.Listing.ConsignmentDate);
-            ExpireLabel.Text = string.Format("Finish Date: {0}", Selected.Listing.ConsignmentDate.AddDays(Globals.ConsignmentLength));
+            DateLabel.Text = string.Format("开始日期: {0}", Selected.Listing.ConsignmentDate);
+            ExpireLabel.Text = string.Format("完成日期: {0}", Selected.Listing.ConsignmentDate.AddDays(Globals.ConsignmentLength));
 
         }
         private void SearchTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (CMain.Time < SearchTime)
             {
-                GameScene.Scene.ChatDialog.ReceiveChat(string.Format("You can search again after {0} seconds.", Math.Ceiling((SearchTime - CMain.Time) / 1000D)), ChatType.System);
+                GameScene.Scene.ChatDialog.ReceiveChat(string.Format("{0}秒后可再次搜索.", Math.Ceiling((SearchTime - CMain.Time) / 1000D)), ChatType.System);
                 return;
             }
 

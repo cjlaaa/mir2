@@ -225,7 +225,7 @@ namespace Client.MirScenes.Dialogs
                 if (item != null)
                 {
                     MountName.Text = item.FriendlyName;
-                    MountLoyalty.Text = string.Format("{0} / {1} Loyalty", item.CurrentDura, item.MaxDura);
+                    MountLoyalty.Text = string.Format("{0} / {1} 忠诚度", item.CurrentDura, item.MaxDura);
                 }
             }
 
@@ -255,7 +255,7 @@ namespace Client.MirScenes.Dialogs
             if (Visible) return;
             if (GameScene.User.MountType < 0)
             {
-                MirMessageBox messageBox = new MirMessageBox("You do not own a mount.", MirMessageBoxButtons.OK);
+                MirMessageBox messageBox = new MirMessageBox("你没有坐骑.", MirMessageBoxButtons.OK);
                 messageBox.Show();
                 return;
             }

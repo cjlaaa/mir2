@@ -141,7 +141,7 @@ namespace Client.MirScenes.Dialogs
 
                 if (Reward.SelectedItemIndex < 0 && SelectedQuest.QuestInfo.RewardsSelectItem.Count > 0)
                 {
-                    MirMessageBox messageBox = new MirMessageBox("You must select a reward item.");
+                    MirMessageBox messageBox = new MirMessageBox("你必须选择一个奖励物品.");
                     messageBox.Show();
                     return;
                 }
@@ -593,7 +593,7 @@ namespace Client.MirScenes.Dialogs
             };
             _cancelButton.Click += (o, e) =>
             {
-                MirMessageBox messageBox = new MirMessageBox("Are you sure you want to cancel this quest?", MirMessageBoxButtons.YesNo);
+                MirMessageBox messageBox = new MirMessageBox("你确定要放弃这个任务吗?", MirMessageBoxButtons.YesNo);
 
                 messageBox.YesButton.Click += (o1, a) =>
                 {
@@ -1843,7 +1843,7 @@ namespace Client.MirScenes.Dialogs
 
             string name = Quest.QuestInfo.Name;
             string level = string.Format("Lv{0}", Quest.QuestInfo.MinLevelNeeded);
-            string state = quest.Completed ? "(Complete)" : "(In Progress)";
+            string state = quest.Completed ? "(已完成)" : "(进行中)";
 
             bool lowLevelQuest = (MapObject.User.Level - quest.QuestInfo.MinLevelNeeded) > 10;
 

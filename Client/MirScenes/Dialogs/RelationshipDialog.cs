@@ -63,7 +63,7 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 612,
                 Sound = SoundList.ButtonA,
-                Hint = "Allow/Block Marriage"
+                Hint = "允许/阻止求婚"
             };
             AllowButton.Click += (o, e) => Network.Enqueue(new C.ChangeMarriage());
 
@@ -76,13 +76,13 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 602,
                 Sound = SoundList.ButtonA,
-                Hint = "Request Marriage"
+                Hint = "求婚"
             };
             RequestButton.Click += (o, e) =>
             {
                 if (LoverName != "")
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("You're already married.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你已经结婚了.", ChatType.System);
                     return;
                 }
 
@@ -98,13 +98,13 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 618,
                 Sound = SoundList.ButtonA,
-                Hint = "Request Divorce"
+                Hint = "请求离婚"
             };
             DivorceButton.Click += (o, e) =>
             {
                 if (LoverName == "")
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("You're not married.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你没有结婚.", ChatType.System);
                     return;
                 }
 
@@ -120,13 +120,13 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 439,
                 Sound = SoundList.ButtonA,
-                Hint = "Mail Lover"
+                Hint = "给爱人发邮件"
             };
             MailButton.Click += (o, e) =>
             {
                 if (LoverName == "")
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("You're not married.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你没有结婚.", ChatType.System);
                     return;
                 }
 
@@ -142,19 +142,19 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 568,
                 Sound = SoundList.ButtonA,
-                Hint = "Whisper Lover"
+                Hint = "私聊爱人"
             };
             WhisperButton.Click += (o, e) =>
             {
                 if (LoverName == "")
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("You're not married.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你没有结婚.", ChatType.System);
                     return;
                 }
 
                 if (MapName == "")
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("Lover is not online", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("爱人不在线.", ChatType.System);
                     return;
                 }
                 GameScene.Scene.ChatDialog.ChatTextBox.SetFocus();
@@ -227,37 +227,37 @@ namespace Client.MirScenes.Dialogs
 
         public void UpdateInterface()
         {
-            LoverNameLabel.Text = "Lover:  " + LoverName;
+            LoverNameLabel.Text = "爱人:  " + LoverName;
 
             if (MapName != "")
             {
-                LoverOnlineLabel.Text = "Location:  " + MapName;
+                LoverOnlineLabel.Text = "位置:  " + MapName;
             }
             else
-                LoverOnlineLabel.Text = "Location:  Offline";
+                LoverOnlineLabel.Text = "位置:  不在线";
 
             if ((LoverName == "") && (Date != null))
             {
                 if (Date < new DateTime(2000))
                 {
-                    LoverDateLabel.Text = "Date: ";
-                    LoverLengthLabel.Text = "Length: ";
+                    LoverDateLabel.Text = "日期: ";
+                    LoverLengthLabel.Text = "时长: ";
                 }
                 else
                 {
-                    LoverDateLabel.Text = "Divorced Date:  " + Date.ToShortDateString();
-                    LoverLengthLabel.Text = "Time Since: " + MarriedDays + " Days";
+                    LoverDateLabel.Text = "离婚日期:  " + Date.ToShortDateString();
+                    LoverLengthLabel.Text = "时长: " + MarriedDays + "天";
                 }
 
 
-                LoverOnlineLabel.Text = "Location: ";
-                AllowButton.Hint = "Allow/Block Marriage";
+                LoverOnlineLabel.Text = "位置: ";
+                AllowButton.Hint = "允许/阻止求婚";
             }
             else
             {
-                LoverDateLabel.Text = "Marriage Date:  " + Date.ToShortDateString();
-                LoverLengthLabel.Text = "Length: " + MarriedDays.ToString() + " Days";
-                AllowButton.Hint = "Allow/Block Recall";
+                LoverDateLabel.Text = "结婚日期:  " + Date.ToShortDateString();
+                LoverLengthLabel.Text = "时长: " + MarriedDays.ToString() + "天";
+                AllowButton.Hint = "允许/阻止召唤";
             }
 
 
