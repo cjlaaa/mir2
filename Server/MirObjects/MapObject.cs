@@ -457,7 +457,7 @@ namespace Server.MirObjects
                                 MapObject ob = cell.Objects[i];
                                 if (ob.Race != ObjectType.Monster) continue;
 
-                                if (ob.Target == this && (!ob.CoolEye || ob.Level < Level)) ob.Target = null;
+                                if (ob.Target == this && (!ob.CoolEye /*|| ob.Level < Level*/)) ob.Target = null;
                             }
                         }
                     }

@@ -49,7 +49,7 @@ namespace Server.MirObjects.Monsters
                                 case ObjectType.Player:
                                     PlayerObject playerob = (PlayerObject)ob;
                                     if (!ob.IsAttackTarget(this)) continue;
-                                    if (playerob.MyGuild != null && playerob.MyGuild.Conquest != null && Conquest.Info.Index == playerob.MyGuild.Conquest.Info.Index || ob.Hidden && (!CoolEye || Level < ob.Level) || !Conquest.WarIsOn) continue;
+                                    if (playerob.MyGuild != null && playerob.MyGuild.Conquest != null && Conquest.Info.Index == playerob.MyGuild.Conquest.Info.Index || ob.Hidden && (!CoolEye /*|| Level < ob.Level*/) || !Conquest.WarIsOn) continue;
                                     Target = ob;
                                     return;
                                 default:

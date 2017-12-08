@@ -119,7 +119,7 @@ namespace Server.MirObjects.Monsters
                             {
                                 case ObjectType.Monster:
                                     if (!ob.IsAttackTarget(this)) continue;
-                                    if (ob.Hidden && (!CoolEye || Level < ob.Level)) continue;
+                                    if (ob.Hidden && (!CoolEye /*|| Level < ob.Level*/)) continue;
                                     if (((MonsterObject)ob).Info.CoolEye == 100) continue;
                                     ob.Target = this;//Agro the mobs in range - Very simple agro system overwriting mobs target
                                     continue;

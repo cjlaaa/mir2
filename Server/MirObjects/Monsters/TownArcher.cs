@@ -107,7 +107,7 @@ namespace Server.MirObjects.Monsters
                                 case ObjectType.Player:
                                     PlayerObject playerob = (PlayerObject)ob;
                                     if (!ob.IsAttackTarget(this)) continue;
-                                    if (playerob.PKPoints < 200 || ob.Hidden && (!CoolEye || Level < ob.Level)) continue;
+                                    if (playerob.PKPoints < 200 || ob.Hidden && (!CoolEye /*|| Level < ob.Level*/)) continue;
                                     Target = ob;
                                     return;
                                 default:

@@ -1367,14 +1367,14 @@ namespace Server.MirObjects
                             {
                                 case ObjectType.Monster:
                                     if (!ob.IsAttackTarget(this)) continue;
-                                    if (ob.Hidden && (!CoolEye || Level < ob.Level)) continue;
+                                    if (ob.Hidden && (!CoolEye /*|| Level < ob.Level*/)) continue;
                                     if (this is TrapRock && ob.InTrapRock) continue;
                                     Target = ob;
                                     return;
                                 case ObjectType.Player:
                                     PlayerObject playerob = (PlayerObject)ob;
                                     if (!ob.IsAttackTarget(this)) continue;
-                                    if (playerob.GMGameMaster || ob.Hidden && (!CoolEye || Level < ob.Level) || Envir.Time < HallucinationTime) continue;
+                                    if (playerob.GMGameMaster || ob.Hidden && (!CoolEye /*|| Level < ob.Level*/) || Envir.Time < HallucinationTime) continue;
 
                                     Target = ob;
 
@@ -1654,7 +1654,7 @@ namespace Server.MirObjects
                                 case ObjectType.Monster:
                                 case ObjectType.Player:
                                     if (!ob.IsAttackTarget(this)) continue;
-                                    if (ob.Hidden && (!CoolEye || Level < ob.Level)) continue;
+                                    if (ob.Hidden && (!CoolEye /*|| Level < ob.Level*/)) continue;
                                     if (ob.Race == ObjectType.Player)
                                     {
                                         PlayerObject player = ((PlayerObject)ob);
@@ -1777,7 +1777,7 @@ namespace Server.MirObjects
                                 case ObjectType.Monster:
                                 case ObjectType.Player:
                                     if (!ob.IsAttackTarget(this)) continue;
-                                    if (ob.Hidden && (!CoolEye || Level < ob.Level) && needSight) continue;
+                                    if (ob.Hidden && (!CoolEye /*|| Level < ob.Level*/) && needSight) continue;
                                     if (ob.Race == ObjectType.Player)
                                     {
                                         PlayerObject player = ((PlayerObject)ob);
