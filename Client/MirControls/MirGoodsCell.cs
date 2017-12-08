@@ -59,19 +59,19 @@ namespace Client.MirControls
             if (usePearls)//pearl currency
             {
                 if (Item.Price() > 1)
-                    PriceLabel.Text = string.Format("Price: {0} pearls", (uint)(Item.Price() * GameScene.NPCRate));
+                    PriceLabel.Text = string.Format("价格: {0} pearls", (uint)(Item.Price() * GameScene.NPCRate));
                 else
-                    PriceLabel.Text = string.Format("Price: {0} pearl", (uint)(Item.Price() * GameScene.NPCRate));
+                    PriceLabel.Text = string.Format("价格: {0} pearl", (uint)(Item.Price() * GameScene.NPCRate));
             }
             else
             {
                 if (Recipe)
                 {
-                    PriceLabel.Text = string.Format("Craftable Item");
+                    PriceLabel.Text = string.Format("可制作物品");
                 }
                 else
                 {
-                    PriceLabel.Text = string.Format("Price: {0} gold", (uint)(Item.Price() * GameScene.NPCRate));
+                    PriceLabel.Text = string.Format("价格: {0}金币", (uint)(Item.Price() * GameScene.NPCRate));
                 }
             }
         }
