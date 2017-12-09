@@ -48,8 +48,8 @@ namespace Client.MirObjects
         }
         public void Load(S.ObjectGold info)
         {
-            Name = string.Format("Gold ({0:###,###,###})", info.Gold);
-
+            // Name = string.Format("Gold ({0:###,###,###})", info.Gold);
+            Name = "金币"
 
             BodyLibrary = Libraries.FloorItems;
 

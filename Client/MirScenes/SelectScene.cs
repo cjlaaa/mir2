@@ -56,7 +56,7 @@ namespace Client.MirScenes
                     Location = new Point(322, 44),
                     Parent = Background,
                     Size = new Size(155, 17),
-                    Text = "Legend of Mir 2",
+                    Text = "传奇2",
                     DrawFormat = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
                 };
             
@@ -208,7 +208,7 @@ namespace Client.MirScenes
                 {
                     Location = new Point(-80, -1),
                     Parent = LastAccessLabel,
-                    Text = "Last Online:",
+                    Text = "上次在线:",
                     Size = new Size(100, 21),
                     DrawFormat = TextFormatFlags.Left | TextFormatFlags.VerticalCenter,
                     Border = true,
@@ -236,9 +236,9 @@ namespace Client.MirScenes
         {
             if (!Libraries.Loaded)
             {
-                MirMessageBox message = new MirMessageBox(string.Format("Please wait, The game is still loading... {0:##0}%", Libraries.Progress / (double)Libraries.Count * 100), MirMessageBoxButtons.Cancel);
+                MirMessageBox message = new MirMessageBox(string.Format("请稍后, 游戏载入中... {0:##0}%", Libraries.Progress / (double)Libraries.Count * 100), MirMessageBoxButtons.Cancel);
 
-                message.BeforeDraw += (o, e) => message.Label.Text = string.Format("Please wait, The game is still loading... {0:##0}%", Libraries.Progress / (double)Libraries.Count * 100);
+                message.BeforeDraw += (o, e) => message.Label.Text = string.Format("请稍后, 游戏载入中... {0:##0}%", Libraries.Progress / (double)Libraries.Count * 100);
 
                 message.AfterDraw += (o, e) =>
                 {
@@ -302,25 +302,25 @@ namespace Client.MirScenes
             switch (p.Result)
             {
                 case 0:
-                    MirMessageBox.Show("Creating new characters is currently disabled.");
+                    MirMessageBox.Show("服务器暂时不允许创建新角色.");
                     _character.Dispose();
                     break;
                 case 1:
-                    MirMessageBox.Show("Your Character Name is not acceptable.");
+                    MirMessageBox.Show("角色名不可用.");
                     _character.NameTextBox.SetFocus();
                     break;
                 case 2:
-                    MirMessageBox.Show("The gender you selected does not exist.\n Contact a GM for assistance.");
+                    MirMessageBox.Show("你选择的性别不存在.\n 请联系GM处理.");
                     break;
                 case 3:
-                    MirMessageBox.Show("The class you selected does not exist.\n Contact a GM for assistance.");
+                    MirMessageBox.Show("你选择的职业不存在.\n 请联系GM处理.");
                     break;
                 case 4:
-                    MirMessageBox.Show("You cannot make anymore then " + Globals.MaxCharacterCount + " Characters.");
+                    MirMessageBox.Show("你不能创建超过" + Globals.MaxCharacterCount + "个角色.");
                     _character.Dispose();
                     break;
                 case 5:
-                    MirMessageBox.Show("A Character with this name already exists.");
+                    MirMessageBox.Show("这个角色名已存在.");
                     _character.NameTextBox.SetFocus();
                     break;
             }
@@ -330,7 +330,7 @@ namespace Client.MirScenes
         private void NewCharacter(S.NewCharacterSuccess p)
         {
             _character.Dispose();
-            MirMessageBox.Show("Your character was created successfully.");
+            MirMessageBox.Show("你的角色创建成功.");
             
             Characters.Insert(0, p.CharInfo);
             _selected = 0;
@@ -341,7 +341,7 @@ namespace Client.MirScenes
         {
             if (_selected < 0 || _selected >= Characters.Count) return;
 
-            MirMessageBox message = new MirMessageBox(string.Format("Are you sure you want to Delete the character {0}?", Characters[_selected].Name), MirMessageBoxButtons.YesNo);
+            MirMessageBox message = new MirMessageBox(string.Format("你确定要删除角色{0}吗?", Characters[_selected].Name), MirMessageBoxButtons.YesNo);
             int index = Characters[_selected].Index;
 
             message.YesButton.Click += (o, e) =>
@@ -359,17 +359,17 @@ namespace Client.MirScenes
             switch (p.Result)
             {
                 case 0:
-                    MirMessageBox.Show("Deleting characters is currently disabled.");
+                    MirMessageBox.Show("服务器暂时不允许删除角色.");
                     break;
                 case 1:
-                    MirMessageBox.Show("The character you selected does not exist.\n Contact a GM for assistance.");
+                    MirMessageBox.Show("你选择的角色不存在.\n 请联系GM处理.");
                     break;
             }
         }
         private void DeleteCharacter(S.DeleteCharacterSuccess p)
         {
             DeleteCharacterButton.Enabled = true;
-            MirMessageBox.Show("Your character was deleted successfully.");
+            MirMessageBox.Show("你的角色删除成功.");
 
             for (int i = 0; i < Characters.Count; i++)
                 if (Characters[i].Index == p.CharacterIndex)
@@ -387,9 +387,9 @@ namespace Client.MirScenes
 
             long time = CMain.Time + p.Milliseconds;
 
-            MirMessageBox message = new MirMessageBox(string.Format("You cannot log onto this character for another {0} seconds.", Math.Ceiling(p.Milliseconds/1000M)));
+            MirMessageBox message = new MirMessageBox(string.Format("{0}秒内无法再次登录这个角色.", Math.Ceiling(p.Milliseconds/1000M)));
 
-            message.BeforeDraw += (o, e) => message.Label.Text = string.Format("You cannot log onto this character for another {0} seconds.", Math.Ceiling((time - CMain.Time)/1000M));
+            message.BeforeDraw += (o, e) => message.Label.Text = string.Format("{0}秒内无法再次登录这个角色.", Math.Ceiling((time - CMain.Time)/1000M));
                 
 
             message.AfterDraw += (o, e) =>
@@ -406,7 +406,7 @@ namespace Client.MirScenes
             StartGameButton.Enabled = true;
 
             TimeSpan d = p.ExpiryDate - CMain.Now;
-            MirMessageBox.Show(string.Format("This account is banned.\n\nReason: {0}\nExpiryDate: {1}\nDuration: {2:#,##0} Hours, {3} Minutes, {4} Seconds", p.Reason,
+            MirMessageBox.Show(string.Format("这个账号已被封禁.\n\n原因: {0}\n解封日期: {1}\n持续时间: {2:#,##0}小时, {3}分钟, {4}秒", p.Reason,
                                              p.ExpiryDate, Math.Floor(d.TotalHours), d.Minutes, d.Seconds));
         }
         public void StartGame(S.StartGame p)
@@ -423,16 +423,16 @@ namespace Client.MirScenes
             switch (p.Result)
             {
                 case 0:
-                    MirMessageBox.Show("Starting the game is currently disabled.");
+                    MirMessageBox.Show("服务器暂时不允许进入游戏.");
                     break;
                 case 1:
-                    MirMessageBox.Show("You are not logged in.");
+                    MirMessageBox.Show("你没有登录.");
                     break;
                 case 2:
-                    MirMessageBox.Show("Your character could not be found.");
+                    MirMessageBox.Show("你的角色无法找到.");
                     break;
                 case 3:
-                    MirMessageBox.Show("No active map and/or start point found.");
+                    MirMessageBox.Show("找不到有效的地图/游戏起始点.");
                     break;
                 case 4:
                     if (Settings.Resolution == 1024)
@@ -478,7 +478,7 @@ namespace Client.MirScenes
                         break;
                 }
 
-                LastAccessLabel.Text = Characters[_selected].LastAccess == DateTime.MinValue ? "Never" : Characters[_selected].LastAccess.ToString();
+                LastAccessLabel.Text = Characters[_selected].LastAccess == DateTime.MinValue ? "从未登录" : Characters[_selected].LastAccess.ToString();
                 LastAccessLabel.Visible = true;
                 LastAccessLabelLabel.Visible = true;
                 StartGameButton.Enabled = true;
@@ -543,29 +543,34 @@ namespace Client.MirScenes
 
             #region Descriptions
             public const string WarriorDescription =
-                "Warriors are a class of great strength and vitality. They are not easily killed in battle and have the advantage of being able to use" +
-                " a variety of heavy weapons and Armour. Therefore, Warriors favor attacks that are based on melee physical damage. They are weak in ranged" +
-                " attacks, however the variety of equipment that are developed specifically for Warriors complement their weakness in ranged combat.";
+                "战士是个拥有强大力量和体力的职业,他们不会在战斗中被轻易地杀死,而且能够使用各种重型武器和装甲,所以战士们更喜欢基于物理伤害的近身攻击,尽管他们的远程攻击力薄弱,但是专门为战士开发的各种装备弥补了他们在面对远程战斗时的弱点.";
+                // "Warriors are a class of great strength and vitality. They are not easily killed in battle and have the advantage of being able to use" +
+                // " a variety of heavy weapons and Armour. Therefore, Warriors favor attacks that are based on melee physical damage. They are weak in ranged" +
+                // " attacks, however the variety of equipment that are developed specifically for Warriors complement their weakness in ranged combat.";
 
             public const string WizardDescription =
-                "Wizards are a class of low strength and stamina, but have the ability to use powerful spells. Their offensive spells are very effective, but" +
-                " because it takes time to cast these spells, they're likely to leave themselves open for enemy's attacks. Therefore, the physically weak wizards" +
-                " must aim to attack their enemies from a safe distance.";
+                "法师是个力量和体力都很低的职业,但是他们能够使用强大的法术作为弥补,他们的攻击法术可以非常有效的打击敌人,但由于释放这些法术需要花费时间,所以身体虚弱的法师们总是时刻警惕着并与敌人保持距离。";
+                // "Wizards are a class of low strength and stamina, but have the ability to use powerful spells. Their offensive spells are very effective, but" +
+                // " because it takes time to cast these spells, they're likely to leave themselves open for enemy's attacks. Therefore, the physically weak wizards" +
+                // " must aim to attack their enemies from a safe distance.";
 
             public const string TaoistDescription =
-                "Taoists are well disciplined in the study of Astronomy, Medicine, and others aside from Mu-Gong. Rather then directly engaging the enemies, their" +
-                " specialty lies in assisting their allies with support. Taoists can summon powerful creatures and have a high resistance to magic, and is a class" +
-                " with well balanced offensive and defensive abilities.";
+                "道士在天文学,医药学等方面都有很深的造诣.相对于直接与敌人战斗,他们更善于支持协助队友.道士们能够召唤出强大的生物,而且他们对魔法有着很高的抵抗力,所以道士是一个攻守兼备的职业.";
+                // "Taoists are well disciplined in the study of Astronomy, Medicine, and others aside from Mu-Gong. Rather then directly engaging the enemies, their" +
+                // " specialty lies in assisting their allies with support. Taoists can summon powerful creatures and have a high resistance to magic, and is a class" +
+                // " with well balanced offensive and defensive abilities.";
 
             public const string AssassinDescription =
-                "Assassins are members of a secret organization and their history is relatively unknown. They're capable of hiding themselves and performing attacks" +
-                " while being unseen by others, which naturally makes them excellent at making fast kills. It is necessary for them to avoid being in battles with" +
-                " multiple enemies due to their weak vitality and strength.";
+                "刺客来自一个神秘的组织,没有人了解他们的过去.他们可以隐藏自己,并在他人看不见的情况下发动攻击,所以他们更善于快速致死敌人.因力量和体力有限,刺客们通常会刻意避免陷入众多敌人的包围.";
+                // "Assassins are members of a secret organization and their history is relatively unknown. They're capable of hiding themselves and performing attacks" +
+                // " while being unseen by others, which naturally makes them excellent at making fast kills. It is necessary for them to avoid being in battles with" +
+                // " multiple enemies due to their weak vitality and strength.";
 
             public const string ArcherDescription = 
-                "Archers are a class of great accuracy and strength, using their powerful skills with bows to deal extraordinary damage from range. Much like" +
-                " wizards, they rely on their keen instincts to dodge oncoming attacks as they tend to leave themselves open to frontal attacks. However, their" +
-                " physical prowess and deadly aim allows them to instil fear into anyone they hit.";
+                "弓手是个攻击精准且力量强大的职业,他们在一定距离外使用强力的弓箭技能造成巨大伤害.和法师类似,虽然弓手们往往会刻意与敌人保持距离并依靠敏锐的本能预判躲避攻击,但他们的实力和致命打击早已让敌人闻风丧胆.";
+                // "Archers are a class of great accuracy and strength, using their powerful skills with bows to deal extraordinary damage from range. Much like" +
+                // " wizards, they rely on their keen instincts to dodge oncoming attacks as they tend to leave themselves open to frontal attacks. However, their" +
+                // " physical prowess and deadly aim allows them to instil fear into anyone they hit.";
 
             #endregion
 

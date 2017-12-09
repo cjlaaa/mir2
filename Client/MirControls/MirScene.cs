@@ -221,22 +221,22 @@ namespace Client.MirControls
             switch (p.Reason)
             {
                 case 0:
-                    MirMessageBox.Show("Disconnected: Server is shutting down.", true);
+                    MirMessageBox.Show("断开连接: 服务器已关闭.", true);
                     break;
                 case 1:
-                    MirMessageBox.Show("Disconnected: Another user logged onto your account.", true);
+                    MirMessageBox.Show("断开连接: 你的账号被他人登录了.", true);
                     break;
                 case 2:
-                    MirMessageBox.Show("Disconnected: Packet Error.", true);
+                    MirMessageBox.Show("断开连接: 数据包错误.", true);
                     break;
                 case 3:
-                    MirMessageBox.Show("Disconnected: Server Crashed.", true);
+                    MirMessageBox.Show("断开连接: 服务器崩溃.", true);
                     break;
                 case 4:
-                    MirMessageBox.Show("Disconnected: Kicked by Admin.", true);
+                    MirMessageBox.Show("断开连接: 被管理员踢下线.", true);
                     break;
                 case 5:
-                    MirMessageBox.Show("Disconnected: Maximum connections reached.", true);
+                    MirMessageBox.Show("断开连接: 服务器人数已满.", true);
                     break;
             }
 

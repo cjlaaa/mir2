@@ -919,7 +919,7 @@ namespace Client.MirObjects
                 //max = item.Count;
                 //if (item.Count == 0)
                 //{
-                    GameScene.Scene.ChatDialog.ReceiveChat("You do not have enough weight.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("负重不足.", ChatType.System);
                     return;
                 //}
             }
@@ -950,13 +950,13 @@ namespace Client.MirObjects
 
                 if (min == 0)
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("You do not have enough space.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("空间不足.", ChatType.System);
                     item.Count = 0;
                 }
             }
             else
             {
-                GameScene.Scene.ChatDialog.ReceiveChat("You do not have enough space.", ChatType.System);
+                GameScene.Scene.ChatDialog.ReceiveChat("空间不足.", ChatType.System);
                 //item.Count = 0;
             }
 

@@ -2242,19 +2242,19 @@ namespace Client.MirScenes.Dialogs
             };
             StatusPage.BeforeDraw += (o, e) =>
             {
-                ACLabel.Text = string.Format("{0}-{1}   防御", MapObject.User.MinAC, MapObject.User.MaxAC);
-                MACLabel.Text = string.Format("{0}-{1}  魔御", MapObject.User.MinMAC, MapObject.User.MaxMAC);
-                DCLabel.Text = string.Format("{0}-{1}   攻击", MapObject.User.MinDC, MapObject.User.MaxDC);
-                MCLabel.Text = string.Format("{0}-{1}   魔力", MapObject.User.MinMC, MapObject.User.MaxMC);
-                SCLabel.Text = string.Format("{0}-{1}   道术", MapObject.User.MinSC, MapObject.User.MaxSC);
-                HealthLabel.Text = string.Format("{0}/{1}   生命值", MapObject.User.HP, MapObject.User.MaxHP);
-                ManaLabel.Text = string.Format("{0}/{1} 魔法值", MapObject.User.MP, MapObject.User.MaxMP);
-                CritRLabel.Text = string.Format("{0}%   暴击率", MapObject.User.CriticalRate);
-                CritDLabel.Text = string.Format("{0}    暴击伤害", MapObject.User.CriticalDamage);
-                AttkSpdLabel.Text = string.Format("{0}  攻击速度", MapObject.User.ASpeed);
-                AccLabel.Text = string.Format("+{0} 准确", MapObject.User.Accuracy);
-                AgilLabel.Text = string.Format("+{0}    敏捷", MapObject.User.Agility);
-                LuckLabel.Text = string.Format("{0} 幸运", MapObject.User.Luck);
+                ACLabel.Text = string.Format("防御    {0}-{1}", MapObject.User.MinAC, MapObject.User.MaxAC);
+                MACLabel.Text = string.Format("魔御   {0}-{1}", MapObject.User.MinMAC, MapObject.User.MaxMAC);
+                DCLabel.Text = string.Format("攻击    {0}-{1}", MapObject.User.MinDC, MapObject.User.MaxDC);
+                MCLabel.Text = string.Format("魔力    {0}-{1}", MapObject.User.MinMC, MapObject.User.MaxMC);
+                SCLabel.Text = string.Format("道术    {0}-{1}   ", MapObject.User.MinSC, MapObject.User.MaxSC);
+                HealthLabel.Text = string.Format("生命值   {0}/{1}   ", MapObject.User.HP, MapObject.User.MaxHP);
+                ManaLabel.Text = string.Format("魔法值 {0}/{1} ", MapObject.User.MP, MapObject.User.MaxMP);
+                CritRLabel.Text = string.Format("暴击率    {0}%", MapObject.User.CriticalRate);
+                CritDLabel.Text = string.Format("暴击伤害   {0}", MapObject.User.CriticalDamage);
+                AttkSpdLabel.Text = string.Format("攻击速度 {0}", MapObject.User.ASpeed);
+                AccLabel.Text = string.Format("准确   +{0}", MapObject.User.Accuracy);
+                AgilLabel.Text = string.Format("敏捷  +{0}", MapObject.User.Agility);
+                LuckLabel.Text = string.Format("幸运  {0}", MapObject.User.Luck);
             };
 
             StatePage = new MirImageControl
@@ -2267,18 +2267,18 @@ namespace Client.MirScenes.Dialogs
             };
             StatePage.BeforeDraw += (o, e) =>
             {
-                ExpPLabel.Text = string.Format("{0:0.##%}   经验值", MapObject.User.Experience / (double)MapObject.User.MaxExperience);
-                BagWLabel.Text = string.Format("{0}/{1} 背包负重", MapObject.User.CurrentBagWeight, MapObject.User.MaxBagWeight);
-                WearWLabel.Text = string.Format("{0}/{1}    穿戴负重", MapObject.User.CurrentWearWeight, MapObject.User.MaxWearWeight);
-                HandWLabel.Text = string.Format("{0}/{1}    手持负重", MapObject.User.CurrentHandWeight, MapObject.User.MaxHandWeight);
-                MagicRLabel.Text = string.Format("+{0}  魔法抵抗", MapObject.User.MagicResist);
-                PoisonResLabel.Text = string.Format("+{0}   毒素抵抗", MapObject.User.PoisonResist);
-                HealthRLabel.Text = string.Format("+{0} 生命恢复", MapObject.User.HealthRecovery);
-                ManaRLabel.Text = string.Format("+{0}   魔法恢复", MapObject.User.SpellRecovery);
-                PoisonRecLabel.Text = string.Format("+{0}   中毒恢复", MapObject.User.PoisonRecovery);
-                HolyTLabel.Text = string.Format("+{0}   神圣", MapObject.User.Holy);
-                FreezeLabel.Text = string.Format("+{0}  冰冻", MapObject.User.Freezing);
-                PoisonAtkLabel.Text = string.Format("+{0}   毒素攻击", MapObject.User.PoisonAttack);
+                ExpPLabel.Text = string.Format("经验值 {0:0.##%}", MapObject.User.Experience / (double)MapObject.User.MaxExperience);
+                BagWLabel.Text = string.Format("背包负重    {0}/{1}", MapObject.User.CurrentBagWeight, MapObject.User.MaxBagWeight);
+                WearWLabel.Text = string.Format("穿戴负重   {0}/{1}", MapObject.User.CurrentWearWeight, MapObject.User.MaxWearWeight);
+                HandWLabel.Text = string.Format("手持负重   {0}/{1}", MapObject.User.CurrentHandWeight, MapObject.User.MaxHandWeight);
+                MagicRLabel.Text = string.Format("魔法抵抗  +{0}", MapObject.User.MagicResist);
+                PoisonResLabel.Text = string.Format("毒素抵抗   +{0}", MapObject.User.PoisonResist);
+                HealthRLabel.Text = string.Format("生命恢复 +{0}", MapObject.User.HealthRecovery);
+                ManaRLabel.Text = string.Format("魔法恢复   +{0}", MapObject.User.SpellRecovery);
+                PoisonRecLabel.Text = string.Format("中毒恢复   +{0}", MapObject.User.PoisonRecovery);
+                HolyTLabel.Text = string.Format("神圣 +{0}", MapObject.User.Holy);
+                FreezeLabel.Text = string.Format("冰冻    +{0}", MapObject.User.Freezing);
+                PoisonAtkLabel.Text = string.Format("毒素攻击   +{0}", MapObject.User.PoisonAttack);
             };
 
 
