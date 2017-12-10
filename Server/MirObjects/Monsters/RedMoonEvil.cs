@@ -35,116 +35,116 @@ namespace Server.MirObjects.Monsters
         public override bool Walk(MirDirection dir) { return false; }
 
 
-        public override int Attacked(MonsterObject attacker, int damage, DefenceType type = DefenceType.ACAgility)
-        {
-            int armour = 0;
+        //public override int Attacked(MonsterObject attacker, int damage, DefenceType type = DefenceType.ACAgility)
+        //{
+        //    int armour = 0;
 
-            switch (type)
-            {
-                case DefenceType.ACAgility:
-                    if (Envir.Random.Next(Agility + 1) > attacker.Accuracy) return 0;
-                    armour = GetDefencePower(MinAC, MaxAC);
-                    break;
-                case DefenceType.AC:
-                    armour = GetDefencePower(MinAC, MaxAC);
-                    break;
-                case DefenceType.MACAgility:
-                    if (Envir.Random.Next(Agility + 1) > attacker.Accuracy) return 0;
-                    armour = GetDefencePower(MinMAC, MaxMAC);
-                    break;
-                case DefenceType.MAC:
-                    armour = GetDefencePower(MinAC, MaxAC);
-                    break;
-                case DefenceType.Agility:
-                    if (Envir.Random.Next(Agility + 1) > attacker.Accuracy) return 0;
-                    break;
-            }
+        //    switch (type)
+        //    {
+        //        case DefenceType.ACAgility:
+        //            if (Envir.Random.Next(Agility + 1) > attacker.Accuracy) return 0;
+        //            armour = GetDefencePower(MinAC, MaxAC);
+        //            break;
+        //        case DefenceType.AC:
+        //            armour = GetDefencePower(MinAC, MaxAC);
+        //            break;
+        //        case DefenceType.MACAgility:
+        //            if (Envir.Random.Next(Agility + 1) > attacker.Accuracy) return 0;
+        //            armour = GetDefencePower(MinMAC, MaxMAC);
+        //            break;
+        //        case DefenceType.MAC:
+        //            armour = GetDefencePower(MinAC, MaxAC);
+        //            break;
+        //        case DefenceType.Agility:
+        //            if (Envir.Random.Next(Agility + 1) > attacker.Accuracy) return 0;
+        //            break;
+        //    }
 
-            if (armour >= damage) return 0;
+        //    if (armour >= damage) return 0;
 
-            ShockTime = 0;
+        //    ShockTime = 0;
 
-            for (int i = PoisonList.Count - 1; i >= 0; i--)
-            {
-                if (PoisonList[i].PType != PoisonType.LRParalysis) continue;
+        //    for (int i = PoisonList.Count - 1; i >= 0; i--)
+        //    {
+        //        if (PoisonList[i].PType != PoisonType.LRParalysis) continue;
 
-                PoisonList.RemoveAt(i);
-                OperateTime = 0;
-            }
+        //        PoisonList.RemoveAt(i);
+        //        OperateTime = 0;
+        //    }
 
-            if (attacker.Info.AI == 6)
-                EXPOwner = null;
-            else if (attacker.Master != null)
-            {
-                if (EXPOwner == null || EXPOwner.Dead)
-                    EXPOwner = attacker.Master;
+        //    if (attacker.Info.AI == 6)
+        //        EXPOwner = null;
+        //    else if (attacker.Master != null)
+        //    {
+        //        if (EXPOwner == null || EXPOwner.Dead)
+        //            EXPOwner = attacker.Master;
 
-                if (EXPOwner == attacker.Master)
-                    EXPOwnerTime = Envir.Time + EXPOwnerDelay;
+        //        if (EXPOwner == attacker.Master)
+        //            EXPOwnerTime = Envir.Time + EXPOwnerDelay;
 
-            }
+        //    }
 
-            Broadcast(new S.ObjectStruck { ObjectID = ObjectID, AttackerID = attacker.ObjectID, Direction = Direction, Location = CurrentLocation });
+        //    Broadcast(new S.ObjectStruck { ObjectID = ObjectID, AttackerID = attacker.ObjectID, Direction = Direction, Location = CurrentLocation });
 
-            ChangeHP(-1);
-            return 1;
-        }
-        public override int Attacked(PlayerObject attacker, int damage, DefenceType type = DefenceType.ACAgility, bool damageWeapon = true)
-        {
-            int armour = 0;
+        //    ChangeHP(-1);
+        //    return 1;
+        //}
+        //public override int Attacked(PlayerObject attacker, int damage, DefenceType type = DefenceType.ACAgility, bool damageWeapon = true)
+        //{
+        //    int armour = 0;
 
-            switch (type)
-            {
-                case DefenceType.ACAgility:
-                    if (Envir.Random.Next(Agility + 1) > attacker.Accuracy) return 0;
-                    armour = GetDefencePower(MinAC, MaxAC);
-                    break;
-                case DefenceType.AC:
-                    armour = GetDefencePower(MinAC, MaxAC);
-                    break;
-                case DefenceType.MACAgility:
-                    if (Envir.Random.Next(Agility + 1) > attacker.Accuracy) return 0;
-                    armour = GetDefencePower(MinMAC, MaxMAC);
-                    break;
-                case DefenceType.MAC:
-                    armour = GetDefencePower(MinAC, MaxAC);
-                    break;
-                case DefenceType.Agility:
-                    if (Envir.Random.Next(Agility + 1) > attacker.Accuracy) return 0;
-                    break;
-            }
+        //    switch (type)
+        //    {
+        //        case DefenceType.ACAgility:
+        //            if (Envir.Random.Next(Agility + 1) > attacker.Accuracy) return 0;
+        //            armour = GetDefencePower(MinAC, MaxAC);
+        //            break;
+        //        case DefenceType.AC:
+        //            armour = GetDefencePower(MinAC, MaxAC);
+        //            break;
+        //        case DefenceType.MACAgility:
+        //            if (Envir.Random.Next(Agility + 1) > attacker.Accuracy) return 0;
+        //            armour = GetDefencePower(MinMAC, MaxMAC);
+        //            break;
+        //        case DefenceType.MAC:
+        //            armour = GetDefencePower(MinAC, MaxAC);
+        //            break;
+        //        case DefenceType.Agility:
+        //            if (Envir.Random.Next(Agility + 1) > attacker.Accuracy) return 0;
+        //            break;
+        //    }
 
-            if (armour >= damage) return 0;
+        //    if (armour >= damage) return 0;
 
-            if (damageWeapon)
-                attacker.DamageWeapon();
+        //    if (damageWeapon)
+        //        attacker.DamageWeapon();
 
-            ShockTime = 0;
+        //    ShockTime = 0;
 
-            for (int i = PoisonList.Count - 1; i >= 0; i--)
-            {
-                if (PoisonList[i].PType != PoisonType.LRParalysis) continue;
+        //    for (int i = PoisonList.Count - 1; i >= 0; i--)
+        //    {
+        //        if (PoisonList[i].PType != PoisonType.LRParalysis) continue;
 
-                PoisonList.RemoveAt(i);
-                OperateTime = 0;
-            }
+        //        PoisonList.RemoveAt(i);
+        //        OperateTime = 0;
+        //    }
 
-            if (Master != null && Master != attacker)
-                if (Envir.Time > Master.BrownTime && Master.PKPoints < 200)
-                    attacker.BrownTime = Envir.Time + Settings.Minute;
+        //    if (Master != null && Master != attacker)
+        //        if (Envir.Time > Master.BrownTime && Master.PKPoints < 200)
+        //            attacker.BrownTime = Envir.Time + Settings.Minute;
 
-            if (EXPOwner == null || EXPOwner.Dead)
-                EXPOwner = attacker;
+        //    if (EXPOwner == null || EXPOwner.Dead)
+        //        EXPOwner = attacker;
 
-            if (EXPOwner == attacker)
-                EXPOwnerTime = Envir.Time + EXPOwnerDelay;
+        //    if (EXPOwner == attacker)
+        //        EXPOwnerTime = Envir.Time + EXPOwnerDelay;
 
-            Broadcast(new S.ObjectStruck { ObjectID = ObjectID, AttackerID = attacker.ObjectID, Direction = Direction, Location = CurrentLocation });
-            attacker.GatherElement();
-            ChangeHP(-1);
+        //    Broadcast(new S.ObjectStruck { ObjectID = ObjectID, AttackerID = attacker.ObjectID, Direction = Direction, Location = CurrentLocation });
+        //    attacker.GatherElement();
+        //    ChangeHP(-1);
 
-            return 1;
-        }
+        //    return 1;
+        //}
 
         //public override void ApplyPoison(Poison p, MapObject Caster = null, bool NoResist = false) { }
 
