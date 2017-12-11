@@ -5505,6 +5505,8 @@ namespace Client.MirScenes
             HoverItem = item;
             ItemInfo realItem = Functions.GetRealItem(item.Info, level, job, ItemInfoList);
 
+            string[] GradeString = new string[]{"","普通","稀有","传奇","神话",};
+
             MirLabel nameLabel = new MirLabel
             {
                 AutoSize = true,
@@ -5512,7 +5514,7 @@ namespace Client.MirScenes
                 Location = new Point(4, 4),
                 OutLine = true,
                 Parent = ItemLabel,
-                Text = HoverItem.Info.Grade != ItemGrade.None ? HoverItem.Info.FriendlyName + "\n" + HoverItem.Info.Grade.ToString() : 
+                Text = HoverItem.Info.Grade != ItemGrade.None ? HoverItem.Info.FriendlyName + "\n" + GradeString[(int)HoverItem.Info.Grade] : 
                 (HoverItem.Info.Type == ItemType.Pets && HoverItem.Info.Shape == 26 && HoverItem.Info.Effect != 7) ? "WonderDrug" : HoverItem.Info.FriendlyName,
             };
 
@@ -5568,10 +5570,51 @@ namespace Client.MirScenes
                 }
             }
 
+            string[] TypeString = new string[] {
+                "未知",// = 0,
+                "武器",// = 1,
+                "装甲",// = 2,
+                "",//3
+                "头盔",// = 4,
+                "项链",// = 5,
+                "手镯",// = 6,
+                "戒指",// = 7,
+                "道士用品",// = 8,
+                "腰带",// = 9,
+                "靴子",// = 10,
+                "守护石",// = 11,
+                "照明",// = 12,
+                "药水",// = 13,
+                "矿石",// = 14,
+                "肉",// = 15,
+                "手工艺材料",// = 16,
+                "杂物",// = 17,
+                "宝玉",// = 18,
+                "坐骑",// = 19,
+                "技能书",// = 20,
+                "Script",// = 21,
+                "缰绳",// = 22,
+                "马铃",// = 23,
+                "马鞍",// = 24,
+                "缎带",// = 25,
+                "面具",// = 26,
+                "食物",// = 27,
+                "鱼钩",// = 28,
+                "Float",// = 29,
+                "鱼饵",// = 30,
+                "Finder",// = 31,
+                "Reel",// = 32,
+                "鱼",// = 33,
+                "任务物品",// = 34,
+                "觉醒材料",// = 35,
+                "宠物",// = 36,
+                "变幻道具",// = 37,
+            };
+
             String WedRingName = "";
             if (HoverItem.WeddingRing == -1)
             {
-                WedRingName = HoverItem.Info.Type.ToString() +
+                WedRingName = TypeString[(int)HoverItem.Info.Type] +
                 "\n" + "重量" + HoverItem.Weight + text;
             }
             else
