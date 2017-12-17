@@ -4772,7 +4772,7 @@ namespace Client.MirScenes.Dialogs
     {
         public BigMapDialog()
         {
-            MouseDown += OnMouseClick;
+            //MouseDown += OnMouseClick;
             // NotControl = true;
             Location = new Point(130, 100);
             //Border = true;

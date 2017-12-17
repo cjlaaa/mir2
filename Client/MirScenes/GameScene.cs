@@ -6727,7 +6727,7 @@ namespace Client.MirScenes
                     Location = new Point(4, ItemLabel.DisplayRectangle.Bottom),
                     OutLine = true,
                     Parent = ItemLabel,
-                    Text = string.Format("Instant Run")
+                    Text = string.Format("免助跑")
                 };
 
                 ItemLabel.Size = new Size(Math.Max(ItemLabel.Size.Width, BAGWEIGHTLabel.DisplayRectangle.Right + 4),
@@ -6809,6 +6809,16 @@ namespace Client.MirScenes
             MirClass job = Inspect ? InspectDialog.Class : MapObject.User.Class;
             HoverItem = item;
             ItemInfo realItem = Functions.GetRealItem(item.Info, level, job, ItemInfoList);
+            string[] AwakenTypeString = new string[]
+            {
+                "None",// = 0,
+                "攻击力",
+                "魔力",
+                "道术",
+                "防御",
+                "魔御",
+                "生命魔法值",
+            };
 
             ItemLabel.Size = new Size(ItemLabel.Size.Width, ItemLabel.Size.Height + 4);
 
@@ -6825,7 +6835,7 @@ namespace Client.MirScenes
                     Location = new Point(4, ItemLabel.DisplayRectangle.Bottom),
                     OutLine = true,
                     Parent = ItemLabel,
-                    Text = string.Format("{0} Awakening({1})", HoverItem.Awake.type.ToString(), HoverItem.Awake.getAwakeLevel())
+                    Text = string.Format("{0}觉醒({1})", AwakenTypeString[(int)HoverItem.Awake.type], HoverItem.Awake.getAwakeLevel())
                 };
 
                 ItemLabel.Size = new Size(Math.Max(ItemLabel.Size.Width, AWAKENAMELabel.DisplayRectangle.Right + 4),
@@ -6845,7 +6855,7 @@ namespace Client.MirScenes
                     Location = new Point(4, ItemLabel.DisplayRectangle.Bottom),
                     OutLine = true,
                     Parent = ItemLabel,
-                    Text = string.Format(realItem.Type != ItemType.Armour ? "{0} + {1}~{2}" : "MAX {0} + {1}", HoverItem.Awake.type.ToString(), HoverItem.Awake.getAwakeValue(), HoverItem.Awake.getAwakeValue())
+                    Text = string.Format(realItem.Type != ItemType.Armour ? "{0}+{1}~{2}" : "最大{0}+{1}", AwakenTypeString[(int)HoverItem.Awake.type], HoverItem.Awake.getAwakeValue(), HoverItem.Awake.getAwakeValue())
                 };
 
                 ItemLabel.Size = new Size(Math.Max(ItemLabel.Size.Width, AWAKE_TOTAL_VALUELabel.DisplayRectangle.Right + 4),
@@ -6867,7 +6877,7 @@ namespace Client.MirScenes
                         Location = new Point(4, ItemLabel.DisplayRectangle.Bottom),
                         OutLine = true,
                         Parent = ItemLabel,
-                        Text = string.Format(realItem.Type != ItemType.Armour ? "Level {0} : {1} + {2}~{3}" : "Level {0} : MAX {1} + {2}~{3}", i + 1, HoverItem.Awake.type.ToString(), HoverItem.Awake.getAwakeLevelValue(i), HoverItem.Awake.getAwakeLevelValue(i))
+                        Text = string.Format(realItem.Type != ItemType.Armour ? "等级{0}:{1}+{2}~{3}" : "等级{0}:最大{1}+{2}~{3}", i + 1, AwakenTypeString[(int)HoverItem.Awake.type], HoverItem.Awake.getAwakeLevelValue(i), HoverItem.Awake.getAwakeLevelValue(i))
                     };
 
                     ItemLabel.Size = new Size(Math.Max(ItemLabel.Size.Width, AWAKE_LEVEL_VALUELabel.DisplayRectangle.Right + 4),
@@ -6978,6 +6988,19 @@ namespace Client.MirScenes
             {
                 count++;
                 Color colour = Color.White;
+                string[] ClassString = new string[]
+                {
+                    "",
+                    "战士",//1
+                    "法师",//2
+                    "",
+                    "道士",//4
+                    "","",
+                    "战法道",//7
+                    "刺客",//8
+                    "","","","","","","",
+                    "弓手",//16
+                };
 
                 switch (MapObject.User.Class)
                 {
@@ -7010,7 +7033,7 @@ namespace Client.MirScenes
                     Location = new Point(4, ItemLabel.DisplayRectangle.Bottom),
                     OutLine = true,
                     Parent = ItemLabel,
-                    Text = string.Format("需要职业: {0}", realItem.RequiredClass)
+                    Text = string.Format("需要职业: {0}", ClassString[(int)realItem.RequiredClass])
                 };
 
                 ItemLabel.Size = new Size(Math.Max(ItemLabel.Size.Width, CLASSLabel.DisplayRectangle.Right + 4),
