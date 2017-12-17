@@ -4844,7 +4844,7 @@ namespace Client.MirScenes.Dialogs
 
             if (path == null || path.Count == 0)
             {
-                GameScene.Scene.ChatDialog.ReceiveChat("Could not find suitable path.", ChatType.System);
+                GameScene.Scene.ChatDialog.ReceiveChat("无法找到合适的路线。", ChatType.System);
             }
             else
             {
