@@ -255,7 +255,7 @@ namespace Client.MirScenes.Dialogs
             if (Visible) return;
             if (GameScene.User.MountType < 0)
             {
-                MirMessageBox messageBox = new MirMessageBox("你没有坐骑.", MirMessageBoxButtons.OK);
+                MirMessageBox messageBox = new MirMessageBox("你没有坐骑。", MirMessageBoxButtons.OK);
                 messageBox.Show();
                 return;
             }

@@ -1,4 +1,4 @@
-using Server.MirDatabase;
+﻿using Server.MirDatabase;
 using Server.MirEnvir;
 using Server.MirObjects;
 using System;
@@ -884,7 +884,7 @@ namespace Server.MirObjects
                 case RefineKey:
                     if (player.Info.CurrentRefine != null)
                     {
-                        player.ReceiveChat("You're already refining an item.", ChatType.System);
+                        player.ReceiveChat("你已经在精炼一个物品了。", ChatType.System);
                         player.Enqueue(new S.NPCRefine { Rate = (Settings.RefineCost), Refining = true });
                         break;
                     }
@@ -934,7 +934,7 @@ namespace Server.MirObjects
                 case GuildCreateKey:
                     if (player.Info.Level < Settings.Guild_RequiredLevel)
                     {
-                        player.ReceiveChat(String.Format("You have to be at least level {0} to create a guild.", Settings.Guild_RequiredLevel), ChatType.System);
+                        player.ReceiveChat(String.Format("你至少达到{0}级才能创建一个行会。", Settings.Guild_RequiredLevel), ChatType.System);
                     }
                     if (player.MyGuild == null)
                     {
@@ -942,21 +942,21 @@ namespace Server.MirObjects
                         player.Enqueue(new S.GuildNameRequest());
                     }
                     else
-                        player.ReceiveChat("You are already part of a guild.", ChatType.System);
+                        player.ReceiveChat("你已经加入了行会。", ChatType.System);
                     break;
                 case RequestWarKey:
                     if (player.MyGuild != null)
                     {
                         if (player.MyGuildRank != player.MyGuild.Ranks[0])
                         {
-                            player.ReceiveChat("You must be the leader to request a war.", ChatType.System);
+                            player.ReceiveChat("想要发起行会战争你必须是行会领袖。", ChatType.System);
                             return;
                         }
                         player.Enqueue(new S.GuildRequestWar());
                     }
                     else
                     {
-                        player.ReceiveChat("You are not in a guild.", ChatType.System);
+                        player.ReceiveChat("你不在一个行会里。", ChatType.System);
                     }
                     break;
                 case SendParcelKey:

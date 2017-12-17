@@ -152,7 +152,7 @@ namespace Client.MirScenes.Dialogs
 
             if (!GameScene.User.HasFishingRod)
             {
-                MirMessageBox messageBox = new MirMessageBox("你没有装备钓鱼竿.", MirMessageBoxButtons.OK);
+                MirMessageBox messageBox = new MirMessageBox("你没有装备钓鱼竿。", MirMessageBoxButtons.OK);
                 messageBox.Show();
                 return;
             }

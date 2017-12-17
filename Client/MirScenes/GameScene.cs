@@ -737,7 +737,7 @@ namespace Client.MirScenes
                 case Spell.DoubleSlash:
                     if (CMain.Time < ToggleTime) return;
                     DoubleSlash = !DoubleSlash;
-                    ChatDialog.ReceiveChat(DoubleSlash ? "开启Double Slash." : "关闭Double Slash.", ChatType.Hint);
+                    ChatDialog.ReceiveChat(DoubleSlash ? "开启Double Slash。" : "关闭Double Slash。", ChatType.Hint);
                     ToggleTime = CMain.Time + 1000;
                     Network.Enqueue(new C.SpellToggle { Spell = magic.Spell, CanUse = DoubleSlash });
                     break;
@@ -2870,7 +2870,7 @@ namespace Client.MirScenes
                         ChatDialog.ReceiveChat(string.Format("{0}对你不再忠诚了。", item.Info.Name), ChatType.System);
                         break;
                     default:
-                        ChatDialog.ReceiveChat(string.Format("{0}的耐久度降为0.", item.Info.Name), ChatType.System);
+                        ChatDialog.ReceiveChat(string.Format("{0}的耐久度降为0。", item.Info.Name), ChatType.System);
                         break;
                 }
                 
@@ -3023,7 +3023,7 @@ namespace Client.MirScenes
         }
         private void GainExperience(S.GainExperience p)
         {
-            OutputMessage(string.Format("获得经验值{0}.", p.Amount));
+            OutputMessage(string.Format("获得经验值{0}。", p.Amount));
             MapObject.User.Experience += p.Amount;
         }
         private void LevelChanged(S.LevelChanged p)
@@ -3919,7 +3919,7 @@ namespace Client.MirScenes
                     break;
                 case Spell.DoubleSlash:
                     DoubleSlash = p.CanUse;
-                    ChatDialog.ReceiveChat(DoubleSlash ? "使用DoubleSlash。" : "关闭DoubleSlash.", ChatType.Hint);
+                    ChatDialog.ReceiveChat(DoubleSlash ? "使用DoubleSlash。" : "关闭DoubleSlash。", ChatType.Hint);
                     break;
                 case Spell.FlamingSword:
                     FlamingSword = p.CanUse;
@@ -4584,7 +4584,7 @@ namespace Client.MirScenes
 
         private void GuildInvite(S.GuildInvite p)
         {
-            MirMessageBox messageBox = new MirMessageBox(string.Format("你想加入{0}公会吗？", p.Name), MirMessageBoxButtons.YesNo);
+            MirMessageBox messageBox = new MirMessageBox(string.Format("你想加入{0}行会吗？", p.Name), MirMessageBoxButtons.YesNo);
 
             messageBox.YesButton.Click += (o, e) => Network.Enqueue(new C.GuildInvite { AcceptInvite = true });
             messageBox.NoButton.Click += (o, e) => Network.Enqueue(new C.GuildInvite { AcceptInvite = false });

@@ -2916,7 +2916,7 @@ namespace Server.MirEnvir
                         if (rentingPlayer.Player == null)
                             continue;
 
-                        rentingPlayer.Player.ReceiveChat($"{item.Info.FriendlyName} has just expired from your inventory.", ChatType.Hint);
+                        rentingPlayer.Player.ReceiveChat($"你背包中的{item.Info.FriendlyName}已过期。", ChatType.Hint);
                         rentingPlayer.Player.Enqueue(new S.DeleteItem { UniqueID = item.UniqueID, Count = item.Count });
                         rentingPlayer.Player.RefreshStats();
                     }
@@ -2938,7 +2938,7 @@ namespace Server.MirEnvir
                         if (rentingPlayer.Player == null)
                             continue;
 
-                        rentingPlayer.Player.ReceiveChat($"{item.Info.FriendlyName} has just expired from your inventory.", ChatType.Hint);
+                        rentingPlayer.Player.ReceiveChat($"你背包中的{item.Info.FriendlyName}已过期。", ChatType.Hint);
                         rentingPlayer.Player.Enqueue(new S.DeleteItem { UniqueID = item.UniqueID, Count = item.Count });
                         rentingPlayer.Player.RefreshStats();
                     }

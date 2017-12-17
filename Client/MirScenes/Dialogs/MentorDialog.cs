@@ -100,11 +100,11 @@ namespace Client.MirScenes.Dialogs
             {
                 if (MentorLevel != 0)
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("你已经有师父了.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你已经有师父了。", ChatType.System);
                     return;
                 }
 
-                string message = "请输入你想要拜师的玩家名.";
+                string message = "请输入你想要拜师的玩家名。";
 
                 MirInputBox inputBox = new MirInputBox(message);
 
@@ -133,7 +133,7 @@ namespace Client.MirScenes.Dialogs
             {
                 if (MentorName == "")
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("你并没有师徒关系.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你并没有师徒关系。", ChatType.System);
                     return;
                 }
 

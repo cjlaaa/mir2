@@ -219,7 +219,7 @@ namespace Client.MirControls
                 }
                 else
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("你没有足够的货币购买这个物品.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你没有足够的货币购买这个物品。", ChatType.System);
                     return;
                 }
 

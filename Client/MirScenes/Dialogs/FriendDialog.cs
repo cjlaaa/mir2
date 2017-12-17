@@ -149,7 +149,7 @@ namespace Client.MirScenes.Dialogs
             AddButton.Click += (o, e) =>
             {
                 ;
-                string message = string.Format("请输入你想加入{0}的玩家名字.", _blockedTab ? "黑名单" : "好友列表");
+                string message = string.Format("请输入你想加入{0}的玩家名字。", _blockedTab ? "黑名单" : "好友列表");
 
                 MirInputBox inputBox = new MirInputBox(message);
 

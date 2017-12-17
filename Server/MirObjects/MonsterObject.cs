@@ -818,7 +818,7 @@ namespace Server.MirObjects
 
             foreach (var player in Envir.Players)
             {
-                player.ReceiveChat($"{Name} has dropped {item.FriendlyName}.", ChatType.System2);
+                player.ReceiveChat($"{Name}掉落了{item.FriendlyName}。", ChatType.System2);
             }
 
             return ob.Drop(Settings.DropRange);

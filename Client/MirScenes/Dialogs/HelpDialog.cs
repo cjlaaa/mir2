@@ -253,8 +253,8 @@ namespace Client.MirScenes.Dialogs
             Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.ChangePetmode), "切换宠物攻击/移动模式"));
             //Shortcuts.Add(new ShortcutInfo("Ctrl + F", "Change the font in the chat box"));
             Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.ChangeAttackmode), "切换玩家攻击模式"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodePeace), "和平模式 - 攻击时只会伤害到怪物."));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodeGroup), "编组模式 - 攻击时不会伤害到一起组队的玩家."));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodePeace), "和平模式 - 攻击时只会伤害到怪物。"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodeGroup), "编组模式 - 攻击时不会伤害到一起组队的玩家。"));
             Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodeGuild), "行会模式 - 攻击时不会伤害到同行会的玩家"));
             Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodeRedbrown), "善恶模式 - 攻击时只会伤害到怪物和犯罪玩家"));
             Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodeAll), "全体模式 - 攻击时会伤害到所有对象"));
@@ -281,7 +281,7 @@ namespace Client.MirScenes.Dialogs
             Shortcuts = new List<ShortcutInfo>();
             //Shortcuts.Add(new ShortcutInfo("` / Ctrl", "Change the skill bar"));
             Shortcuts.Add(new ShortcutInfo("/(玩家名)", "私聊其他玩家"));
-            Shortcuts.Add(new ShortcutInfo("!(消息)", "大喊命令,附近玩家会收到消息."));
+            Shortcuts.Add(new ShortcutInfo("!(消息)", "大喊命令,附近玩家会收到消息。"));
             Shortcuts.Add(new ShortcutInfo("!~(消息)", "行会聊天命令"));
 
             LoadKeyBinds();

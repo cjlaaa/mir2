@@ -150,7 +150,7 @@ namespace Client.MirScenes.Dialogs
 
         public void InputRentalPeroid()
         {
-            var inputBox = new MirInputBox($"你想把{RentalItem.Name}租给{GameScene.Scene.GuestItemRentDialog.GuestName}多久? (1-30天).");
+            var inputBox = new MirInputBox($"你想把{RentalItem.Name}租给{GameScene.Scene.GuestItemRentDialog.GuestName}多久? (1-30天)。");
 
             inputBox.OKButton.Click += (o1, e1) =>
             {

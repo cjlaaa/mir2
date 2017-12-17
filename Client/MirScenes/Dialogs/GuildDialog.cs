@@ -979,11 +979,11 @@ namespace Client.MirScenes.Dialogs
             {
                 string Error = "";
                 if (GameScene.Scene.GuildDialog.SparePoints < BuffInfo.PointsRequirement)
-                    Error = "没有足够的可用点数.";
+                    Error = "没有足够的可用点数。";
                 if (GameScene.Scene.GuildDialog.Level < BuffInfo.LevelRequirement)
-                    Error = "行会等级不够.";
+                    Error = "行会等级不够。";
                 if (!GameScene.Scene.GuildDialog.GetMyOptions().HasFlag(RankOptions.CanActivateBuff))
-                    Error = "公会等级不足以激活buff.";
+                    Error = "行会等级不足以激活buff。";
                 if (Error != "")
                 {
                     MirMessageBox messageBox = new MirMessageBox(Error);
@@ -998,11 +998,11 @@ namespace Client.MirScenes.Dialogs
             {
                 string Error = "";
                 if (Buff.Active)
-                    Error = "魔法增益仍然有效.";
+                    Error = "魔法增益仍然有效。";
                 if (GameScene.Scene.GuildDialog.Gold < BuffInfo.ActivationCost)
-                    Error = "行会资金不足.";
+                    Error = "行会资金不足。";
                 if (!GameScene.Scene.GuildDialog.GetMyOptions().HasFlag(RankOptions.CanActivateBuff))
-                    Error = "公会等级不足以激活buff.";
+                    Error = "行会等级不足以激活buff。";
                 if (Error != "")
                 {
                     MirMessageBox messageBox = new MirMessageBox(Error);
@@ -1113,12 +1113,12 @@ namespace Client.MirScenes.Dialogs
                         if (BuffInfo.TimeLimit > 0)
                         {
                             if (Buff.Active)
-                                Buffs[i].Info.Text = "计时中.";
+                                Buffs[i].Info.Text = "计时中。";
                             else
-                                Buffs[i].Info.Text = "过期.";
+                                Buffs[i].Info.Text = "过期。";
                         }
                         else
-                            Buffs[i].Info.Text = "获得.";
+                            Buffs[i].Info.Text = "获得。";
                         Buffs[i].Info.ForeColour = Buffs[i].Name.ForeColour;
                         if (Buff.Active)
                         {
@@ -1191,92 +1191,92 @@ namespace Client.MirScenes.Dialogs
 
             if (BuffAc > 0)
             {
-                text += string.Format("防御增加: 0-{0}.", BuffAc);
+                text += string.Format("防御增加: 0-{0}。", BuffAc);
                 if (text != "") text += "\n";
             }
             if (BuffMac > 0)
             {
-                text += string.Format("魔御增加: 0-{0}.", BuffMac);
+                text += string.Format("魔御增加: 0-{0}。", BuffMac);
                 if (text != "") text += "\n";
             }
             if (BuffDc > 0)
             {
-                text += string.Format("攻击增加: 0-{0}.", BuffDc);
+                text += string.Format("攻击增加: 0-{0}。", BuffDc);
                 if (text != "") text += "\n";
             }
             if (BuffMc > 0)
             {
-                text += string.Format("魔力增加: 0-{0}.", BuffMc);
+                text += string.Format("魔力增加: 0-{0}。", BuffMc);
                 if (text != "") text += "\n";
             }
             if (BuffSc > 0)
             {
-                text += string.Format("道术增加: 0-{0}.", BuffSc);
+                text += string.Format("道术增加: 0-{0}。", BuffSc);
                 if (text != "") text += "\n";
             }
             if (BuffMaxHp > 0)
             {
-                text += string.Format("生命值增加: {0}.", BuffMaxHp);
+                text += string.Format("生命值增加: {0}。", BuffMaxHp);
                 if (text != "") text += "\n";
             }
             if (BuffMaxMp > 0)
             {
-                text += string.Format("魔法值增加: {0}.", BuffMaxMp);
+                text += string.Format("魔法值增加: {0}。", BuffMaxMp);
                 if (text != "") text += "\n";
             }
             if (BuffHpRegen > 0)
             {
-                text += string.Format("生命恢复增加: {0}.", BuffHpRegen);
+                text += string.Format("生命恢复增加: {0}。", BuffHpRegen);
                 if (text != "") text += "\n";
             }
             if (BuffMPRegen > 0)
             {
-                text += string.Format("魔法恢复增加: {0}.", BuffMPRegen);
+                text += string.Format("魔法恢复增加: {0}。", BuffMPRegen);
                 if (text != "") text += "\n";
             }
             if (BuffMineRate > 0)
             {
-                text += string.Format("采矿成功率增加: {0}%.", BuffMineRate * 5);
+                text += string.Format("采矿成功率增加: {0}%。", BuffMineRate * 5);
                 if (text != "") text += "\n";
             }
             if (BuffGemRate > 0)
             {
-                text += string.Format("宝石成功率增加: {0}%.", BuffGemRate * 5);
+                text += string.Format("宝石成功率增加: {0}%。", BuffGemRate * 5);
                 if (text != "") text += "\n";
             }
             if (BuffFishRate > 0)
             {
-                text += string.Format("钓鱼成功率增加: {0}%.", BuffFishRate * 5);
+                text += string.Format("钓鱼成功率增加: {0}%。", BuffFishRate * 5);
                 if (text != "") text += "\n";
             }
             if (BuffExpRate > 0)
             {
-                text += string.Format("经验值增加: {0}%.", BuffExpRate);
+                text += string.Format("经验值增加: {0}%。", BuffExpRate);
                 if (text != "") text += "\n";
             }
             if (BuffCraftRate > 0)
             {
-                text += string.Format("制造成功率增加: {0}%.", BuffCraftRate * 5);
+                text += string.Format("制造成功率增加: {0}%。", BuffCraftRate * 5);
                 if (text != "") text += "\n";
             }
             if (BuffSkillRate > 0)
             {
-                text += string.Format("技能训练值增加: {0}.", BuffSkillRate);
+                text += string.Format("技能训练值增加: {0}。", BuffSkillRate);
                 if (text != "") text += "\n";
             }
             if (BuffAttack > 0)
             {
-                text += string.Format("伤害增加: {0}.", BuffAttack);
+                text += string.Format("伤害增加: {0}。", BuffAttack);
                 if (text != "") text += "\n";
             }
             if (BuffDropRate > 0)
             {
-                text += string.Format("爆率增加: {0}%.", BuffDropRate);
+                text += string.Format("爆率增加: {0}%。", BuffDropRate);
                 if (text != "") text += "\n";
             }
             if (BuffGoldRate > 0)
             {
-                text += string.Format("金币爆率增加: 0-{0}.", BuffGoldRate);
+                text += string.Format("金币爆率增加: 0-{0}。", BuffGoldRate);
                 if (text != "") text += "\n";
             }
 
@@ -1315,7 +1315,7 @@ namespace Client.MirScenes.Dialogs
             string ReqText = "";
             if (Buff.LevelRequirement > 0)
             {
-                ReqText += "公会等级需求: " + Buff.LevelRequirement.ToString();
+                ReqText += "行会等级需求: " + Buff.LevelRequirement.ToString();
             }
             if (Buff.PointsRequirement > 0)
             {
@@ -1325,7 +1325,7 @@ namespace Client.MirScenes.Dialogs
             if (Buff.ActivationCost > 0)
             {
                 if (ReqText != "") ReqText += "\n";
-                ReqText += "激活消耗: " + Buff.ActivationCost.ToString() + "金币.";
+                ReqText += "激活消耗: " + Buff.ActivationCost.ToString() + "金币。";
                 //if (ReqText != "") ReqText += "\n";
             }
 
@@ -1355,7 +1355,7 @@ namespace Client.MirScenes.Dialogs
                 }
                 else
                 {
-                    text = string.Format("Buff长度: {0}分钟.", Buff.TimeLimit.ToString());
+                    text = string.Format("Buff长度: {0}分钟。", Buff.TimeLimit.ToString());
                 }
                 MirLabel TimeLabel = new MirLabel
                 {
@@ -2268,7 +2268,7 @@ namespace Client.MirScenes.Dialogs
 
             if (MapControl.User.GuildName == "")
             {
-                MirMessageBox messageBox = new MirMessageBox("你没有行会.", MirMessageBoxButtons.OK);
+                MirMessageBox messageBox = new MirMessageBox("你没有行会。", MirMessageBoxButtons.OK);
                 messageBox.Show();
                 return;
             }

@@ -130,7 +130,7 @@ namespace Client.MirScenes.Dialogs
             };
             SendButton.Click += (o, e) =>
                 {
-                    MirInputBox inputBox = new MirInputBox("请输入收件人名字.");
+                    MirInputBox inputBox = new MirInputBox("请输入收件人名字。");
 
                     inputBox.OKButton.Click += (o1, e1) =>
                     {

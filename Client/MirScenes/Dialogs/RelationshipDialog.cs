@@ -82,7 +82,7 @@ namespace Client.MirScenes.Dialogs
             {
                 if (LoverName != "")
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("你已经结婚了.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你已经结婚了。", ChatType.System);
                     return;
                 }
 
@@ -104,7 +104,7 @@ namespace Client.MirScenes.Dialogs
             {
                 if (LoverName == "")
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("你没有结婚.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你没有结婚。", ChatType.System);
                     return;
                 }
 
@@ -126,7 +126,7 @@ namespace Client.MirScenes.Dialogs
             {
                 if (LoverName == "")
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("你没有结婚.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你没有结婚。", ChatType.System);
                     return;
                 }
 
@@ -148,13 +148,13 @@ namespace Client.MirScenes.Dialogs
             {
                 if (LoverName == "")
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("你没有结婚.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你没有结婚。", ChatType.System);
                     return;
                 }
 
                 if (MapName == "")
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("爱人不在线.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("爱人不在线。", ChatType.System);
                     return;
                 }
                 GameScene.Scene.ChatDialog.ChatTextBox.SetFocus();

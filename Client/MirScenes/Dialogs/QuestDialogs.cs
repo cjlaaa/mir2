@@ -141,7 +141,7 @@ namespace Client.MirScenes.Dialogs
 
                 if (Reward.SelectedItemIndex < 0 && SelectedQuest.QuestInfo.RewardsSelectItem.Count > 0)
                 {
-                    MirMessageBox messageBox = new MirMessageBox("你必须选择一个奖励物品.");
+                    MirMessageBox messageBox = new MirMessageBox("你必须选择一个奖励物品。");
                     messageBox.Show();
                     return;
                 }

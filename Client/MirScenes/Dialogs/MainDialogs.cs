@@ -1457,7 +1457,7 @@ namespace Client.MirScenes.Dialogs
                 int openLevel = (GameScene.User.Inventory.Length - 46) / 4;
                 int openGold = (1000000 + openLevel * 1000000);
                 MirMessageBox messageBox = new MirMessageBox(string.Format("你确定要花费{0:###,###}金币扩充额外4格背包空间吗?\n" +
-                                                    "这个操作会将你的背包空间扩充至{1}格.", openGold, GameScene.User.Inventory.Length + 4), MirMessageBoxButtons.OKCancel);
+                                                    "这个操作会将你的背包空间扩充至{1}格。", openGold, GameScene.User.Inventory.Length + 4), MirMessageBoxButtons.OKCancel);
 
                 messageBox.OKButton.Click += (o, a) =>
                 {

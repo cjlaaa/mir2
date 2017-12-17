@@ -393,7 +393,7 @@ namespace Client.MirScenes.Dialogs
                 if (GameScene.User.IntelligentCreatures[selectedCreature].CreatureRules.CanProduceBlackStone)
                     HoverLabel.Text = string.Format("{0}", Functions.PrintTimeSpanFromSeconds(blackstoneProduceTime - GameScene.User.IntelligentCreatures[selectedCreature].BlackstoneTime));
                 else
-                    HoverLabel.Text = "没有生产.";
+                    HoverLabel.Text = "没有生产。";
             }
 
             Rectangle section = new Rectangle
@@ -450,7 +450,7 @@ namespace Client.MirScenes.Dialogs
 
             if (sender == CreatureRenameButton)
             {
-                MirInputBox inputBox = new MirInputBox("请为这个宠物起一个新名字.");
+                MirInputBox inputBox = new MirInputBox("请为这个宠物起一个新名字。");
                 inputBox.InputTextBox.Text = GameScene.User.IntelligentCreatures[selectedCreature].CustomName;
                 inputBox.OKButton.Click += (o1, e1) =>
                 {
@@ -488,7 +488,7 @@ namespace Client.MirScenes.Dialogs
             }
             if (sender == ReleaseButton)
             {
-                MirInputBox verificationBox = new MirInputBox("请输入宠物名字进行验证.");
+                MirInputBox verificationBox = new MirInputBox("请输入宠物名字进行验证。");
                 verificationBox.OKButton.Click += (o1, e1) =>
                 {
                     if (String.Compare(verificationBox.InputTextBox.Text, GameScene.User.IntelligentCreatures[selectedCreature].CustomName, StringComparison.OrdinalIgnoreCase) != 0)
@@ -816,7 +816,7 @@ namespace Client.MirScenes.Dialogs
 
             if (!GameScene.User.IntelligentCreatures.Any())
             {
-                MirMessageBox messageBox = new MirMessageBox("你没有宠物.", MirMessageBoxButtons.OK);
+                MirMessageBox messageBox = new MirMessageBox("你没有宠物。", MirMessageBoxButtons.OK);
                 messageBox.Show();
                 return;
             }
