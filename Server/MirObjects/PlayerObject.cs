@@ -11994,7 +11994,7 @@ namespace Server.MirObjects
                         if ((tempFrom.Info.Shape == 3) && (Envir.Random.Next(15) < 3))
                         {
                             //item destroyed
-                            ReceiveChat("物品已被销毁。", ChatType.Hint);
+                            ReceiveChat("升级失败，物品已破碎。", ChatType.Hint);
                             Report.ItemChanged("CombineItem (Item Destroyed)", Info.Inventory[indexTo], 1, 1);
 
                             Info.Inventory[indexTo] = null;
@@ -12003,7 +12003,7 @@ namespace Server.MirObjects
                         else
                         {
                             //upgrade has no effect
-                            ReceiveChat("升级没有效果。", ChatType.Hint);
+                            ReceiveChat("升级无效。", ChatType.Hint);
                         }
 
                         canUpgrade = false;
@@ -13209,7 +13209,7 @@ namespace Server.MirObjects
             }
             else
             {
-                ReceiveChat("没有效果。", ChatType.Hint);
+                ReceiveChat("无效。", ChatType.Hint);
             }
 
             return true;
