@@ -22,7 +22,8 @@ namespace Server.MirNetwork
 
         private TcpClient _client;
         private ConcurrentQueue<Packet> _receiveList;
-        private Queue<Packet> _sendList, _retryList;
+        private ConcurrentQueue<Packet> _sendList;
+        private Queue<Packet> _retryList;
 
         private bool _disconnecting;
         public bool Connected;
@@ -80,7 +81,8 @@ namespace Server.MirNetwork
 
 
             _receiveList = new ConcurrentQueue<Packet>();
-            _sendList = new Queue<Packet>(new[] { new S.Connected() });
+            _sendList = new ConcurrentQueue<Packet>();
+            _sendList.Enqueue(new S.Connected());
             _retryList = new Queue<Packet>();
 
             Connected = true;
@@ -182,6 +184,9 @@ namespace Server.MirNetwork
                 if (!_receiveList.TryDequeue(out p)) continue;
                 TimeOutTime = SMain.Envir.Time + Settings.TimeOut;
                 ProcessPacket(p);
+
+                if (_receiveList == null)
+                    return;
             }
 
             while (_retryList.Count > 0)
@@ -196,9 +201,10 @@ namespace Server.MirNetwork
             if (_sendList == null || _sendList.Count <= 0) return;
 
             List<byte> data = new List<byte>();
-            while (_sendList.Count > 0)
+            while (!_sendList.IsEmpty)
             {
-                Packet p = _sendList.Dequeue();
+                Packet p;
+                if (!_sendList.TryDequeue(out p) || p == null) continue;
                 data.AddRange(p.GetPacketBytes());
             }
 
@@ -1089,7 +1095,7 @@ namespace Server.MirNetwork
                 return;
             }
 
-            if (p.ObjectID == Player.DefaultNPC.ObjectID)
+            if (p.ObjectID == Player.DefaultNPC.ObjectID && Player.NPCID == Player.DefaultNPC.ObjectID)
             {
                 Player.CallDefaultNPC(p.ObjectID, p.Key);
                 return;

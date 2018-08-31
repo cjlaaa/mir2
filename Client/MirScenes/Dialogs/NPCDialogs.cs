@@ -440,6 +440,10 @@ namespace Client.MirScenes.Dialogs
                     {
                         GameScene.Scene.CraftDialog.ResetCells();
                         GameScene.Scene.CraftDialog.RefreshCraftCells(SelectedItem);
+
+                        if (GameScene.Scene.CraftDialog.Visible) ;
+                        else
+                            GameScene.Scene.CraftDialog.Show();
                     }
                 };
                 Cells[i].MouseWheel += NPCGoodsPanel_MouseWheel;
@@ -1554,7 +1558,7 @@ namespace Client.MirScenes.Dialogs
         public MirItemCell[] Grid;
         public static UserItem[] ShadowItems = new UserItem[16];
 
-        public MirButton CraftButton,CloseButton;
+        public MirButton CraftButton, CloseButton;
 
         public CraftDialog()
         {
@@ -1563,8 +1567,9 @@ namespace Client.MirScenes.Dialogs
             Location = new Point(0, 0);
             Sort = true;
             BeforeDraw += CraftDialog_BeforeDraw;
+            Movable = true;
 
-            Grid = new MirItemCell[4*4];
+            Grid = new MirItemCell[4 * 4];
             for (int x = 0; x < 4; x++)
             {
                 for (int y = 0; y < 4; y++)
@@ -1587,12 +1592,12 @@ namespace Client.MirScenes.Dialogs
 
             CloseButton = new MirButton
             {
-                HoverIndex = 361,
                 Index = 360,
+                HoverIndex = 361,
+                PressedIndex = 362,
                 Location = new Point(139, 3),
                 Library = Libraries.Prguse2,
                 Parent = this,
-                PressedIndex = 362,
                 Sound = SoundList.ButtonA,
             };
             CloseButton.Click += (o, e) => Hide();

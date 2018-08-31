@@ -432,9 +432,11 @@ namespace Client.MirObjects
 									WeaponEffectLibrary1 = WeaponEffect < Libraries.CWeaponEffect.Length ? Libraries.CWeaponEffect[WeaponEffect] : null;
 								else
 									WeaponEffectLibrary1 = null;
-							}
-							else
-							{
+
+                                WeaponLibrary2 = null;
+                            }
+                            else
+                            {
 								WeaponLibrary1 = null;
 								WeaponEffectLibrary1 = null;
 								WeaponLibrary2 = null;
@@ -559,9 +561,11 @@ namespace Client.MirObjects
 									WeaponEffectLibrary1 = WeaponEffect < Libraries.CWeaponEffect.Length ? Libraries.CWeaponEffect[WeaponEffect] : null;
 								else
 									WeaponEffectLibrary1 = null;
-							}
-							else
-							{
+
+                                WeaponLibrary2 = null;
+                            }
+                            else
+                            {
 								WeaponLibrary1 = null;
 								WeaponEffectLibrary1 = null;
 								WeaponLibrary2 = null;
@@ -905,23 +909,6 @@ namespace Client.MirObjects
                 //NextMagic = null;
                 return;
             }
-
-            if (ActionFeed.Any())
-                if (User.RidingMount)
-                    switch (ActionFeed.First().Action)
-                    {
-                        case MirAction.Spell:
-                        //case MirAction.Attack1:
-                        case MirAction.Attack2:
-                        case MirAction.Attack3:
-                        case MirAction.Attack4:
-                        case MirAction.AttackRange1:
-                        case MirAction.AttackRange2:
-                        case MirAction.Mine:
-                        case MirAction.Harvest:
-                            ActionFeed.RemoveAt(0);
-                            return;
-                    }
 
 
             if (ActionFeed.Count == 0)
@@ -2064,9 +2051,10 @@ namespace Client.MirObjects
 
                             #endregion
 
-                            #region LionRoar
+                            #region LionRoar, BattleCry
 
                             case Spell.LionRoar:
+                            case Spell.BattleCry:
                                 Effects.Add(new Effect(Libraries.Magic2, 710, 20, 1200, this));
                                 SoundManager.PlaySound(20000 + (ushort)Spell * 10 + (Gender == MirGender.Male ? 0 : 1));
                                 break;

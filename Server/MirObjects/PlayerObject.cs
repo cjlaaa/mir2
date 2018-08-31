@@ -3841,6 +3841,13 @@ namespace Server.MirObjects
                         ReceiveChat(string.Format("{0}x{1}已被制造。", iInfo.Name, tempCount), ChatType.System);
                         SMain.Enqueue(string.Format("Player {0} has attempted to Create {1} x{2}", Name, iInfo.Name, tempCount));
                         break;
+                    case "CLEARBUFFS":
+                        foreach (var buff in Buffs)
+                        {
+                            buff.Infinite = false;
+                            buff.ExpireTime = 0;
+                        }
+                        break;
 
                     case "CLEARBAG":
                         if (!IsGM && !Settings.TestServer) return;
@@ -6574,6 +6581,7 @@ namespace Server.MirObjects
                     Purification(target, magic);
                     break;
                 case Spell.LionRoar:
+                case Spell.BattleCry:
                     CurrentMap.ActionList.Add(new DelayedAction(DelayedType.Magic, Envir.Time + 500, this, magic, CurrentLocation));
                     break;
                 case Spell.Revelation:
@@ -6947,7 +6955,21 @@ namespace Server.MirObjects
                             if (ob.Pushed(this, dir, distance) == 0) continue;
 
                             if (ob.Race == ObjectType.Player)
+                            {
+                                SafeZoneInfo szi = CurrentMap.GetSafeZone(ob.CurrentLocation);
+
+                                if (szi != null)
+                                {
+                                    ((PlayerObject)ob).BindLocation = szi.Location;
+                                    ((PlayerObject)ob).BindMapIndex = CurrentMapIndex;
+                                    ob.InSafeZone = true;
+                                }
+                                else
+                                    ob.InSafeZone = false;
+
+
                                 ob.Attacked(this, magic.GetDamage(0), DefenceType.None, false);
+                            }
                             result = true;
                         }
                     }
@@ -7463,7 +7485,14 @@ namespace Server.MirObjects
                     CurrentMap = CurrentMap,
                 };
                 Packet p = new S.Chat { Message = string.Format("{0} is attempting to revive {1}", Name, target.Name), Type = ChatType.Shout };
-                Envir.Broadcast(p);
+                //Envir.Broadcast(p);
+
+                for (int i = 0; i < CurrentMap.Players.Count; i++)
+                {
+                    if (!Functions.InRange(CurrentLocation, CurrentMap.Players[i].CurrentLocation, Globals.DataRange * 2)) continue;
+                    CurrentMap.Players[i].Enqueue(p);
+                }
+
                 CurrentMap.AddObject(ob);
                 ob.Spawned();
                 ConsumeItem(item, 1);
@@ -7751,6 +7780,13 @@ namespace Server.MirObjects
 
                 if (InSafeZone) blocking = true;
 
+                SafeZoneInfo szi = CurrentMap.GetSafeZone(location);
+
+                if (szi != null)
+                {
+                    blocking = true;
+                }
+
                 if (cell.Objects != null)
                 {
                     for (int c = cell.Objects.Count - 1; c >= 0; c--)
@@ -7788,9 +7824,17 @@ namespace Server.MirObjects
 
                     if (!CurrentMap.ValidPoint(location2)) break;
 
+                    szi = CurrentMap.GetSafeZone(location2);
+
+                    if (szi != null)
+                    {
+                        break;
+                    }
+
                     cell = CurrentMap.GetCell(location2);
 
                     blocking = false;
+
                     if (cell.Objects != null)
                     {
                         for (int c = cell.Objects.Count - 1; c >= 0; c--)
@@ -7863,7 +7907,19 @@ namespace Server.MirObjects
 
             if (travel > 0)
             {
-                ActionTime = Envir.Time + (travel * MoveDelay);
+                //ActionTime = Envir.Time + (travel * MoveDelay);
+                SafeZoneInfo szi = CurrentMap.GetSafeZone(CurrentLocation);
+
+                if (szi != null)
+                {
+                    BindLocation = szi.Location;
+                    BindMapIndex = CurrentMapIndex;
+                    InSafeZone = true;
+                }
+                else
+                    InSafeZone = false;
+
+                ActionTime = Envir.Time + (travel * MoveDelay / 2);
 
                 Cell cell = CurrentMap.GetCell(CurrentLocation);
                 for (int i = 0; i < cell.Objects.Count; i++)
@@ -7884,16 +7940,16 @@ namespace Server.MirObjects
                     Enqueue(new S.UserDash { Direction = Direction, Location = Front });
                     Broadcast(new S.ObjectDash { ObjectID = ObjectID, Direction = Direction, Location = Front });
 
-                    SafeZoneInfo szi = CurrentMap.GetSafeZone(CurrentLocation);
+                    //SafeZoneInfo szi = CurrentMap.GetSafeZone(CurrentLocation);
 
-                    if (szi != null)
-                    {
-                        BindLocation = szi.Location;
-                        BindMapIndex = CurrentMapIndex;
-                        InSafeZone = true;
-                    }
-                    else
-                        InSafeZone = false;
+                    //if (szi != null)
+                    //{
+                    //    BindLocation = szi.Location;
+                    //    BindMapIndex = CurrentMapIndex;
+                    //    InSafeZone = true;
+                    //}
+                    //else
+                    //    InSafeZone = false;
                 }
                 else
                     Broadcast(new S.ObjectDash { ObjectID = ObjectID, Direction = Direction, Location = Front });
@@ -10192,7 +10248,7 @@ namespace Server.MirObjects
                         BroadcastDamageIndicator(DamageType.Miss);
                         return 0;
                     }
-                    armour = GetDefencePower(MinAC, MaxAC);
+                    armour = GetDefencePower(MinMAC, MaxMAC);
                     break;
                 case DefenceType.Agility:
                     if (Envir.Random.Next(Agility + 1) > attacker.Accuracy)
@@ -10296,7 +10352,7 @@ namespace Server.MirObjects
                     armour = GetDefencePower(MinMAC, MaxMAC);
                     break;
                 case DefenceType.MAC:
-                    armour = GetDefencePower(MinAC, MaxAC);
+                    armour = GetDefencePower(MinMAC, MaxMAC);
                     break;
                 case DefenceType.Agility:
                     break;
@@ -12734,38 +12790,80 @@ namespace Server.MirObjects
                         return false;
                     }
                     break;
-                case RequiredType.AC:
+                case RequiredType.MaxAC:
                     if (MaxAC < item.Info.RequiredAmount)
                     {
                         ReceiveChat("防御不足。", ChatType.System);
                         return false;
                     }
                     break;
-                case RequiredType.MAC:
+                case RequiredType.MaxMAC:
                     if (MaxMAC < item.Info.RequiredAmount)
                     {
                         ReceiveChat("魔御不足。", ChatType.System);
                         return false;
                     }
                     break;
-                case RequiredType.DC:
+                case RequiredType.MaxDC:
                     if (MaxDC < item.Info.RequiredAmount)
                     {
                         ReceiveChat("攻击不足。", ChatType.System);
                         return false;
                     }
                     break;
-                case RequiredType.MC:
+                case RequiredType.MaxMC:
                     if (MaxMC < item.Info.RequiredAmount)
                     {
                         ReceiveChat("魔力不足。", ChatType.System);
                         return false;
                     }
                     break;
-                case RequiredType.SC:
+                case RequiredType.MaxSC:
                     if (MaxSC < item.Info.RequiredAmount)
                     {
                         ReceiveChat("道术不足。", ChatType.System);
+                        return false;
+                    }
+                    break;
+                case RequiredType.MaxLevel:
+                    if (Level > item.Info.RequiredAmount)
+                    {
+                        ReceiveChat("You have exceeded the maximum level.", ChatType.System);
+                        return false;
+                    }
+                    break;
+                case RequiredType.MinAC:
+                    if (MinAC < item.Info.RequiredAmount)
+                    {
+                        ReceiveChat("You do not have enough Base AC.", ChatType.System);
+                        return false;
+                    }
+                    break;
+                case RequiredType.MinMAC:
+                    if (MinMAC < item.Info.RequiredAmount)
+                    {
+                        ReceiveChat("You do not have enough Base MAC.", ChatType.System);
+                        return false;
+                    }
+                    break;
+                case RequiredType.MinDC:
+                    if (MinDC < item.Info.RequiredAmount)
+                    {
+                        ReceiveChat("You do not have enough Base DC.", ChatType.System);
+                        return false;
+                    }
+                    break;
+                case RequiredType.MinMC:
+                    if (MinMC < item.Info.RequiredAmount)
+                    {
+                        ReceiveChat("You do not have enough Base MC.", ChatType.System);
+                        return false;
+                    }
+                    break;
+                case RequiredType.MinSC:
+                    if (MinSC < item.Info.RequiredAmount)
+                    {
+                        ReceiveChat("You do not have enough Base SC.", ChatType.System);
                         return false;
                     }
                     break;
@@ -13044,24 +13142,48 @@ namespace Server.MirObjects
                     if (Level < item.Info.RequiredAmount)
                         return false;
                     break;
-                case RequiredType.AC:
+                case RequiredType.MaxAC:
                     if (MaxAC < item.Info.RequiredAmount)
                         return false;
                     break;
-                case RequiredType.MAC:
+                case RequiredType.MaxMAC:
                     if (MaxMAC < item.Info.RequiredAmount)
                         return false;
                     break;
-                case RequiredType.DC:
+                case RequiredType.MaxDC:
                     if (MaxDC < item.Info.RequiredAmount)
                         return false;
                     break;
-                case RequiredType.MC:
+                case RequiredType.MaxMC:
                     if (MaxMC < item.Info.RequiredAmount)
                         return false;
                     break;
-                case RequiredType.SC:
+                case RequiredType.MaxSC:
                     if (MaxSC < item.Info.RequiredAmount)
+                        return false;
+                    break;
+                case RequiredType.MaxLevel:
+                    if (Level > item.Info.RequiredAmount)
+                        return false;
+                    break;
+                case RequiredType.MinAC:
+                    if (MinAC < item.Info.RequiredAmount)
+                        return false;
+                    break;
+                case RequiredType.MinMAC:
+                    if (MinMAC < item.Info.RequiredAmount)
+                        return false;
+                    break;
+                case RequiredType.MinDC:
+                    if (MinDC < item.Info.RequiredAmount)
+                        return false;
+                    break;
+                case RequiredType.MinMC:
+                    if (MinMC < item.Info.RequiredAmount)
+                        return false;
+                    break;
+                case RequiredType.MinSC:
+                    if (MinSC < item.Info.RequiredAmount)
                         return false;
                     break;
             }

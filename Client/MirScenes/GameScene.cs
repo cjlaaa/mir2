@@ -852,6 +852,7 @@ namespace Client.MirScenes
             for (int i = 0; i < OutputLines.Length; i++)
                 OutputLines[i].Draw();
         }
+
         public override void Process()
         {
             if (MapControl == null || User == null)
@@ -874,14 +875,14 @@ namespace Client.MirScenes
                 Network.Enqueue(new C.KeepAlive() { Time = CMain.Time });
             }
 
-            //MirItemCell cell = MouseControl as MirItemCell;
+            MirItemCell cell = MouseControl as MirItemCell;
 
-            //if (cell != null && HoverItem != cell.Item)
-            //{
-            //    DisposeItemLabel();
-            //    HoverItem = null;
-            //    CreateItemLabel(cell.Item);
-            //}
+            if (cell != null && HoverItem != cell.Item && HoverItem != cell.ShadowItem)
+            {
+                DisposeItemLabel();
+                HoverItem = null;
+                CreateItemLabel(cell.Item);
+            }
 
             if (ItemLabel != null && !ItemLabel.IsDisposed)
             {
@@ -955,8 +956,7 @@ namespace Client.MirScenes
                 messageBox.Show();
             }
 
-            if (BuffsDialog.Visible)
-                BuffsDialog.UpdateBuffs();
+            BuffsDialog.Process();
 
             MapControl.Process();
             MainDialog.Process();
@@ -6938,29 +6938,59 @@ namespace Client.MirScenes
                         if (MapObject.User.Level < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
-                    case RequiredType.AC:
+                    case RequiredType.MaxAC:
                         text = string.Format("需要防御: {0}", realItem.RequiredAmount);
                         if (MapObject.User.MaxAC < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
-                    case RequiredType.MAC:
+                    case RequiredType.MaxMAC:
                         text = string.Format("需要魔御: {0}", realItem.RequiredAmount);
                         if (MapObject.User.MaxMAC < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
-                    case RequiredType.DC:
+                    case RequiredType.MaxDC:
                         text = string.Format("需要攻击: {0}", realItem.RequiredAmount);
                         if (MapObject.User.MaxDC < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
-                    case RequiredType.MC:
+                    case RequiredType.MaxMC:
                         text = string.Format("需要魔法: {0}", realItem.RequiredAmount);
                         if (MapObject.User.MaxMC < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
-                    case RequiredType.SC:
+                    case RequiredType.MaxSC:
                         text = string.Format("需要道术: {0}", realItem.RequiredAmount);
                         if (MapObject.User.MaxSC < realItem.RequiredAmount)
+                            colour = Color.Red;
+                        break;
+                    case RequiredType.MaxLevel:
+                        text = string.Format("Maximum Level : {0}", realItem.RequiredAmount);
+                        if (MapObject.User.Level > realItem.RequiredAmount)
+                            colour = Color.Red;
+                        break;
+                    case RequiredType.MinAC:
+                        text = string.Format("Required Base AC : {0}", realItem.RequiredAmount);
+                        if (MapObject.User.MinAC < realItem.RequiredAmount)
+                            colour = Color.Red;
+                        break;
+                    case RequiredType.MinMAC:
+                        text = string.Format("Required Base MAC : {0}", realItem.RequiredAmount);
+                        if (MapObject.User.MinMAC < realItem.RequiredAmount)
+                            colour = Color.Red;
+                        break;
+                    case RequiredType.MinDC:
+                        text = string.Format("Required Base DC : {0}", realItem.RequiredAmount);
+                        if (MapObject.User.MinDC < realItem.RequiredAmount)
+                            colour = Color.Red;
+                        break;
+                    case RequiredType.MinMC:
+                        text = string.Format("Required Base MC : {0}", realItem.RequiredAmount);
+                        if (MapObject.User.MinMC < realItem.RequiredAmount)
+                            colour = Color.Red;
+                        break;
+                    case RequiredType.MinSC:
+                        text = string.Format("Required Base SC : {0}", realItem.RequiredAmount);
+                        if (MapObject.User.MinSC < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
                     default:
@@ -9421,7 +9451,7 @@ namespace Client.MirScenes
                     }
                 }
             }
-            if (AutoHit)
+            if (AutoHit && !User.RidingMount)
             {
                 if (CMain.Time > GameScene.AttackTime)
                 {
@@ -9471,7 +9501,7 @@ namespace Client.MirScenes
                         if (MapObject.MouseObject is NPCObject || (MapObject.MouseObject is PlayerObject && MapObject.MouseObject != User)) break;
                         if (MapObject.MouseObject is MonsterObject && MapObject.MouseObject.AI == 70) break;
 
-                        if (CMain.Alt)
+                        if (CMain.Alt && !User.RidingMount)
                         {
                             User.QueuedAction = new QueuedAction { Action = MirAction.Harvest, Direction = direction, Location = User.CurrentLocation };
                             return;

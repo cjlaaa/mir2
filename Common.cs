@@ -183,7 +183,8 @@ public enum IntelligentCreatureType : byte
     BabySnowMan = 9,
     Frog = 10,
     BabyMonkey = 11,
-    AngryBird = 12
+    AngryBird = 12,
+    Foxey = 13,
 }
 
 //1 blank mob files
@@ -635,6 +636,7 @@ public enum Monster : ushort
     Frog = 10010,//unknown
     BabyMonkey = 10011,//unknown
     AngryBird = 10012,
+    Foxey = 10013,
 }
 
 public enum MirAction : byte
@@ -967,11 +969,17 @@ public enum RequiredGender : byte
 public enum RequiredType : byte
 {
     Level = 0,
-    AC = 1,
-    MAC = 2,
-    DC = 3,
-    MC = 4,
-    SC = 5,
+    MaxAC = 1,
+    MaxMAC = 2,
+    MaxDC = 3,
+    MaxMC = 4,
+    MaxSC = 5,
+    MaxLevel = 6,
+    MinAC = 7,
+    MinMAC = 8,
+    MinDC = 9,
+    MinMC = 10,
+    MinSC = 11,
 }
 
 [Obfuscation(Feature = "renaming", Exclude = true)]
@@ -1132,7 +1140,8 @@ public enum Spell : byte
     //Custom
     Blink = 151,
     Portal = 152,
-    
+    BattleCry = 153,
+
     //Map Events
     DigOutZombie = 200,
     Rubble = 201,

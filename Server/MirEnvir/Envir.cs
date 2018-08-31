@@ -417,6 +417,7 @@ namespace Server.MirEnvir
 
             //Custom
             if (!MagicExists(Spell.Portal)) MagicInfoList.Add(new MagicInfo { Name = "Portal", Spell = Spell.Portal, Icon = 1, Level1 = 7, Level2 = 11, Level3 = 14, Need1 = 150, Need2 = 350, Need3 = 700, BaseCost = 3, LevelCost = 2, Range = 9 });
+            if (!MagicExists(Spell.BattleCry)) MagicInfoList.Add(new MagicInfo { Name = "BattleCry", Spell = Spell.BattleCry, Icon = 42, Level1 = 48, Level2 = 51, Level3 = 55, Need1 = 8000, Need2 = 11000, Need3 = 15000, BaseCost = 22, LevelCost = 10, Range = 0 });
         }
 
         private string CanStartEnvir()
@@ -2909,7 +2910,7 @@ namespace Server.MirEnvir
                         if (Now <= item.RentalInformation.ExpiryDate)
                             continue;
 
-                        ReturnRentalItem(item, item.RentalInformation.OwnerName, rentingPlayer);
+                        ReturnRentalItem(item, item.RentalInformation.OwnerName, rentingPlayer, false);
                         rentingPlayer.Inventory[i] = null;
                         rentingPlayer.HasRentedItem = false;
 
@@ -2931,7 +2932,7 @@ namespace Server.MirEnvir
                         if (Now <= item.RentalInformation.ExpiryDate)
                             continue;
 
-                        ReturnRentalItem(item, item.RentalInformation.OwnerName, rentingPlayer);
+                        ReturnRentalItem(item, item.RentalInformation.OwnerName, rentingPlayer, false);
                         rentingPlayer.Equipment[i] = null;
                         rentingPlayer.HasRentedItem = false;
                         
@@ -2944,9 +2945,20 @@ namespace Server.MirEnvir
                     }
                 }
             }
+
+            foreach (var characterInfo in CharacterList)
+            {
+                if (characterInfo.RentedItemsToRemove.Count <= 0)
+                    continue;
+
+                foreach (var rentalInformationToRemove in characterInfo.RentedItemsToRemove)
+                    characterInfo.RentedItems.Remove(rentalInformationToRemove);
+
+                characterInfo.RentedItemsToRemove.Clear();
+            }
         }
 
-        public bool ReturnRentalItem(UserItem rentedItem, string ownerName, CharacterInfo rentingCharacterInfo)
+        public bool ReturnRentalItem(UserItem rentedItem, string ownerName, CharacterInfo rentingCharacterInfo, bool removeNow = true)
         {
             if (rentedItem.RentalInformation == null)
                 return false;
@@ -2972,11 +2984,14 @@ namespace Server.MirEnvir
             };
 
             mail.Send();
+            
+            if (removeNow)
+            {
+                foreach (var rentalInformationToRemove in owner.RentedItemsToRemove)
+                    owner.RentedItems.Remove(rentalInformationToRemove);
 
-            foreach (var rentalInformationToRemove in owner.RentedItemsToRemove)
-                owner.RentedItems.Remove(rentalInformationToRemove);
-
-            owner.RentedItemsToRemove.Clear();
+                owner.RentedItemsToRemove.Clear();
+            }
 
             return true;
         }
