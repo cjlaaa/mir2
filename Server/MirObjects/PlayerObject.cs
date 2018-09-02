@@ -6441,6 +6441,11 @@ namespace Server.MirObjects
                 }
             }
 
+            if (spell == Spell.Plague)
+            {
+                cost = MaxSC + MinSC;
+            }
+
             if (cost > MP)
             {
                 Enqueue(new S.UserLocation { Direction = Direction, Location = CurrentLocation });
@@ -13324,7 +13329,7 @@ namespace Server.MirObjects
             if (item == null || item.CurrentDura == 0 || item.Info.Type == ItemType.Amulet) return;
             if ((item.WeddingRing == Info.Married) && (Info.Equipment[(int)EquipmentSlot.RingL].UniqueID == item.UniqueID)) return;
             if (item.Info.Strong > 0) amount = Math.Max(1, amount - item.Info.Strong);
-            item.CurrentDura = (ushort)Math.Max(ushort.MinValue, item.CurrentDura - amount*5);
+            item.CurrentDura = (ushort)Math.Max(ushort.MinValue, item.CurrentDura - amount*3);
             item.DuraChanged = true;
 
             if (item.CurrentDura > 0 && isChanged != true) return;
