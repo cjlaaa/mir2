@@ -131,11 +131,11 @@ namespace Server.MirObjects
                     if (!ob.Dead)
                     ob.ApplyPoison(new Poison
                         {
-                            Duration = 15,
+                            Duration = 12,//15,
                             Owner = Caster,
                             PType = PoisonType.Green,
-                            TickSpeed = 2000,
-                            Value = Value/20
+                            TickSpeed = 1000,//2000,
+                            Value = (Caster.MaxSC + Caster.MinSC) / 2//Value /20
                         }, Caster, false, false);
                     break;
                 case Spell.Blizzard:

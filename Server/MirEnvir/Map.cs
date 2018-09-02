@@ -1346,15 +1346,6 @@ namespace Server.MirEnvir
                                     MapObject target = cell.Objects[o];
                                     if (target.Race != ObjectType.Spell || ((SpellObject)target).Spell != Spell.PoisonCloud) continue;
 
-                                    target.ApplyPoison(new Poison
-                                    {
-                                        Duration = 12, //(value * 2) + ((magic.Level + 1) * 7),
-                                        Owner = player,
-                                        PType = PoisonType.Green,
-                                        TickSpeed = 1000,
-                                        Value = (player.MaxSC + player.MinSC) / 2 //value / 15 + magic.Level + 1 + Envir.Random.Next(player.PoisonAttack)
-                                    }, player);
-
                                     cast = false;
                                     break;
                                 }
