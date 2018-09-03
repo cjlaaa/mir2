@@ -953,7 +953,12 @@ namespace Server.MirObjects
                 }
             }
 
-            if (healthRegen > 0) ChangeHP(healthRegen);
+            if (healthRegen > 0)
+            {
+                ChangeHP(healthRegen);
+                BroadcastDamageIndicator(DamageType.Hit, healthRegen);
+            }
+            
             if (HP == MaxHP)
             {
                 PotHealthAmount = 0;

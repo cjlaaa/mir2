@@ -1057,7 +1057,11 @@ namespace Server.MirObjects
                 }
             }
 
-            if (healthRegen > 0) ChangeHP(healthRegen);
+            if (healthRegen > 0)
+            {
+                ChangeHP(healthRegen);
+                BroadcastDamageIndicator(DamageType.Hit, healthRegen);
+            }
             if (HP == MaxHP) HealAmount = 0;
         }
         protected virtual void ProcessPoison()
@@ -1102,6 +1106,7 @@ namespace Server.MirObjects
 
                         //ChangeHP(-poison.Value);
                         PoisonDamage(-poison.Value, poison.Owner);
+                        BroadcastDamageIndicator(DamageType.Hit, -poison.Value);
                         if (PoisonStopRegen)
                             RegenTime = Envir.Time + RegenDelay;
                     }
