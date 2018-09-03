@@ -1006,7 +1006,7 @@ namespace Server.MirObjects
 
                         //ChangeHP(-poison.Value);
                         PoisonDamage(-poison.Value, poison.Owner);
-
+                        BroadcastDamageIndicator(DamageType.Hit, -poison.Value);
                         if (Dead) break;
                         RegenTime = Envir.Time + RegenDelay;
                     }
