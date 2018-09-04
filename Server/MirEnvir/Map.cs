@@ -1885,7 +1885,8 @@ namespace Server.MirEnvir
                                                 tempOb.ChangeMP(-tempValue);
                                             }
 
-                                            target.Attacked(player, player.MaxSC+player.MinSC, DefenceType.MAC, true);
+                                            //target.Attacked(player, player.MaxSC+player.MinSC, DefenceType.MAC, true);
+                                            target.Attacked(player, player.MaxSC * 2, DefenceType.MAC, true);
 
                                             train = true;
                                         }

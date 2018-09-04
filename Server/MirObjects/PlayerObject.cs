@@ -6448,7 +6448,7 @@ namespace Server.MirObjects
 
             if (spell == Spell.Plague)
             {
-                cost = MaxSC + MinSC;
+                cost = MaxSC * 2;//MaxSC + MinSC;
             }
 
             if (cost > MP)
