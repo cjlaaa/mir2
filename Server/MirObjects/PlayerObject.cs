@@ -1378,7 +1378,7 @@ namespace Server.MirObjects
                         }
                     }
 
-                    if (item.Count > 1)
+                    /*if (item.Count > 1)
                     {
                         var percent = Envir.RandomomRange(10, 8);
                         var count = (uint)Math.Ceiling(item.Count / 10F * percent);
@@ -1426,7 +1426,7 @@ namespace Server.MirObjects
                         Enqueue(new S.DeleteItem { UniqueID = item.UniqueID, Count = item.Count });
 
                         Report.ItemChanged("Death Drop", item, item.Count, 1);
-                    }
+                    }*/
                 }
 
             }
@@ -1444,7 +1444,7 @@ namespace Server.MirObjects
                 if (item.WeddingRing != -1)
                     continue;
 
-                if (item.Count > 1)
+                /*if (item.Count > 1)
                 {
                     var percent = Envir.RandomomRange(10, 8);
 
@@ -1470,7 +1470,7 @@ namespace Server.MirObjects
 
                     Report.ItemChanged("DeathDrop", item, count, 1);
                 }
-                else if (Envir.Random.Next(10) == 0)
+                else*/ if (Envir.Random.Next(20) == 0)
                 {
                     if (Envir.ReturnRentalItem(item, item.RentalInformation?.OwnerName, Info))
                     {
