@@ -534,7 +534,7 @@ namespace Client.MirScenes
                         Network.Enqueue(new C.TradeRequest());
                         break;
                     case KeybindOptions.Rental:
-                        ItemRentalDialog.Toggle();
+                        //ItemRentalDialog.Toggle();
                         break;
                     case KeybindOptions.ChangePetmode:
                         switch (PMode)
