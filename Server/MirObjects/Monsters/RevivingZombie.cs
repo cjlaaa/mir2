@@ -28,6 +28,13 @@ namespace Server.MirObjects.Monsters
             base.Die();
         }
 
+        protected override void Drop()
+        {
+            if (RevivalCount == 0)
+            {
+                base.Drop();
+            }
+        }
 
         protected override void ProcessAI()
         {
