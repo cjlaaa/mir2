@@ -278,17 +278,17 @@ namespace Server.MirDatabase
                     allComplete = false;
                 }
 
-                TaskList.Add(string.Format("{0} {1}", Info.KillMessage, allComplete ? "(Completed)" : ""));
+                TaskList.Add(string.Format("{0} {1}", Info.KillMessage, allComplete ? "(完成)" : ""));
                 return;
             }
 
             for (int i = 0; i < Info.KillTasks.Count; i++)
             {
                 if (string.IsNullOrEmpty(Info.KillTasks[i].Message))
-                    TaskList.Add(string.Format("Kill {0}: {1}/{2} {3}", Info.KillTasks[i].Monster.GameName, KillTaskCount[i],
-                        Info.KillTasks[i].Count, KillTaskCount[i] >= Info.KillTasks[i].Count ? "(Completed)" : ""));
+                    TaskList.Add(string.Format("击杀{0}: {1}/{2} {3}", Info.KillTasks[i].Monster.GameName, KillTaskCount[i],
+                        Info.KillTasks[i].Count, KillTaskCount[i] >= Info.KillTasks[i].Count ? "(完成)" : ""));
                 else
-                    TaskList.Add(string.Format("{0} {1}", Info.KillTasks[i].Message, KillTaskCount[i] >= Info.KillTasks[i].Count ? "(Completed)" : ""));
+                    TaskList.Add(string.Format("{0} {1}", Info.KillTasks[i].Message, KillTaskCount[i] >= Info.KillTasks[i].Count ? "(完成)" : ""));
                     
             }
         }
@@ -305,17 +305,17 @@ namespace Server.MirDatabase
                     allComplete = false;
                 }
 
-                TaskList.Add(string.Format("{0} {1}", Info.ItemMessage, allComplete ? "(Completed)" : ""));
+                TaskList.Add(string.Format("{0} {1}", Info.ItemMessage, allComplete ? "(完成)" : ""));
                 return;
             }
 
             for (int i = 0; i < Info.ItemTasks.Count; i++)
             {
                 if (string.IsNullOrEmpty(Info.ItemTasks[i].Message))
-                    TaskList.Add(string.Format("Collect {0}: {1}/{2} {3}", Info.ItemTasks[i].Item.Name, ItemTaskCount[i],
-                        Info.ItemTasks[i].Count, ItemTaskCount[i] >= Info.ItemTasks[i].Count ? "(Completed)" : ""));
+                    TaskList.Add(string.Format("收集{0}: {1}/{2} {3}", Info.ItemTasks[i].Item.Name, ItemTaskCount[i],
+                        Info.ItemTasks[i].Count, ItemTaskCount[i] >= Info.ItemTasks[i].Count ? "(完成)" : ""));
                 else
-                    TaskList.Add(string.Format("{0} {1}", Info.ItemTasks[i].Message, ItemTaskCount[i] >= Info.ItemTasks[i].Count ? "(Completed)" : ""));
+                    TaskList.Add(string.Format("{0} {1}", Info.ItemTasks[i].Message, ItemTaskCount[i] >= Info.ItemTasks[i].Count ? "(完成)" : ""));
             }
         }
 
@@ -331,16 +331,16 @@ namespace Server.MirDatabase
                     allComplete = false;
                 }
 
-                TaskList.Add(string.Format("{0} {1}", Info.FlagMessage, allComplete ? "(Completed)" : ""));
+                TaskList.Add(string.Format("{0} {1}", Info.FlagMessage, allComplete ? "(完成)" : ""));
                 return;
             }
 
             for (int i = 0; i < Info.FlagTasks.Count; i++)
             {
                 if (string.IsNullOrEmpty(Info.FlagTasks[i].Message))
-                    TaskList.Add(string.Format("Activate Flag {0} {1}", Info.FlagTasks[i].Number, FlagTaskSet[i] ? "(Completed)" : ""));
+                    TaskList.Add(string.Format("激活标志: {0} {1}", Info.FlagTasks[i].Number, FlagTaskSet[i] ? "(完成)" : ""));
                 else
-                    TaskList.Add(string.Format("{0} {1}", Info.FlagTasks[i].Message, FlagTaskSet[i] ? "(Completed)" : ""));
+                    TaskList.Add(string.Format("{0} {1}", Info.FlagTasks[i].Message, FlagTaskSet[i] ? "(完成)" : ""));
 
             }
         }
