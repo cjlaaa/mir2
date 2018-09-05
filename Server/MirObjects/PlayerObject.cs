@@ -17281,7 +17281,7 @@ namespace Server.MirObjects
                     GainQuestItem(item);
                     quest.ProcessItem(Info.QuestInventory);
 
-                    Enqueue(new S.SendOutputMessage { Message = string.Format("You found {0}。", item.FriendlyName), Type = OutputMessageType.Quest });
+                    Enqueue(new S.SendOutputMessage { Message = string.Format("你获得了{0}。", item.FriendlyName), Type = OutputMessageType.Quest });
 
                     SendUpdateQuest(quest, QuestState.Update);
 
@@ -17316,7 +17316,7 @@ namespace Server.MirObjects
             {
                 quest.ProcessKill(mInfo);
 
-                Enqueue(new S.SendOutputMessage { Message = string.Format("You killed {0}。", mInfo.GameName), Type = OutputMessageType.Quest });
+                Enqueue(new S.SendOutputMessage { Message = string.Format("你击杀了{0}。", mInfo.GameName), Type = OutputMessageType.Quest });
 
                 SendUpdateQuest(quest, QuestState.Update);
             }
