@@ -6045,29 +6045,7 @@ namespace Server.MirObjects
                     damageFinal = damageBase;//incase we're not using skills
                 }
 
-                #region FatalSword
-                magic = GetMagic(Spell.FatalSword);
-
                 DefenceType defence = DefenceType.ACAgility;
-
-                if (magic != null)
-                {
-                    if (FatalSword)
-                    {
-                        damageFinal = magic.GetDamage(damageBase);
-                        LevelMagic(magic);
-                        S.ObjectEffect p = new S.ObjectEffect { ObjectID = ob.ObjectID, Effect = SpellEffect.FatalSword };
-
-                        defence = DefenceType.Agility;
-                        CurrentMap.Broadcast(p, ob.CurrentLocation);
-
-                        FatalSword = false;
-                    }
-
-                    if (!FatalSword && Envir.Random.Next(10) == 0)
-                        FatalSword = true;
-                }
-                #endregion
 
                 #region MPEater
                 magic = GetMagic(Spell.MPEater);
@@ -6191,6 +6169,28 @@ namespace Server.MirObjects
                         LevelMagic(magic);
                         break;
                 }
+
+                #region FatalSword
+                magic = GetMagic(Spell.FatalSword);
+
+                if (magic != null)
+                {
+                    if (FatalSword)
+                    {
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        S.ObjectEffect p = new S.ObjectEffect { ObjectID = ob.ObjectID, Effect = SpellEffect.FatalSword };
+
+                        defence = DefenceType.Agility;
+                        CurrentMap.Broadcast(p, ob.CurrentLocation);
+
+                        FatalSword = false;
+                    }
+
+                    if (!FatalSword && Envir.Random.Next(10) == 0)
+                        FatalSword = true;
+                }
+                #endregion
 
                 //if (ob.Attacked(this, damage, defence) <= 0) break;
                 action = new DelayedAction(DelayedType.Damage, Envir.Time + 300, ob, damageFinal, defence, true);
