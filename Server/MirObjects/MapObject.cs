@@ -653,14 +653,14 @@ namespace Server.MirObjects
 
         public void BroadcastDamageIndicator(DamageType type, int damage = 0)
         {
-            Packet p = new S.DamageIndicator { ObjectID = ObjectID, Damage = damage, Type = type };
+            //Packet p = new S.DamageIndicator { ObjectID = ObjectID, Damage = damage, Type = type };
 
-            if (Race == ObjectType.Player)
-            {
-                PlayerObject player = (PlayerObject)this;
-                player.Enqueue(p);
-            }
-            Broadcast(p);
+            //if (Race == ObjectType.Player)
+            //{
+            //    PlayerObject player = (PlayerObject)this;
+            //    player.Enqueue(p);
+            //}
+            //Broadcast(p);
         }
 
         public abstract void Die();
