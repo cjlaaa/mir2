@@ -714,6 +714,7 @@ namespace Client.MirObjects
                         break;
                     case BuffType.Transform:
                         TransformType = (short)buff.Values[0];
+                        FastRun = true;
                         break;
 
                     case BuffType.Impact:

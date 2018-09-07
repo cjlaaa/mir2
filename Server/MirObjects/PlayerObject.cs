@@ -2039,7 +2039,7 @@ namespace Server.MirObjects
             }
             Enqueue(new S.StartGame { Result = 4, Resolution = Settings.AllowedResolution });
             ReceiveChat("欢迎来到基于Crystal Mir2项目的韩版中文传奇服务器", ChatType.Hint);
-            ReceiveChat("本服为完全的公益服,无任何盈利模式", ChatType.Hint);
+            ReceiveChat("本服为完全公益服,无任何盈利模式,并保证长期开服运营", ChatType.Hint);
             ReceiveChat("本服拥有完全的技术支持和修复BUG能力,未来将持续更新", ChatType.Hint);
             ReceiveChat("有任何意见及建议欢迎加QQ群并联系管理员,群号302517436", ChatType.Hint);
 
