@@ -2038,8 +2038,10 @@ namespace Server.MirObjects
                 Info.Magics[i].CastTime = Envir.Time > TimeSpend ? Envir.Time - TimeSpend : 0;
             }
             Enqueue(new S.StartGame { Result = 4, Resolution = Settings.AllowedResolution });
-            ReceiveChat("欢迎来到基于Crystal Mir2项目的韩版中文传奇服务器。", ChatType.Hint);
-            ReceiveChat("本服务器目前处于内部测试状态,有任何问题请联系游戏管理员。", ChatType.Hint);
+            ReceiveChat("欢迎来到基于Crystal Mir2项目的韩版中文传奇服务器", ChatType.Hint);
+            ReceiveChat("本服为完全的公益服,无任何盈利模式", ChatType.Hint);
+            ReceiveChat("本服拥有完全的技术支持和修复BUG能力,未来将持续更新", ChatType.Hint);
+            ReceiveChat("有任何意见及建议欢迎加QQ群并联系管理员,群号302517436", ChatType.Hint);
 
             if (Settings.TestServer)
             {
@@ -3263,6 +3265,7 @@ namespace Server.MirObjects
                         break;
                     case BuffType.Transform:
                         TransformType = (short)buff.Values[0];
+                        FastRun = true;
                         break;
 
                     case BuffType.Impact:
