@@ -14729,11 +14729,11 @@ namespace Server.MirObjects
 
             }
 
-            if (NPCPage == null || !String.Equals(NPCPage.Key, NPCObject.MarketKey, StringComparison.CurrentCultureIgnoreCase))
-            {
-                Enqueue(new S.MarketFail { Reason = 1 });
-                return;
-            }
+            //if (NPCPage == null || !String.Equals(NPCPage.Key, NPCObject.MarketKey, StringComparison.CurrentCultureIgnoreCase))
+            //{
+            //    Enqueue(new S.MarketFail { Reason = 1 });
+            //    return;
+            //}
 
             for (int n = 0; n < CurrentMap.NPCs.Count; n++)
             {
@@ -14799,11 +14799,11 @@ namespace Server.MirObjects
 
             }
 
-            if (NPCPage == null || !String.Equals(NPCPage.Key, NPCObject.ConsignmentsKey, StringComparison.CurrentCultureIgnoreCase))
-            {
-                Enqueue(new S.MarketFail { Reason = 1 });
-                return;
-            }
+            //if (NPCPage == null || !String.Equals(NPCPage.Key, NPCObject.ConsignmentsKey, StringComparison.CurrentCultureIgnoreCase))
+            //{
+            //    Enqueue(new S.MarketFail { Reason = 1 });
+            //    return;
+            //}
 
             for (int n = 0; n < CurrentMap.NPCs.Count; n++)
             {
