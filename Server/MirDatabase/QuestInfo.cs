@@ -240,10 +240,10 @@ namespace Server.MirDatabase
 
             if (mInfo == null)
             {
-                mInfo = SMain.Envir.GetItemInfo(split[0] + "(M)");
+                mInfo = SMain.Envir.GetItemInfo(split[0] + "(男)");
                 if (mInfo != null) list.Add(new QuestItemReward() { Item = mInfo, Count = count });
 
-                mInfo = SMain.Envir.GetItemInfo(split[0] + "(F)");
+                mInfo = SMain.Envir.GetItemInfo(split[0] + "(女)");
                 if (mInfo != null) list.Add(new QuestItemReward() { Item = mInfo, Count = count });
             }
             else
