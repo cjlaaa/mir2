@@ -16881,9 +16881,9 @@ namespace Server.MirObjects
                         }
 
                         if (dropItem == null)
-                            ReceiveChat("你的鱼溜走了。", ChatType.System);
+                            ReceiveChat("你的鱼溜走了", ChatType.System);
                         else if (FreeSpace(Info.Inventory) < 1)
-                            ReceiveChat("你的背包空间不足。", ChatType.System);
+                            ReceiveChat("你的背包空间不足", ChatType.System);
                         else
                         {
                             GainItem(dropItem);
@@ -16904,7 +16904,7 @@ namespace Server.MirObjects
                         cancel = true;
                     }
                     else
-                        ReceiveChat("你的鱼溜走了", ChatType.System);
+                        ReceiveChat("你的鱼逃走了", ChatType.System);
                 }
 
                 FishFound = false;
