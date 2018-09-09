@@ -713,7 +713,7 @@ namespace Server.MirObjects
                 item = Info.Equipment[(int)EquipmentSlot.Torch];
                 if (item != null)
                 {
-                    DamageItem(item, 5);
+                    DamageItem(item, 15);
 
                     if (item.CurrentDura == 0)
                     {
@@ -13325,19 +13325,29 @@ namespace Server.MirObjects
         private void DamageDura()
         {
             if (!NoDuraLoss)
-                for (int i = 0; i < Info.Equipment.Length; i++) DamageItem(Info.Equipment[i], Envir.Random.Next(1) + 1);
+                for (int i = 0; i < Info.Equipment.Length; i++)
+                {
+                    if(i==(int)EquipmentSlot.Armour)
+                    {
+                        DamageItem(Info.Equipment[i], Envir.Random.Next(4) + 3);
+                    }
+                    else
+                    {
+                        DamageItem(Info.Equipment[i], Envir.Random.Next(1) + 1);
+                    }
+                }
         }
         public void DamageWeapon()
         {
             if (!NoDuraLoss)
-                DamageItem(Info.Equipment[(int)EquipmentSlot.Weapon], Envir.Random.Next(4) + 1);
+                DamageItem(Info.Equipment[(int)EquipmentSlot.Weapon], Envir.Random.Next(3) + 2);
         }
         private void DamageItem(UserItem item, int amount, bool isChanged = false)
         {
             if (item == null || item.CurrentDura == 0 || item.Info.Type == ItemType.Amulet) return;
             if ((item.WeddingRing == Info.Married) && (Info.Equipment[(int)EquipmentSlot.RingL].UniqueID == item.UniqueID)) return;
             if (item.Info.Strong > 0) amount = Math.Max(1, amount - item.Info.Strong);
-            item.CurrentDura = (ushort)Math.Max(ushort.MinValue, item.CurrentDura - amount*3);
+            item.CurrentDura = (ushort)Math.Max(ushort.MinValue, item.CurrentDura - amount);
             item.DuraChanged = true;
 
             if (item.CurrentDura > 0 && isChanged != true) return;
