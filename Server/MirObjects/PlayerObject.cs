@@ -1673,13 +1673,13 @@ namespace Server.MirObjects
                 GainExp((uint)expPoint);
         }
 
-        public void GainExp(uint amount)
+        public void GainExp(uint amount,bool isNoBuff = false)
         {
             if (!CanGainExp) return;
 
             if (amount == 0) return;
 
-            if (Info.Married != 0)
+            if (Info.Married != 0 && isNoBuff == false)
             { 
                 Buff buff = Buffs.Where(e => e.Type == BuffType.RelationshipEXP).FirstOrDefault();
                 if(buff != null)
@@ -1693,7 +1693,7 @@ namespace Server.MirObjects
                 }
             }
 
-            if (Info.Mentor != 0 && !Info.isMentor)
+            if (Info.Mentor != 0 && !Info.isMentor && isNoBuff == false)
             {
                 Buff buffMentor = Buffs.Where(e => e.Type == BuffType.Mentee).FirstOrDefault();
                 if (buffMentor != null)
@@ -1707,9 +1707,9 @@ namespace Server.MirObjects
                 }
             }
 
-            if (ExpRateOffset > 0)
+            if (ExpRateOffset > 0 && isNoBuff == false)
                 amount += (uint)(amount * (ExpRateOffset / 100));
-            if (Info.Mentor != 0 && !Info.isMentor)
+            if (Info.Mentor != 0 && !Info.isMentor && isNoBuff == false)
                 MenteeEXP += (amount / 100) * Settings.MenteeExpBank;
 
             Experience += amount;
@@ -17199,7 +17199,7 @@ namespace Server.MirObjects
             RecalculateQuestBag();
 
             GainGold(quest.Info.GoldReward);
-            GainExp(quest.Info.ExpReward);
+            GainExp(quest.Info.ExpReward,true);
             GainCredit(quest.Info.CreditReward);
 
             CallDefaultNPC(DefaultNPCType.OnFinishQuest, questIndex);
