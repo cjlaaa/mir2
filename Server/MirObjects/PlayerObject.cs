@@ -14640,7 +14640,9 @@ namespace Server.MirObjects
         {
             if (Dead || Envir.Time < SearchTime) return;
 
-            if (NPCPage == null || (!String.Equals(NPCPage.Key, NPCObject.MarketKey, StringComparison.CurrentCultureIgnoreCase) && !String.Equals(NPCPage.Key, NPCObject.ConsignmentsKey, StringComparison.CurrentCultureIgnoreCase)) || page <= PageSent) return;
+            if (NPCPage == null ||
+                //(!String.Equals(NPCPage.Key, NPCObject.MarketKey, StringComparison.CurrentCultureIgnoreCase) && !String.Equals(NPCPage.Key, NPCObject.ConsignmentsKey, StringComparison.CurrentCultureIgnoreCase)) || 
+                page <= PageSent) return;
 
             SearchTime = Envir.Time + Globals.SearchDelay;
 
@@ -14702,7 +14704,9 @@ namespace Server.MirObjects
         {
             if (Dead || Envir.Time < SearchTime) return;
 
-            if (NPCPage == null || (!String.Equals(NPCPage.Key, NPCObject.MarketKey, StringComparison.CurrentCultureIgnoreCase) && !String.Equals(NPCPage.Key, NPCObject.ConsignmentsKey, StringComparison.CurrentCultureIgnoreCase))) return;
+            if (NPCPage == null
+                //|| (!String.Equals(NPCPage.Key, NPCObject.MarketKey, StringComparison.CurrentCultureIgnoreCase) && !String.Equals(NPCPage.Key, NPCObject.ConsignmentsKey, StringComparison.CurrentCultureIgnoreCase))
+                ) return;
 
             SearchTime = Envir.Time + Globals.SearchDelay;
 
@@ -14718,7 +14722,9 @@ namespace Server.MirObjects
         {
             if (Dead || Envir.Time < SearchTime) return;
 
-            if (NPCPage == null || (!String.Equals(NPCPage.Key, NPCObject.MarketKey, StringComparison.CurrentCultureIgnoreCase) && !String.Equals(NPCPage.Key, NPCObject.ConsignmentsKey, StringComparison.CurrentCultureIgnoreCase))) return;
+            if (NPCPage == null 
+                //|| (!String.Equals(NPCPage.Key, NPCObject.MarketKey, StringComparison.CurrentCultureIgnoreCase) && !String.Equals(NPCPage.Key, NPCObject.ConsignmentsKey, StringComparison.CurrentCultureIgnoreCase))
+                ) return;
 
             SearchTime = Envir.Time + Globals.SearchDelay;
 
