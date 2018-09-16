@@ -8809,7 +8809,7 @@ namespace Server.MirObjects
                         if (Teleport(temp, location)) break;
                     }
 
-                    AddBuff(new Buff { Type = BuffType.TemporalFlux, Caster = this, ExpireTime = Envir.Time + 30000 });
+                    //AddBuff(new Buff { Type = BuffType.TemporalFlux, Caster = this, ExpireTime = Envir.Time + 30000 });
                     LevelMagic(magic);
 
                     break;
