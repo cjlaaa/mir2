@@ -3214,9 +3214,11 @@ namespace Server.MirObjects
                         break;
                     case BuffType.ProtectionField:
                         MaxAC = (ushort)Math.Min(ushort.MaxValue, MaxAC + buff.Values[0]);
+                        MinAC = (ushort)Math.Min(ushort.MaxValue, MinAC + buff.Values[0]);
                         break;
                     case BuffType.Rage:
                         MaxDC = (ushort)Math.Min(ushort.MaxValue, MaxDC + buff.Values[0]);
+                        MinDC = (ushort)Math.Min(ushort.MaxValue, MinDC + buff.Values[0]);
                         break;
                     case BuffType.CounterAttack:
                         MinAC = (ushort)Math.Min(ushort.MaxValue, MinAC + buff.Values[0]);
