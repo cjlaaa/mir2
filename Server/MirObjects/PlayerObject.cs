@@ -13329,18 +13329,18 @@ namespace Server.MirObjects
                 {
                     if(i==(int)EquipmentSlot.Armour)
                     {
-                        DamageItem(Info.Equipment[i], Envir.Random.Next(4) + 3);
+                        DamageItem(Info.Equipment[i], Envir.Random.Next(5) + 6);
                     }
                     else
                     {
-                        DamageItem(Info.Equipment[i], Envir.Random.Next(1) + 1);
+                        DamageItem(Info.Equipment[i], Envir.Random.Next(3) + 2);
                     }
                 }
         }
         public void DamageWeapon()
         {
             if (!NoDuraLoss)
-                DamageItem(Info.Equipment[(int)EquipmentSlot.Weapon], Envir.Random.Next(3) + 2);
+                DamageItem(Info.Equipment[(int)EquipmentSlot.Weapon], Envir.Random.Next(5) + 4);
         }
         private void DamageItem(UserItem item, int amount, bool isChanged = false)
         {
