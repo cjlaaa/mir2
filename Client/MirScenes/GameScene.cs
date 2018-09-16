@@ -10276,10 +10276,10 @@ namespace Client.MirScenes
                     text = string.Format("神圣战甲术\n防御增加: 0-{0}.\n", Values[0]);
                     break;
                 case BuffType.ProtectionField:
-                    text = string.Format("护身气幕\n防御增加: 0-{0}.\n", Values[0]);
+                    text = string.Format("护身气幕\n防御增加: {0}-{1}.\n", Values[0], Values[0]);
                     break;
                 case BuffType.Rage:
-                    text = string.Format("剑气爆\n攻击增加: 0-{0}.\n", Values[0]);
+                    text = string.Format("剑气爆\n攻击增加: {0}-{1}.\n", Values[0], Values[0]);
                     break;
                 case BuffType.ImmortalSkin:
                     text = string.Format("金刚不坏\n防御增加: 0-{0}.\n攻击减少: 0-{1}.\n", Values[0], Values[1]);

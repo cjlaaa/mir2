@@ -252,6 +252,7 @@ namespace Client.MirScenes.Dialogs
             var buffText = string.Empty;
 
             int buffDc = 0,
+                buffMinDc = 0,
                 buffMinMc = 0,
                 buffMc = 0,
                 buffSc = 0,
@@ -319,10 +320,12 @@ namespace Client.MirScenes.Dialogs
 
                     case BuffType.ProtectionField:
                         buffAc += buff.Values[0];
+                        buffMinAc += buff.Values[0];
                         break;
 
                     case BuffType.Rage:
                         buffDc += buff.Values[0];
+                        buffMinDc += buff.Values[0];
                         break;
 
                     case BuffType.CounterAttack:
@@ -442,7 +445,7 @@ namespace Client.MirScenes.Dialogs
             }
             
             if (buffDc > 0)
-                buffText += $"\n增加攻击: 0-{buffDc}";
+                buffText += $"\n增加攻击: {buffMinDc}-{buffDc}";
 
             if (buffMinMc > 0 || buffMc > 0)
                 buffText += $"\n增加魔力: {buffMinMc}-{buffMc}";
