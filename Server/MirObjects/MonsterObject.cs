@@ -2924,14 +2924,19 @@ namespace Server.MirObjects
         {
             if (PetLevel >= MaxPetLevel) return;
 
-            if (Info.Name == Settings.SkeletonName || Info.Name == Settings.ShinsuName || Info.Name == Settings.AngelName)
-                amount *= 3;
+            //if (Info.Name == Settings.SkeletonName || Info.Name == Settings.ShinsuName || Info.Name == Settings.AngelName)
+            //    amount *= 3;
 
-            PetExperience += amount;
+            //PetExperience += amount;
 
-            if (PetExperience < (PetLevel + 1)*20000) return;
+            //if (PetExperience < (PetLevel + 1)*20000) return;
 
-            PetExperience = (uint) (PetExperience - ((PetLevel + 1)*20000));
+            //PetExperience = (uint) (PetExperience - ((PetLevel + 1)*20000));
+
+            PetExperience += 1;
+            if (PetExperience < 10) return;
+            PetExperience = PetExperience - 10;
+
             PetLevel++;
             RefreshAll();
             OperateTime = 0;
