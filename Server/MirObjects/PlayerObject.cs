@@ -7300,7 +7300,7 @@ namespace Server.MirObjects
                 return;
             }
 
-            if (Pets.Where(x => x.Race == ObjectType.Monster).Count() > 2) return;
+            if (Pets.Where(x => x.Race == ObjectType.Monster).Count() > 3) return;
 
             UserItem item = GetAmulet(1);
             if (item == null) return;
@@ -7344,7 +7344,7 @@ namespace Server.MirObjects
                 return;
             }
 
-            if (Pets.Where(x => x.Race == ObjectType.Monster).Count() > 2) return;
+            if (Pets.Where(x => x.Race == ObjectType.Monster).Count() > 3) return;
 
             UserItem item = GetAmulet(5);
             if (item == null) return;
@@ -7536,7 +7536,7 @@ namespace Server.MirObjects
                 return;
             }
 
-            if (Pets.Where(x => x.Race == ObjectType.Monster).Count() > 2) return;
+            if (Pets.Where(x => x.Race == ObjectType.Monster).Count() > 3) return;
 
             UserItem item = GetAmulet(2);
             if (item == null) return;
