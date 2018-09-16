@@ -64,7 +64,7 @@ namespace Client
         public static int RemainingErrorLogs = 100;
 
         //Graphics
-        public static bool FullScreen = true, TopMost = true;
+        public static bool FullScreen = false, TopMost = true;
         public static string FontName = "Tahoma"; //"MS Sans Serif"
         public static bool FPSCap = true;
         public static int MaxFPS = 100;
@@ -73,7 +73,7 @@ namespace Client
 
         //Network
         public static bool UseConfig = false;
-        public static string IPAddress = "127.0.0.1";
+        public static string IPAddress = "47.95.206.70";
         public static int Port = 7000;
         public const int TimeOut = 5000;
 
@@ -167,7 +167,7 @@ namespace Client
         public static string P_Login = string.Empty;
         public static string P_Password = string.Empty;
         public static string P_ServerName = string.Empty;
-        public static string P_BrowserAddress = "https://launcher.mironline.co.uk/web/";
+        public static string P_BrowserAddress = "http://47.95.206.70/index.txt";
         public static string P_Client = Application.StartupPath + "\\";
         public static bool P_AutoStart = false;
 
