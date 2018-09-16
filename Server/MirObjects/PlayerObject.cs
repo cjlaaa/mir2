@@ -7764,7 +7764,7 @@ namespace Server.MirObjects
             int count = Buffs.Where(x => x.Type == BuffType.Rage).ToList().Count();
             if (count > 0) return;
 
-            int duration = 48 + (6 * magic.Level);
+            int duration = 18 + (6 * magic.Level);
             int value = (int)Math.Round(MaxDC * (0.12 + (0.03 * magic.Level)));
 
             AddBuff(new Buff { Type = BuffType.Rage, Caster = this, ExpireTime = Envir.Time + duration * 1000, Values = new int[] { value } });
