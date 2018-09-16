@@ -7401,7 +7401,7 @@ namespace Server.MirObjects
 
             int delay = Functions.MaxDistance(CurrentLocation, location) * 50 + 500; //50 MS per Step
 
-            DelayedAction action = new DelayedAction(DelayedType.Magic, Envir.Time + delay, this, magic, GetAttackPower(MinSC, MaxSC) * 2 + (magic.Level + 1) * 10, location);
+            DelayedAction action = new DelayedAction(DelayedType.Magic, Envir.Time + delay, this, magic, GetAttackPower(MinSC, MaxSC) * 4 + (magic.Level + 1) * 50, location);
             CurrentMap.ActionList.Add(action);
 
             ConsumeItem(item, 1);
@@ -7605,7 +7605,7 @@ namespace Server.MirObjects
             UserItem item = GetAmulet(1);
             if (item == null) return;
 
-            long expiretime = GetAttackPower(MinSC, MaxSC) * 2 + (magic.Level + 1) * 10;
+            long expiretime = GetAttackPower(MinSC, MaxSC) * 4 + (magic.Level + 1) * 50;
             int value = MaxSC >= 5 ? Math.Min(8, MaxSC / 5) : 1;
 
             switch (target.Race)
