@@ -774,7 +774,7 @@ namespace Client.MirObjects
         {
             UserItem MountItem = Equipment[(int)EquipmentSlot.Mount];
 
-            if (!RidingMount || MountItem == null) return;
+            if (/*!RidingMount ||*/ MountItem == null) return;
 
             UserItem[] Slots = MountItem.Slots;
 

@@ -3066,7 +3066,7 @@ namespace Server.MirObjects
 
         public void RefreshMountStats()
         {
-            if (!RidingMount || !Mount.HasMount) return;
+            if (/*!RidingMount || */!Mount.HasMount) return;
 
             UserItem[] Slots = Mount.Slots;
 
