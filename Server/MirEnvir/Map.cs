@@ -1752,7 +1752,7 @@ namespace Server.MirEnvir
                                         if (target.IsAttackTarget(player))
                                         {
                                             target.ApplyPoison(new Poison { PType = PoisonType.Slow, Duration = value, TickSpeed = 1000, Value = value2 }, player);
-                                            target.AddBuff(new Buff { Type = type, Caster = player, ExpireTime = Envir.Time + value * 1000, Values = new int[]{ value2 } });
+                                            target.AddBuff(new Buff { Type = type, Caster = player, ExpireTime = Envir.Time + value, Values = new int[] { value2 } });
                                             target.OperateTime = 0;
                                             train = true;
                                         }

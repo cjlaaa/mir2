@@ -7667,7 +7667,13 @@ namespace Server.MirObjects
 
             int delay = Functions.MaxDistance(CurrentLocation, location) * 50 + 500; //50 MS per Step
 
-            DelayedAction action = new DelayedAction(DelayedType.Magic, Envir.Time + delay, this, magic, magic.GetDamage(GetAttackPower(MinSC, MaxSC)), location, 1 + ((magic.Level + 1) * 2));
+            int duration;
+            int value = magic.GetDamage(GetAttackPower(MinSC, MaxSC));
+            if (value <= 90) duration = value / 6;
+            else if(value <= 135) duration = 90 / 6 + (value - 90) / 9;
+            else duration = 90 / 6 + (135 - 90) / 9 + (value - 135) / 15;
+
+            DelayedAction action = new DelayedAction(DelayedType.Magic, Envir.Time + delay, this, magic, duration, location, 1 + ((magic.Level + 1) * 2));
             CurrentMap.ActionList.Add(action);
 
         }
