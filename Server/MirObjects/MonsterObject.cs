@@ -1137,10 +1137,8 @@ namespace Server.MirObjects
                         DamageRate += 0.5F;
                         break;
                     case PoisonType.Slow:
-                        Console.WriteLine(MoveSpeed + " " + AttackSpeed + " " + poison.Time + " " + poison.Duration);
                         MoveSpeed = (ushort)(Info.MoveSpeed + 600);
                         AttackSpeed = Info.AttackSpeed + 350;
-                        Console.WriteLine(MoveSpeed+" "+ AttackSpeed + " "+ poison.Time +" "+ poison.Duration);
  
                         if (poison.Time >= poison.Duration)
                         {
