@@ -3145,6 +3145,7 @@ namespace Server.MirObjects
 
         private void RefreshSkills()
         {
+            int[] lvPlus = { 0, 3, 5, 8 };
             for (int i = 0; i < Info.Magics.Count; i++)
             {
                 UserMagic magic = Info.Magics[i];
@@ -3152,14 +3153,17 @@ namespace Server.MirObjects
                 {
                     case Spell.Fencing:
                         Accuracy = (byte)Math.Min(byte.MaxValue, Accuracy + magic.Level * 3);
-                        MaxAC = (ushort)Math.Min(ushort.MaxValue, MaxAC + (magic.Level + 1) * 3);
+                        //MaxAC = (ushort)Math.Min(ushort.MaxValue, MaxAC + (magic.Level + 1) * 3);
                         break;
-                    case Spell.FatalSword:
+                    case Spell.Slaying:
                         Accuracy = (byte)Math.Min(byte.MaxValue, Accuracy + magic.Level);
                         break;
+                    //case Spell.FatalSword:
+                    //    Accuracy = (byte)Math.Min(byte.MaxValue, Accuracy + magic.Level);
+                    //    break;
                     case Spell.SpiritSword:
-                        Accuracy = (byte)Math.Min(byte.MaxValue, Accuracy + magic.Level);
-                        MaxDC = (ushort)Math.Min(ushort.MaxValue, MaxDC + MaxSC * (magic.Level + 1) * 0.1F);
+                        Accuracy = (byte)Math.Min(byte.MaxValue, Accuracy + lvPlus[magic.Level]);
+                        //MaxDC = (ushort)Math.Min(ushort.MaxValue, MaxDC + MaxSC * (magic.Level + 1) * 0.1F);
                         break;
                 }
             }
