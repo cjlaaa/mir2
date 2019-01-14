@@ -1,4 +1,4 @@
-#基于Crystal Mir2的传奇中文本地化项目.
+# 基于Crystal Mir2的传奇中文本地化项目.
 
 本地化服务器端配置文件:https://github.com/cjlaaa/mir2ServerRelease
 
