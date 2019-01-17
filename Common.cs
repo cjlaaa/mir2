@@ -1463,6 +1463,7 @@ public enum ServerPacketIds : short
     MailSent,
     ParcelCollected,
     MailCost,
+
 	ResizeInventory,
     ResizeStorage,
     NewIntelligentCreature,
@@ -3358,6 +3359,7 @@ public class UserItem
             CurrentDura = CurrentDura,
             MaxDura = MaxDura,
             Count = Count,
+            GemCount = GemCount, //18.12.5
 
             AC = AC,
             MAC = MAC,

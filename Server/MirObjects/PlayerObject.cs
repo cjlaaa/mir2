@@ -3422,7 +3422,7 @@ namespace Server.MirObjects
                 if (player == this) continue;
 
                 if (Functions.InRange(CurrentLocation, player.CurrentLocation, Globals.DataRange))
-                    player.Enqueue(new S.ObjectColourChanged { ObjectID = ObjectID, NameColour = GetNameColour(player) });
+                    player.Enqueue(new S.ObjectColourChanged { ObjectID = ObjectID, NameColour = GetNameColour(this) });
             }
         }
 
@@ -6479,6 +6479,8 @@ namespace Server.MirObjects
                 target = this;
             else if (targetID > 0)
                 target = FindObject(targetID, 10);
+
+            if (target != null && target.Race != ObjectType.Monster && target.Race != ObjectType.Player) target = null;
 
             bool cast = true;
             byte level = magic.Level;
